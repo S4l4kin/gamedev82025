@@ -1,0 +1,43 @@
+-4x Card Game
+-Turn Based
+-Played on a hex grid, with some size and shape, where units could move about and buildings be placed
+-Supervisor of many units
+-Winning by destroying enemies HQ, health around 10-20 
+-Units deal the damage equal to their health
+-Controlling hexes with special feature gives unique colored resources (or generic)
+	-Two types of resources Etheral & Persistent. Etheral Resources dissapears after turn end, Persistnet stays turn to turn. Etheral resources would be prioritized.
+-5 different types of cards the player could play
+	-Units: Units are any game piece that can move around the hex grid and attack. Can only be played on conqured hexes. The hex the unit is standing on is technically considered "Conqured" when it comes to gaining resources.
+	-Structures: Unlike Units, Structures cannot move, but can be placed adjecent to Units on "Neutral" Hexes. Some Structures could have restrictions of being only be build on hexes with a specific feature
+	-Headquarters: A special type of Structure, functions similar to the Generals in Duelyst, only a single HQ per deck and the game starts with placing of the HQs. if the HQ is destroyed the opponent wins the game. HQ always has some unique ability helping to dictate the gameplay style.
+	-Spells: Spells are instant effects that the player can play from their hand. Each Spell has a range which means how many hexes from a conqured hex away they can be play from.
+	-Artifacts / Equipments: Cards that can only be played on Units, giving them additional effects.
+-Strucutres would control the adjecent hexes, could pay resources to extend the hexes they control
+-Small deck size, like around 15 with and one being the HQ card and each card being unique
+-Depending on the cards on the decks they add would add unique features on the board
+	- Some random features could be added that neither deck uses
+	- Some Units / Structures would have special abilities when on or adjecent to specific features.
+-The Game would start with both players placing down their HQ somewhere. Perhaps the one who has the first turn puts down their HQ last
+-Each turn each player gets some amount of generic mana
+-At the start of each turn the player draws so that they have at least 5 cards in hand.
+	-If the player has more than 8 cards, and they would need to draw an additional card, you would show the card they would have drawn and discard it immediately (This discarding would not activate any effects that care about discarding) 
+	-The draw system could be similar how it works in Stormbound: https://stormbound-kitty.com/drawing-mechanics
+
+
+-Normally there is a fog of war in 4x, should we add something similar?
+	
+Resources
+	Different Colors of resources, vertical slice could have 3 + basic
+	Both deck have 2 colors they care about, 1 unique color and 1 color shared
+	There is no real limit to how many different colors we could add, if we do not want to bind specific color to a specific gameplay style (like in MtG)
+	
+Two archetypes
+	For our MVP / vertical slice we try to achieve during this course.
+	Focus on Exploration & Extermination -- Aggro deck?
+		Lot of small units that can move far
+		How to give some effects for exploring? Perhaps features with one time uses, but that also feels like Exploit(ation)
+		Could have that the first time they pass a feature they get a bonus / new ability.
+	Focus on Eploit & Expansion -- Control deck?
+		More structure oriented
+		Also more spell focused
+	
