@@ -1,13 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://biyoebfq873oe"]
 
-[ext_resource type="Script" uid="uid://bj33jb20m53q4" path="res://Scipts/Managers/NetworkManager.gd" id="1_37kl0"]
+[ext_resource type="Script" uid="uid://brbe0jrph2krb" path="res://Scripts/Managers/CardManager.gd" id="1_37kl0"]
 
-[node name="NetworkManager" type="Node"]
+[node name="CardManager" type="Node"]
 script = ExtResource("1_37kl0")
-state = 2
-port = 13769
-message = " Client "
-
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
