@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://5fo83kxhoywh"]
 
 [ext_resource type="Texture2D" uid="uid://chy536ltbw7mp" path="res://icon.svg" id="1_7gqig"]
-[ext_resource type="Texture2D" uid="uid://b1vyqomjd60t0" path="res://Assets/strength_icon.svg" id="2_gvrs1"]
-[ext_resource type="Texture2D" uid="uid://h7jmfm5sfi24" path="res://Assets/Resources/icon1.svg" id="3_oe7qr"]
-[ext_resource type="Texture2D" uid="uid://5vcqtak3qdc7" path="res://Assets/speed_icon.svg" id="5_y3eib"]
+[ext_resource type="Texture2D" uid="uid://b1vyqomjd60t0" path="res://Assets/Icons/strength_icon.svg" id="2_gvrs1"]
+[ext_resource type="Texture2D" uid="uid://h7jmfm5sfi24" path="res://Assets/Icons/Resources/icon1.svg" id="3_oe7qr"]
+[ext_resource type="Texture2D" uid="uid://5vcqtak3qdc7" path="res://Assets/Icons/speed_icon.svg" id="5_y3eib"]
 
 [node name="Card" type="ColorRect"]
 anchors_preset = 15

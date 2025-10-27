@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b58cusi2dbifs"]
+
+[ext_resource type="Shader" uid="uid://ce022sni2788q" path="res://Scripts/Shaders/outline.gdshader" id="1_8ng10"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8ng10")
+shader_parameter/step_count = 15
+shader_parameter/thickness = 16.0
+shader_parameter/edge_color = Color(0.079035856, 0.56108654, 0.8669464, 1)
+shader_parameter/fade_start = 1.0
+shader_parameter/fade_length = 200.0
