@@ -13,7 +13,7 @@ var actor_object : Dictionary
 
 func _ready() -> void:
 	load_cards_in_folder("res://Cards")
-
+	
 # Loads an individual card in path
 func load_card(path) -> void:
 	var file = ResourceLoader.load(path, "Card")
@@ -53,7 +53,13 @@ func get_card_scene(card_name:String) -> PackedScene:
 #Return all the loaded card ids
 func get_cards() -> Array[String]:
 	return card_data.keys()
-
+	
+#Returns the card data of a specific card
+func get_card_data(card_name:String) -> Card:
+	if not card_data.has(card_name):
+		push_error("Tried to acess non-existant card " + card_name)
+		return null
+	return card_data[card_name]
 
 func _get_property_list():
 	if Engine.is_editor_hint():
