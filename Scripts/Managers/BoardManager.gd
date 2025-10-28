@@ -7,7 +7,6 @@ var hexes = []
 
 @export var conqured_hexes : Dictionary[String,Array]
 
-@onready var outline_material = preload("res://Scripts/Shaders/new_shader_material.tres")
 
 @export var orientation : BoardGenerator.HEX_ROTATION
 @export var grid_width : int = 8
@@ -15,6 +14,7 @@ var hexes = []
 @export var grid_scale : float = 1
 
 @onready var board_generator : BoardGenerator = BoardGenerator.new(orientation, grid_scale)
+@onready var outline : Outline = Outline.new()
 
 func init_tiles():
 	for i in grid_width:
@@ -37,15 +37,13 @@ func get_hex(x:int, y:int) -> Hex:
 	return hexes[x][y]
 
 func test(x:int, y:int):
-	var center_mat = StandardMaterial3D.new()
-	var neighbour_mat = StandardMaterial3D.new()
-	center_mat.albedo_color = Color.SKY_BLUE
-	neighbour_mat.albedo_color = Color.ORANGE_RED
-	get_hex(x,y).tile.material_overlay = outline_material
-	get_hex(x,y).tile.material_override = center_mat
+	var neighbour_mat = outline.get_outline(Color.ORANGE_RED)
+	
+	var center_mat = outline.get_outline(Color.SKY_BLUE)
+	get_hex(x,y).tile.material_overlay = center_mat
 	for hex in get_neighbours(x,y):
-		hex.tile.material_override = neighbour_mat
-		hex.tile.material_overlay = outline_material
+		hex.tile.material_overlay = neighbour_mat
+		pass
 
 func cube_to_coord(q:int,r:int):
 	var parity : int
