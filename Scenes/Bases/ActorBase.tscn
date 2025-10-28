@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://btkur06oqxvuf"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gkm4q"]
+
+[node name="Actor" type="Node3D"]
+
+[node name="Models" type="Node3D" parent="."]
+
+[node name="MouseTrigger" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MouseTrigger"]
+shape = SubResource("SphereShape3D_gkm4q")
+
+[node name="HoverTimer" type="Timer" parent="."]
