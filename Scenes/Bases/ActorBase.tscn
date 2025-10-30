@@ -1,14 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://btkur06oqxvuf"]
+[gd_scene load_steps=3 format=3 uid="uid://btkur06oqxvuf"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_gkm4q"]
+[ext_resource type="Texture2D" uid="uid://5vcqtak3qdc7" path="res://Assets/Icons/speed_icon.svg" id="1_l4a11"]
+[ext_resource type="Script" uid="uid://dkmto0r2cdbdv" path="res://Scripts/Actor_scripts/Unit.gd" id="1_tpmiq"]
 
 [node name="Actor" type="Node3D"]
+script = ExtResource("1_tpmiq")
+health = 2
+card_id = "test_card"
+start_color = Color(1, 1, 1, 1)
 
 [node name="Models" type="Node3D" parent="."]
 
-[node name="MouseTrigger" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MouseTrigger"]
-shape = SubResource("SphereShape3D_gkm4q")
-
-[node name="HoverTimer" type="Timer" parent="."]
+[node name="Sprite3D" type="Sprite3D" parent="Models"]
+modulate = Color(0, 1, 1, 1)
+billboard = 1
+no_depth_test = true
+texture = ExtResource("1_l4a11")

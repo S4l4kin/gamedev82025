@@ -6,13 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://5vcqtak3qdc7" path="res://Assets/Icons/speed_icon.svg" id="5_y3eib"]
 
 [node name="Card" type="ColorRect"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -970.0
-offset_bottom = -334.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(182, 314)
+offset_right = 182.0
+offset_bottom = 314.0
 color = Color(0.58, 0.58, 0.58, 1)
 
 [node name="Image" type="TextureRect" parent="."]

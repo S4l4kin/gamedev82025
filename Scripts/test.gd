@@ -1,6 +1,11 @@
-extends MeshInstance3D
+extends Node
+
+@onready var card_manager : CardManager = $"../CardManager"
 
 func _ready():
-	if mesh is ArrayMesh:
-		print(mesh.get_faces())
-		pass
+	call_deferred("make_card")
+
+
+func make_card():
+	var card = card_manager.get_card_scene("test_card").instantiate()
+	add_child(card)

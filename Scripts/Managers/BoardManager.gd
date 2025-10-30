@@ -13,8 +13,19 @@ var hexes = []
 @export var grid_height : int = 8
 @export var grid_scale : float = 1
 
-@onready var board_generator : BoardGenerator = BoardGenerator.new(orientation, grid_scale)
-@onready var outline : Outline = Outline.new()
+@onready var board_generator : BoardGenerator = BoardGenerator.new(self, orientation, grid_scale)
+@onready var hover_timer : Timer = $HoverTimer
+@onready var tiles = $Tiles
+var current_hovered_hex : Vector2i
+@onready var inspect_card: CardInspector = $Card
+@onready var actor_actions: ActorActions = $Actions
+
+var hex_selector : HexSelect
+
+signal hex_pressed (x:int, y:int)
+signal hex_hovered (x:int, y:int)
+signal mouse_entered_hex (x:int, y:int)
+signal mouse_exited_hex (x:int, y:int)
 
 func init_tiles():
 	for i in grid_width:
@@ -22,7 +33,7 @@ func init_tiles():
 		hexes.append(array)
 		for j in grid_height:
 			var hex_instance = board_generator.create_hex_tile(i,j)
-			add_child(hex_instance)
+			tiles.add_child(hex_instance)
 			var hex = Hex.new()
 			hex.passable = true
 			hex.tile = hex_instance
@@ -30,40 +41,40 @@ func init_tiles():
 			hexes[i].append(hex)
 			print(hexes[i][j].resource_name)
 
-@onready var test_unit : Unit = $Sprite3D
-var old_x 
-var old_y
+@onready var test_unit : Unit = $Actor
+@onready var test_unit2 : Unit = $Actor2
 
-@onready var neighbour_mat = outline.get_outline(Color.ORANGE_RED)
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.keycode == KEY_SPACE and event.pressed:
-			var rng : RandomNumberGenerator = RandomNumberGenerator.new()
-			var cube = coord_to_cube(old_x,old_y)
-			var cube_neighbours = [{"q":cube.q+1,"r":cube.r},{"q":cube.q+1,"r":cube.r-1},{"q":cube.q,"r":cube.r-1},{"q":cube.q-1,"r":cube.r},{"q":cube.q-1,"r":cube.r+1},{"q":cube.q,"r":cube.r+1}]
-			var dir = rng.randf_range(0,6)
-			var new_pos = cube_to_coord(cube_neighbours[dir].q,cube_neighbours[dir].r)
-			if get_hex(new_pos.x,new_pos.y) != null:
-				move_unit(old_x, old_y, new_pos.x, new_pos.y)
-
-				for hex in get_neighbours(old_x,old_y):
-					hex.tile.material_overlay = null
-				
-				for hex in get_neighbours(new_pos.x,new_pos.y):
-					hex.tile.material_overlay = neighbour_mat
-				
-				old_x = new_pos.x
-				old_y = new_pos.y
-					
 
 func _ready():
-
+	print(board_generator)
 	init_tiles()
 	var hex = get_hex(0,0)
 	hex.unit = test_unit
+	test_unit.x = 0; test_unit.y = 0
 	test_unit.global_position = hex.tile.global_position
-	old_x = 0
-	old_y = 0
+	hex = get_hex(0,2)
+	hex.unit = test_unit2
+	test_unit2.x = 0; test_unit2.y = 2
+	test_unit2.global_position = hex.tile.global_position
+
+	connect("mouse_exited_hex", (func (_x, _y): current_hovered_hex = Vector2i()))
+	connect("mouse_entered_hex", (func (x, y): current_hovered_hex = Vector2i(x, y); hover_timer.start()))
+	hover_timer.connect("timeout", (func ():  inspect_hex(current_hovered_hex.x, current_hovered_hex.y)))
+	connect("hex_pressed", select_hex)
+
+
+func inspect_hex(x:int, y:int):
+	if get_actors(x, y) != {}:
+		inspect_card.show_card("unit_hovered", Vector2i(x,y))
+
+func select_hex(x:int ,y:int):
+	if hex_selector != null:
+		return
+	if get_actors(x, y)  != {}:
+		inspect_card.show_card("unit_selected", Vector2i(x,y))
+		actor_actions.get_actions(Vector2i(x,y))
+	else:
+		inspect_card.change_lock("unit_selected", false)
 
 func get_hex(x:int, y:int) -> Hex:
 	var hex : Hex = null
@@ -71,14 +82,12 @@ func get_hex(x:int, y:int) -> Hex:
 		hex = hexes[x][y]
 	return hex
 
-func test(x:int, y:int):
-	var neighbour_mat = outline.get_outline(Color.ORANGE_RED)
-	
-	for hex in get_neighbours(x,y):
-		hex.tile.material_overlay = neighbour_mat
-		pass
+func add_hex_selector(selector: HexSelect):
+	inspect_card.change_lock("unit_selected", false)
+	hex_selector = selector
+	add_child(selector)
 
-func cube_to_coord(q:int,r:int):
+func cube_to_coord(q:int,r:int) -> Vector2i:
 	var parity : int
 	var col :int
 	var row : int
@@ -90,7 +99,7 @@ func cube_to_coord(q:int,r:int):
 		parity = q&1
 		col = q
 		row = r + (q + parity) / 2
-	return {"x":col, "y":row}
+	return Vector2i(col, row)
 
 func coord_to_cube(x:int,y:int):
 	var parity : int
@@ -101,7 +110,7 @@ func coord_to_cube(x:int,y:int):
 		q = x - (y + parity) / 2
 		r = y
 	else:
-		parity = y&1
+		parity = x&1
 		q = x	
 		r = y - (x + parity) / 2
 	return {"q":q, "r":r, "s":-q-r}
@@ -121,9 +130,9 @@ func get_neighbours(x:int, y:int) -> Array[Hex]:
 	
 	return neighbours
 
-func move_unit(from_x:int, from_y:int, to_x:int, to_y:int) -> void:
-	var from_hex = get_hex(from_x, from_y)
-	var to_hex = get_hex(to_x, to_y)
+func move_unit(from :Vector2i, to:Vector2i) -> void:
+	var from_hex = get_hex(from.x, from.y)
+	var to_hex = get_hex(to.x, to.y)
 	var unit = from_hex.unit
 	if unit == null:
 		push_warning("tried to move a non-existant unit")
@@ -140,16 +149,27 @@ func move_unit(from_x:int, from_y:int, to_x:int, to_y:int) -> void:
 		move = unit.attack(defender)
 
 	if move:
-		unit.x = to_x
-		unit.y = to_y
+		unit.x = to.x
+		unit.y = to.y
 		to_hex.unit = unit
 		from_hex.unit = null
 		unit.global_position = to_hex.tile.global_position
 		unit.on_post_move()
+
 	pass
 
 
-func get_unit(x:int, y:int) -> Unit:
+func get_actors(x:int, y:int) -> Dictionary[String, Actor]:
+	var actors : Dictionary[String, Actor] = {}
+
 	var unit : Unit = null
 	unit = get_hex(x,y).unit
-	return unit
+	var structure : Structure = null
+	structure = get_hex(x,y).structure
+	
+	if unit != null:
+		actors["unit"] = unit
+	if structure != null:
+		actors["structure"] = structure
+	
+	return actors

@@ -2,9 +2,27 @@ extends Node
 class_name Actor
 
 @export var health: int
-var card_id
+
+
+@export var card_id : String
+@export var player : String
+@export var start_color : Color
+var color : Color:
+	set(s):
+		color = s
+		for child in get_node("Models").get_children():
+			print(child.name)
+			child.modulate = color
 var x : int
 var y : int
+
+func _ready() -> void:
+	color = start_color
+
+func get_actions() -> Dictionary[String, Dictionary]:
+
+	return {}
+
 
 func on_pre_defend(_enemy: Actor):
 	pass

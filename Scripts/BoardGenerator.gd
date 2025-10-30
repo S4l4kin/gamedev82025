@@ -1,17 +1,18 @@
 class_name BoardGenerator
 enum HEX_ROTATION {Flat_Top, Pointy_Top}
 
-var hex_mesh = preload("res://Assets/Models/Hex/HexTile.res")
+var hex_tile = preload("res://Scenes/HexTile.tscn")
 
 var grid_scale : float = 1
 
 var horiz_spacing : float
 var vert_spacing : float
 var orientation : HEX_ROTATION
-
+var board_manager : BoardManager
 	
 
-func _init(_orientation, _scale) -> void:
+func _init(_board_manager, _orientation, _scale) -> void:
+	board_manager = _board_manager
 	orientation = _orientation
 	grid_scale = _scale
 	
@@ -23,14 +24,18 @@ func _init(_orientation, _scale) -> void:
 		vert_spacing = grid_scale * 3/2
 
 func create_hex_tile(x:int, y:int) -> MeshInstance3D:
-	var tile : MeshInstance3D = MeshInstance3D.new()
+	var tile = hex_tile.instantiate()
 
 	tile.name = str(x) + " , " + str(y)
 
-	tile.mesh = hex_mesh
-	tile.material_override = Material.new()
 	var hex_position : Vector3
 	tile.scale = Vector3.ONE * grid_scale
+
+	tile.connect("pressed", board_manager.emit_signal.bind("hex_pressed", x, y))
+	tile.connect("mouse_entered", board_manager.emit_signal.bind("mouse_entered_hex", x, y))
+	tile.connect("mouse_exited", board_manager.emit_signal.bind("mouse_exited_hex", x, y))
+
+
 	if orientation == HEX_ROTATION.Pointy_Top:
 		tile.rotation_degrees = Vector3(-90,0,0)
 
