@@ -1,0 +1,42 @@
+[gd_scene load_steps=10 format=3 uid="uid://cm3edse57tpy4"]
+
+[ext_resource type="Script" uid="uid://brbe0jrph2krb" path="res://Scripts/Managers/CardManager.gd" id="1_7ubjm"]
+[ext_resource type="Script" uid="uid://baatn6443ogbc" path="res://Scripts/Resources/SymbolColorPair.gd" id="3_85vbk"]
+[ext_resource type="Texture2D" uid="uid://h7jmfm5sfi24" path="res://Assets/Resources/icon1.svg" id="4_fp7df"]
+[ext_resource type="Texture2D" uid="uid://5vcqtak3qdc7" path="res://Assets/speed_icon.svg" id="4_ihw1b"]
+[ext_resource type="Script" uid="uid://dvqe1ebwyhadu" path="res://Scripts/test.gd" id="5_ihw1b"]
+[ext_resource type="Script" uid="uid://dcmjxuaevcgkk" path="res://Scripts/Managers/DeckManager.gd" id="5_upf6r"]
+[ext_resource type="Resource" path="res://Deck.tres" id="6_v4liu"]
+
+[sub_resource type="Resource" id="Resource_55ol8"]
+script = ExtResource("3_85vbk")
+symbol = ExtResource("4_fp7df")
+color = Color(0.2, 0.29803923, 0.6627451, 1)
+metadata/_custom_type_script = "uid://baatn6443ogbc"
+
+[sub_resource type="Resource" id="Resource_85vbk"]
+script = ExtResource("3_85vbk")
+symbol = ExtResource("4_ihw1b")
+color = Color(0.63529414, 0.42745098, 0.654902, 1)
+metadata/_custom_type_script = "uid://baatn6443ogbc"
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="CardManager" type="Node" parent="."]
+script = ExtResource("1_7ubjm")
+cost_symbol_color = Dictionary[int, ExtResource("3_85vbk")]({
+0: SubResource("Resource_55ol8"),
+1: SubResource("Resource_85vbk")
+})
+cost = null
+metadata/_custom_type_script = "uid://brbe0jrph2krb"
+
+[node name="Card" type="Node" parent="."]
+script = ExtResource("5_ihw1b")
+
+[node name="DeckManager" type="Node" parent="."]
+script = ExtResource("5_upf6r")
+deck_resource = ExtResource("6_v4liu")
+metadata/_custom_type_script = "uid://dcmjxuaevcgkk"
