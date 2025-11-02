@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("1_xvkco")
+color = Color(0.967418, 0.17767617, 0, 1)
 name = "Test Card"
 id = "test_card"
 type = 1
@@ -14,9 +15,10 @@ cost = {
 1: 1
 }
 card_image = ExtResource("1_okdny")
-description = "Tasdatat"
+description = "This is a card
+"
 unit_type = 1
-health = 0
+health = 3
 speed = 1
 custom_script = ExtResource("2_jusre")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

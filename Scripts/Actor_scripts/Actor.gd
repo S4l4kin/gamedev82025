@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 class_name Actor
 
 @export var health: int
@@ -7,6 +7,10 @@ class_name Actor
 @export var card_id : String
 @export var player : String
 @export var start_color : Color
+
+var tween : Tween
+signal done_attacking
+
 var color : Color:
 	set(s):
 		color = s
@@ -31,7 +35,7 @@ func on_post_defend(_enemy: Actor):
 	pass
 
 func on_death():
-	call_deferred("queue_free")
+	pass
 
 func get_attack_damage():
 	return 0
@@ -41,3 +45,4 @@ func set_health(new_health: int):
 	health = new_health
 	if health <=0:
 		on_death()
+		$"/root/Board".remove_actor(self)

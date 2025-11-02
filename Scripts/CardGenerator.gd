@@ -4,7 +4,8 @@ var cost_symbol_color : Dictionary[GlobalEnums.COST_COLORS, SymbolColorPair]
 
 #Generates a prefab of the card that can be initalized
 func generate_card(data:Card) -> PackedScene:
-	var card = base_card.instantiate()
+	var base = base_card.instantiate()
+	var card = base.get_node("Card")
 	
 
 	#Changes the card objects data to refelct the cards internal data
@@ -21,7 +22,7 @@ func generate_card(data:Card) -> PackedScene:
 		card.get_node("Power/Numb").text = str(data.health)
 	if data.type == Card.CARD_TYPE.Unit:
 		card.get_node("Speed").show()
-		card.get_node("Speed/Numb").text = str(data.health)
+		card.get_node("Speed/Numb").text = str(data.speed)
 		card.get_node("UnitType").show()
 		card.get_node("UnitType").text = GlobalEnums.UNIT_TYPES.keys()[data.unit_type]
 
@@ -45,14 +46,14 @@ func generate_card(data:Card) -> PackedScene:
 				new_cost.get_node("Numb").text = str(value)
 				# Needs to add the duplicated cost symbol to a child, and additionally add their owner being the generated card for them to be saved.
 				card.get_node("Cost").add_child(new_cost)
-				new_cost.owner = card
-				new_cost.get_node("Numb").owner = card
+				new_cost.owner = base
+				new_cost.get_node("Numb").owner = base
 				new_cost.show()
 		
 	
 
 	var packed_card : PackedScene = PackedScene.new()
-	packed_card.pack(card)
+	packed_card.pack(base)
 
 	return packed_card
 

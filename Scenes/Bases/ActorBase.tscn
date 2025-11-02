@@ -5,6 +5,7 @@
 
 [node name="Actor" type="Node3D"]
 script = ExtResource("1_tpmiq")
+max_speed = 3
 health = 2
 card_id = "test_card"
 start_color = Color(1, 1, 1, 1)

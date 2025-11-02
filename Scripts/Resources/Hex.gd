@@ -6,3 +6,4 @@ var structure : Structure
 @export var feature : GlobalEnums.FEATURE_TYPES
 var tile : MeshInstance3D
 var passable : bool = true
+var coord : Vector2i

@@ -14,14 +14,13 @@ func attack(enemy:Actor) -> bool:
 	set_health(health - enemy.get_attack_damage())
 	enemy.set_health(enemy.health - current_attack)
 
-	print(health)
 
 	#If either attacker or defender survived actiave post attack and defend abilities
 	if health > 0:
 		on_post_attack(enemy)
 	if enemy.health > 0:
 		enemy.on_post_defend(self)
-
+	emit_signal("done_attacking")
 	return health > 0
 
 func on_pre_attack(_enemy: Actor):

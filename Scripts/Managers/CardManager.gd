@@ -50,10 +50,29 @@ func get_card_scene(card_name:String) -> PackedScene:
 		card_object[card_name] = card
 		return card
 
+func get_playable_card_scene(card: Card) -> Node:
+	var card_base = get_card_scene(card.id).instantiate()
+	var raycast = RayCast3D.new()
+	raycast.name = "Raycast"
+	card_base.add_child(raycast)
+	card_base.set_script(preload("res://Scripts/PlayableCard.gd"))
+	if card.type == Card.CARD_TYPE.HQ or card.type == Card.CARD_TYPE.Structure or card.type == Card.CARD_TYPE.Unit:
+		var actor_scene : PackedScene = PackedScene.new()
+		var actor_node = preload("res://Scenes/Bases/ActorBase.tscn").instantiate()
+		actor_node.card_id = card.id
+		actor_node.health = card.health
+		actor_node.max_speed = card.speed
+		actor_node.start_color = card.color
+		actor_scene.pack(actor_node)
+		card_base.play_callable = (func (coord: Vector2i): $"/root/Board".create_actor(coord, actor_scene))
+	card_base.card = card
+	return card_base
+
+
 #Return all the loaded card ids
 func get_cards() -> Array[String]:
 	return card_data.keys()
-	
+
 #Returns the card data of a specific card
 func get_card_data(card_name:String) -> Card:
 	if not card_data.has(card_name):

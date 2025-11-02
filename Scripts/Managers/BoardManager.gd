@@ -36,6 +36,7 @@ func init_tiles():
 			tiles.add_child(hex_instance)
 			var hex = Hex.new()
 			hex.passable = true
+			hex.coord = Vector2i(i,j)
 			hex.tile = hex_instance
 
 			hexes[i].append(hex)
@@ -57,7 +58,7 @@ func _ready():
 	test_unit2.x = 0; test_unit2.y = 2
 	test_unit2.global_position = hex.tile.global_position
 
-	connect("mouse_exited_hex", (func (_x, _y): current_hovered_hex = Vector2i()))
+	connect("mouse_exited_hex", (func (_x, _y): current_hovered_hex = Vector2i(-1,-1)))
 	connect("mouse_entered_hex", (func (x, y): current_hovered_hex = Vector2i(x, y); hover_timer.start()))
 	hover_timer.connect("timeout", (func ():  inspect_hex(current_hovered_hex.x, current_hovered_hex.y)))
 	connect("hex_pressed", select_hex)
@@ -130,6 +131,7 @@ func get_neighbours(x:int, y:int) -> Array[Hex]:
 	
 	return neighbours
 
+# TODO: Refactor using tweens
 func move_unit(from :Vector2i, to:Vector2i) -> void:
 	var from_hex = get_hex(from.x, from.y)
 	var to_hex = get_hex(to.x, to.y)
@@ -145,6 +147,9 @@ func move_unit(from :Vector2i, to:Vector2i) -> void:
 
 	var defender : Actor = to_hex.structure if to_hex.unit == null else to_hex.unit
 	var move : bool = true
+	
+	unit.global_position = to_hex.tile.global_position
+	
 	if defender != null:
 		move = unit.attack(defender)
 
@@ -153,23 +158,50 @@ func move_unit(from :Vector2i, to:Vector2i) -> void:
 		unit.y = to.y
 		to_hex.unit = unit
 		from_hex.unit = null
-		unit.global_position = to_hex.tile.global_position
 		unit.on_post_move()
 
 	pass
 
+func create_actor(coord: Vector2i, actor:PackedScene):
+	var actor_node : Actor = actor.instantiate()
+	actor_node.x = coord.x
+	actor_node.y = coord.y
+	add_child(actor_node)
+	var hex = get_hex(coord.x, coord.y)
+	if actor_node is Unit:
+		hex.unit = actor_node
+	if actor_node is Structure:
+		hex.structure = actor_node
+	actor_node.global_position = hex.tile.global_position
 
+func remove_actor(actor: Actor):
+	actor.call_deferred("queue_free")
+	if actor is Unit:
+		hexes[actor.x][actor.y].unit = null
+	if actor is Structure:
+		hexes[actor.x][actor.y].structure = null
+
+
+func get_hex_from_tile(tile: Object) -> Hex:
+	for x in grid_width:
+		for y in grid_height:
+			if hexes[x][y].tile == tile:
+				return hexes[x][y]
+	return null
 func get_actors(x:int, y:int) -> Dictionary[String, Actor]:
 	var actors : Dictionary[String, Actor] = {}
+	var hex = get_hex(x,y)
 
-	var unit : Unit = null
-	unit = get_hex(x,y).unit
-	var structure : Structure = null
-	structure = get_hex(x,y).structure
-	
-	if unit != null:
-		actors["unit"] = unit
-	if structure != null:
-		actors["structure"] = structure
+	if hex != null:
+
+		var unit : Unit = null
+		unit = hex.unit
+		var structure : Structure = null
+		structure = hex.structure
+		
+		if unit != null:
+			actors["unit"] = unit
+		if structure != null:
+			actors["structure"] = structure
 	
 	return actors

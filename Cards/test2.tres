@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://bie87r47vk380"]
+
+[ext_resource type="Texture2D" uid="uid://chy536ltbw7mp" path="res://icon.svg" id="1_xgyyk"]
+[ext_resource type="Script" uid="uid://dvqe1ebwyhadu" path="res://Scripts/test.gd" id="2_7412m"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="3_ipcm7"]
+
+[resource]
+script = ExtResource("3_ipcm7")
+color = Color(0, 0.7019608, 0, 1)
+name = "Test Card 2"
+id = "test_card_2"
+type = 1
+cost = {
+0: 2,
+1: 1
+}
+card_image = ExtResource("1_xgyyk")
+description = "I wish this would also be a card"
+unit_type = 2
+health = 6
+speed = 7
+custom_script = ExtResource("2_7412m")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

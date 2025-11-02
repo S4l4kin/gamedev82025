@@ -5,9 +5,14 @@ class_name DeckManager
 
 @export var deck_resource : Deck
 
+@onready var card_manager : CardManager = $"/root/CardManager"
+@export var resource_count : Dictionary[GlobalEnums.COST_COLORS, int] = {}
+
 # card shuffler: see https://stormbound-kitty.com/drawing-mechanics
 
-var hand : Array = []
+var hand : Array[Card] = []
+@onready var hand_node = $Hand/HBoxContainer
+
 var weights : Dictionary[String, float] = {}
 const weight_multiplier : float = 1.6
 
@@ -19,7 +24,7 @@ func _ready() -> void:
 	print("DeckManager initialized with deck: " + deck_resource.deck_name)
 	
 	_intialize_deck()
-	hand = _deal_hand(5)
+	_deal_hand(5)
 	
 	print("Player's starting hand: ", hand)
 
@@ -53,7 +58,7 @@ func _deck_shuffler() -> void:
 		print("New current_weight is: ", current_weight)
 	pass
 	
-func _draw_weighted_card(weights: Dictionary) -> String:
+func _get_weighted_card() -> String:
 	var total_weight := 0.0
 	for w in weights.values():
 		total_weight += w
@@ -66,21 +71,27 @@ func _draw_weighted_card(weights: Dictionary) -> String:
 	for card_id in weights.keys():
 		cumulative += weights[card_id]
 		if random_pick <= cumulative:
+			weights[card_id] = 1
 			return card_id
 	
 	# Fallback (This shoudln't happen if "weights" aren't empty.
 	return weights.keys()[0]	
+
+func _input(event):
+	if event is InputEventKey:
+		if event.keycode == KEY_ENTER and event.pressed:
+			print("draw card")
+			draw_card()
+
+func draw_card():
+	var card = card_manager.get_card_data(_get_weighted_card())
+	hand.append(card)
+	var playable_card = card_manager.get_playable_card_scene(card)
+	playable_card.deck_manager = self
+	hand_node.add_child(playable_card)
+
+func _deal_hand(hand_size: int = 5) -> void:
+	var draw: Array = []
 	
-func _deal_hand(hand_size: int = 5) -> Array:
-	var hand: Array = []
-	var available_weights = weights.duplicate()
-	
-	for i in range(hand_size):
-		if available_weights.is_empty():
-			break
-		
-		var drawn_card = _draw_weighted_card(available_weights)
-		hand.append(drawn_card)	
-		
-		available_weights.erase(drawn_card)
-	return hand
+	for i in hand_size:
+		draw_card()	

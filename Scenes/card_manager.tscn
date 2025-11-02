@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://b04d581kcwt5b"]
+
+[ext_resource type="Script" uid="uid://brbe0jrph2krb" path="res://Scripts/Managers/CardManager.gd" id="1_pikqg"]
+[ext_resource type="Script" uid="uid://baatn6443ogbc" path="res://Scripts/Resources/SymbolColorPair.gd" id="2_w6ora"]
+[ext_resource type="Texture2D" uid="uid://h7jmfm5sfi24" path="res://Assets/Icons/Resources/icon1.svg" id="3_bdei6"]
+[ext_resource type="Texture2D" uid="uid://boyx36tjquy7s" path="res://Assets/Icons/Resources/icon2.svg" id="4_fua0e"]
+
+[sub_resource type="Resource" id="Resource_dyqno"]
+script = ExtResource("2_w6ora")
+symbol = ExtResource("3_bdei6")
+color = Color(0.7260147, 0.9659241, 0.92046237, 1)
+metadata/_custom_type_script = "uid://baatn6443ogbc"
+
+[sub_resource type="Resource" id="Resource_t02fo"]
+script = ExtResource("2_w6ora")
+symbol = ExtResource("4_fua0e")
+color = Color(0.17168617, 0.4039695, 1, 1)
+metadata/_custom_type_script = "uid://baatn6443ogbc"
+
+[node name="CardManager" type="Node"]
+script = ExtResource("1_pikqg")
+cost_symbol_color = Dictionary[int, ExtResource("2_w6ora")]({
+0: SubResource("Resource_dyqno"),
+1: SubResource("Resource_t02fo")
+})
+cost = null

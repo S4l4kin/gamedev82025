@@ -36,7 +36,7 @@ var model : PackedScene
 #Variables unique for Units
 var unit_type : int = 0
 var speed : int = 1
-
+@export var color : Color
 #Instantiates the card, set unused variables to null (or empty for string and -1 for int)
 # and empty needed variables to their default values.
 func set_defaults() -> void:
@@ -49,6 +49,7 @@ func set_defaults() -> void:
 		speed = -1
 		health = -1
 		model = null
+	play_predicate = preload("res://Scripts/Predicates/BasePredicate.gd")
 
 func generate_id(_name:String) -> String:
 	return _name.to_lower().replace(' ', '_')

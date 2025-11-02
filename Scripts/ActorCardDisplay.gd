@@ -8,7 +8,7 @@ var inspecting_hex: Vector2i
 @onready var hide_timer : Timer = $HideTimer
 
 var show_lock : Dictionary[String, bool] = {}
-
+@onready var card_stack = $"3DControl/SubViewport/CenterContainer"
 
 
 func _ready():
@@ -63,6 +63,11 @@ func show_card(lock: String, hex: Vector2i) -> void:
 		inspecting_hex = hex
 
 		global_position = board.get_hex(hex.x,hex.y).tile.global_position
+		for child in card_stack.get_children():
+			child.call_deferred("free")
+		var hex_data = board.hexes[hex.x][hex.y]
+		var card_scene = $"/root/CardManager".get_card_scene(hex_data.unit.card_id).instantiate()
+		card_stack.add_child(card_scene)
 
 
 	change_lock(lock, true)
