@@ -13,6 +13,7 @@ var play_callable : Callable
 var deck_manager : DeckManager
 
 @onready var raycast_node : RayCast3D = $Raycast
+@onready var outline : Outline = $"/root/Board/Outline"
 func _ready():
 	$Card.connect("gui_input", test)
 	$Card.connect("mouse_entered", hover_start)
@@ -40,11 +41,10 @@ func treshold_cancelled():
 	var tween = create_tween()
 	tween.tween_property($Card, "scale", Vector2.ONE * 1, 0.2)
 	tween.tween_property($Card, "modulate", Color.WHITE, 0.2)
-	old_hex.tile.material_overlay = null
+	outline.set_hex_outline("ui", old_hex, Color.TRANSPARENT)
 	old_hex = null
 	
 var old_hex
-var outline = Outline.new().get_outline(Color.ORCHID)
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:
 		if event.button_mask & MOUSE_BUTTON_MASK_LEFT == MOUSE_BUTTON_LEFT:
@@ -73,11 +73,11 @@ func _input(event: InputEvent) -> void:
 						var hex = $"/root/Board".get_hex_from_tile(hex_tile)
 						if old_hex != null:
 							if old_hex != hex:
-								hex.tile.material_overlay = outline
-								old_hex.tile.material_overlay = null
+								outline.set_hex_outline("ui",hex, Color.LIME)
+								outline.set_hex_outline("ui", old_hex, Color.TRANSPARENT)
 								old_hex = hex
 						else:
-							hex.tile.material_overlay = outline
+							outline.set_hex_outline("ui",hex, Color.LIME)
 							old_hex = hex
 					#raycast.call_deferred("free")
 
@@ -89,7 +89,7 @@ func _input(event: InputEvent) -> void:
 			else:
 				var predicate = card.play_predicate.new()
 				if predicate.can_play(deck_manager.resource_count, old_hex.coord, $"/root/Board"):
-					old_hex.tile.material_overlay = null
+					outline.set_hex_outline("ui", old_hex, Color.TRANSPARENT)
 					play_callable.call(old_hex.coord)
 					call_deferred("free")
 

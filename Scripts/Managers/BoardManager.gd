@@ -20,6 +20,7 @@ var current_hovered_hex : Vector2i
 @onready var inspect_card: CardInspector = $Card
 @onready var actor_actions: ActorActions = $Actions
 
+
 var hex_selector : HexSelect
 
 signal hex_pressed (x:int, y:int)
@@ -47,8 +48,19 @@ func init_tiles():
 
 
 func _ready():
-	print(board_generator)
 	init_tiles()
+	connect("mouse_exited_hex", (func (_x, _y): current_hovered_hex = Vector2i(-1,-1)))
+	connect("mouse_entered_hex", (func (x, y): current_hovered_hex = Vector2i(x, y); hover_timer.start()))
+	hover_timer.connect("timeout", (func ():  inspect_hex(current_hovered_hex.x, current_hovered_hex.y)))
+	connect("hex_pressed", select_hex)
+
+	$Outline.add_layer("test", 2)
+	$Outline.add_layer("ui",1.25)
+	$Outline.set_hex_outline("test", get_hex(2,2), Color.RED)
+	for i in get_neighbours(2,2):
+		$Outline.set_hex_outline("test", i, Color.RED)
+	$Outline.set_hex_outline("test", get_hex(2,5), Color.ORANGE_RED)
+	
 	var hex = get_hex(0,0)
 	hex.unit = test_unit
 	test_unit.x = 0; test_unit.y = 0
@@ -57,12 +69,6 @@ func _ready():
 	hex.unit = test_unit2
 	test_unit2.x = 0; test_unit2.y = 2
 	test_unit2.global_position = hex.tile.global_position
-
-	connect("mouse_exited_hex", (func (_x, _y): current_hovered_hex = Vector2i(-1,-1)))
-	connect("mouse_entered_hex", (func (x, y): current_hovered_hex = Vector2i(x, y); hover_timer.start()))
-	hover_timer.connect("timeout", (func ():  inspect_hex(current_hovered_hex.x, current_hovered_hex.y)))
-	connect("hex_pressed", select_hex)
-
 
 func inspect_hex(x:int, y:int):
 	if get_actors(x, y) != {}:

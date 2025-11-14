@@ -3,27 +3,26 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://5vcqtak3qdc7"
-path.s3tc="res://.godot/imported/speed_icon.svg-4557713e06170896ccc280fe13ae552c.s3tc.ctex"
+path="res://.godot/imported/speed_icon.svg-4557713e06170896ccc280fe13ae552c.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Icons/speed_icon.svg"
-dest_files=["res://.godot/imported/speed_icon.svg-4557713e06170896ccc280fe13ae552c.s3tc.ctex"]
+dest_files=["res://.godot/imported/speed_icon.svg-4557713e06170896ccc280fe13ae552c.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=4
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
-compress/channel_pack=0
+compress/channel_pack=1
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
