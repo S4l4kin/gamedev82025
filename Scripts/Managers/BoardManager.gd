@@ -5,8 +5,8 @@ class_name BoardManager
 
 var hexes = []
 
-@export var conqured_hexes : Dictionary[String,Array]
-
+@export var conqured_hexes : Dictionary[Vector2i,Array]
+var player_colors : Dictionary[String, Color]
 
 @export var orientation : BoardGenerator.HEX_ROTATION
 @export var grid_width : int = 8
@@ -20,6 +20,7 @@ var current_hovered_hex : Vector2i
 @onready var inspect_card: CardInspector = $Card
 @onready var actor_actions: ActorActions = $Actions
 
+@onready var outline : Outline = $Outline
 
 var hex_selector : HexSelect
 
@@ -43,32 +44,42 @@ func init_tiles():
 			hexes[i].append(hex)
 			print(hexes[i][j].resource_name)
 
-@onready var test_unit : Unit = $Actor
-@onready var test_unit2 : Unit = $Actor2
+func set_conqured_hex_colors(players):
+	for player in players:
+		player_colors[player.name] = Color(player.color.r, player.color.g, player.color.b)
 
 
 func _ready():
 	init_tiles()
+	GameManager.network.connect("recieved_message", handle_network)
+	
 	connect("mouse_exited_hex", (func (_x, _y): current_hovered_hex = Vector2i(-1,-1)))
 	connect("mouse_entered_hex", (func (x, y): current_hovered_hex = Vector2i(x, y); hover_timer.start()))
 	hover_timer.connect("timeout", (func ():  inspect_hex(current_hovered_hex.x, current_hovered_hex.y)))
 	connect("hex_pressed", select_hex)
 
-	$Outline.add_layer("test", 2)
+	$Outline.add_layer("conqured_hexes", 2)
 	$Outline.add_layer("ui",1.25)
 	$Outline.set_hex_outline("test", get_hex(2,2), Color.RED)
 	for i in get_neighbours(2,2):
 		$Outline.set_hex_outline("test", i, Color.RED)
 	$Outline.set_hex_outline("test", get_hex(2,5), Color.ORANGE_RED)
-	
-	var hex = get_hex(0,0)
-	hex.unit = test_unit
-	test_unit.x = 0; test_unit.y = 0
-	test_unit.global_position = hex.tile.global_position
-	hex = get_hex(0,2)
-	hex.unit = test_unit2
-	test_unit2.x = 0; test_unit2.y = 2
-	test_unit2.global_position = hex.tile.global_position
+
+
+func handle_network(data):
+	if (data.type == "create_actor"):
+		var coord = data.coord
+		var unit = data.unit
+		var card = GameManager.card_manager.get_card_data(unit.id)
+		card.health = unit.power
+		card.speed = unit.speed
+		var actor = create_actor(Vector2i(coord.x, coord.y), card)
+		actor.player = data.player
+	if (data.type == "move_unit"):
+		var previous_hex = Vector2i(data.previous_hex.x, data.previous_hex.y)
+		var next_hex = Vector2i(data.next_hex.x, data.next_hex.y)
+		move_unit(previous_hex, next_hex)
+
 
 func inspect_hex(x:int, y:int):
 	if get_actors(x, y) != {}:
@@ -77,9 +88,11 @@ func inspect_hex(x:int, y:int):
 func select_hex(x:int ,y:int):
 	if hex_selector != null:
 		return
-	if get_actors(x, y)  != {}:
+	var actors = get_actors(x, y)
+	if  actors != {}:
 		inspect_card.show_card("unit_selected", Vector2i(x,y))
-		actor_actions.get_actions(Vector2i(x,y))
+		if GameManager.is_mine(actors.unit) and GameManager.my_turn():
+			actor_actions.get_actions(Vector2i(x,y))
 	else:
 		inspect_card.change_lock("unit_selected", false)
 
@@ -165,11 +178,11 @@ func move_unit(from :Vector2i, to:Vector2i) -> void:
 		to_hex.unit = unit
 		from_hex.unit = null
 		unit.on_post_move()
+		outline.set_hex_coord_outline("conqured_hexes", Vector2i(unit.x, unit.y), player_colors[unit.player])
 
-	pass
 
-func create_actor(coord: Vector2i, actor:PackedScene):
-	var actor_node : Actor = actor.instantiate()
+func create_actor(coord: Vector2i, actor:Card) -> Actor:
+	var actor_node : Actor = GameManager.card_manager.get_card_actor(actor)
 	actor_node.x = coord.x
 	actor_node.y = coord.y
 	add_child(actor_node)
@@ -179,6 +192,7 @@ func create_actor(coord: Vector2i, actor:PackedScene):
 	if actor_node is Structure:
 		hex.structure = actor_node
 	actor_node.global_position = hex.tile.global_position
+	return actor_node
 
 func remove_actor(actor: Actor):
 	actor.call_deferred("queue_free")

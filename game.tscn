@@ -1,6 +1,97 @@
-[gd_scene load_steps=2 format=3 uid="uid://dn2hidutcxubv"]
+[gd_scene load_steps=2 format=3 uid="uid://c8ihcs1i62c0n"]
 
-[ext_resource type="Script" uid="uid://cbfhdvickhwuf" path="res://Scripts/Managers/GameManager.gd" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://dejcugbgxrgm2" path="res://Scripts/UI/MainUITest.gd" id="1_80nbo"]
 
-[node name="Game" type="Node"]
+[node name="Start UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_80nbo")
+
+[node name="Join Menu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HostButton" type="Button" parent="Join Menu"]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 297.0
+offset_right = 638.0
+offset_bottom = 328.0
+text = "Host Game"
+
+[node name="JoinButton" type="Button" parent="Join Menu"]
+layout_mode = 0
+offset_left = 548.0
+offset_top = 334.0
+offset_right = 635.0
+offset_bottom = 365.0
+text = "Join Game"
+
+[node name="Options" type="VBoxContainer" parent="Join Menu"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 0
+offset_left = 267.0
+offset_top = 270.0
+offset_right = 517.0
+offset_bottom = 406.0
+metadata/_edit_group_ = true
+
+[node name="Name" type="LineEdit" parent="Join Menu/Options"]
+layout_mode = 2
+placeholder_text = "Name"
+
+[node name="Color" type="ColorPickerButton" parent="Join Menu/Options"]
+layout_mode = 2
+text = "Color"
+edit_alpha = false
+edit_intensity = false
+
+[node name="Label" type="Label" parent="Join Menu/Options/Color"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 46.0
+offset_bottom = 27.0
+text = "Color"
+
+[node name="IP" type="LineEdit" parent="Join Menu/Options"]
+layout_mode = 2
+text = "127.0.0.1"
+placeholder_text = "IP"
+
+[node name="Port" type="LineEdit" parent="Join Menu/Options"]
+layout_mode = 2
+text = "4444"
+placeholder_text = "Port"
+
+[node name="Lobby" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Lobby"]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 65.0
+offset_right = 392.0
+offset_bottom = 566.0
+horizontal_scroll_mode = 3
+metadata/_edit_group_ = true
+
+[node name="PlayerList" type="VBoxContainer" parent="Lobby/ScrollContainer"]
+layout_mode = 2
+
+[node name="Players" type="Label" parent="Lobby/ScrollContainer/PlayerList"]
+layout_mode = 2
+text = "Players"
+
+[node name="StartButton" type="Button" parent="Lobby"]
+visible = false
+layout_mode = 0
+offset_left = 594.0
+offset_top = 196.0
+offset_right = 690.0
+offset_bottom = 227.0
+text = "Start Game"

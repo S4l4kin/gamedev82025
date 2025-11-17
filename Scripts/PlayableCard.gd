@@ -103,7 +103,7 @@ func _input(event: InputEvent) -> void:
 func test(event: InputEvent):
 	if event is InputEventMouse:
 		if event.button_mask & MOUSE_BUTTON_MASK_LEFT == MOUSE_BUTTON_LEFT:
-			if not dragging:
+			if not dragging and GameManager.my_turn():
 				dragging = true
 				drag_start = get_viewport().get_mouse_position()
 			

@@ -57,17 +57,30 @@ func get_playable_card_scene(card: Card) -> Node:
 	card_base.add_child(raycast)
 	card_base.set_script(preload("res://Scripts/PlayableCard.gd"))
 	if card.type == Card.CARD_TYPE.HQ or card.type == Card.CARD_TYPE.Structure or card.type == Card.CARD_TYPE.Unit:
-		var actor_scene : PackedScene = PackedScene.new()
-		var actor_node = preload("res://Scenes/Bases/ActorBase.tscn").instantiate()
-		actor_node.card_id = card.id
-		actor_node.health = card.health
-		actor_node.max_speed = card.speed
-		actor_node.start_color = card.color
-		actor_scene.pack(actor_node)
-		card_base.play_callable = (func (coord: Vector2i): $"/root/Board".create_actor(coord, actor_scene))
+		card_base.play_callable = (func (coord: Vector2i): GameManager.network.send_messages({
+			"type":"create_actor",
+			"player": GameManager.player_name,
+			"coord":{"x":coord.x,"y":coord.y}, 
+			"unit":{"id": card.id, "power":card.health, "speed":card.speed}}
+			))
 	card_base.card = card
 	return card_base
 
+func get_card_actor(card: Card) -> Actor:
+	if not card_data.has(card.id):
+		push_error("Tried to acess non-existant card " + card.id)
+		return null
+	
+
+	if not actor_object.has(card.id):
+		actor_object[card.id] = preload("res://Scenes/Bases/ActorBase.tscn")
+	
+	var actor_node = actor_object[card.id].instantiate()
+	actor_node.card_id = card.id
+	actor_node.health = card.health
+	actor_node.max_speed = card.speed
+	actor_node.start_color = card.color
+	return actor_node
 
 #Return all the loaded card ids
 func get_cards() -> Array[String]:

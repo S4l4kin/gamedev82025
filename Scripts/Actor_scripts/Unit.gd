@@ -52,6 +52,10 @@ func move(path : Array):
 	if len(path) > 1:
 		var previous_hex = path.pop_front()
 		for next_hex in path:
-			$"/root/Board".move_unit(previous_hex, next_hex)
+			GameManager.network.send_messages({
+				"type":"move_unit",
+				"previous_hex": {"x": previous_hex.x, "y": previous_hex.y},
+				"next_hex": {"x": next_hex.x, "y": next_hex.y}
+			})
 			previous_hex = next_hex
 			speed -= 1

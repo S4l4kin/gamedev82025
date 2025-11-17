@@ -1,5 +1,5 @@
 extends Node
-
+class_name NetworkManager
 enum NetworkType {Disconnected, Client, Host}
 
 @export var state : NetworkType = NetworkType.Disconnected
@@ -13,7 +13,7 @@ var server
 
 #If a component cares about network messages subscribe / connect to this signal, it will emit each time there is a valid message. 
 #Each message should have "type" field for easier filtering.
-signal receive_data
+signal recieved_message
 
 #Used to start the server
 func start_server(port):
@@ -25,8 +25,13 @@ func start_server(port):
 	else:
 		print("Failed to start server: %s" % result)
 
+func _ready():
+	connect("recieved_message", process_messages)
+
+
 #Used to join a server
 func join_server(ip, port):
+	state = NetworkType.Client
 	var client : StreamPeerTCP = StreamPeerTCP.new()
 	client.connect_to_host(ip, port)
 	connections.append(client)
@@ -45,13 +50,14 @@ func _process(_delta):
 			connections.append(client)
 			data = {"type":"message","data":"Connected to Server"}
 			client.put_data(JSON.stringify(data).to_utf8_buffer())
+			data = {"type":"join_server","player_list":GameManager.players}
+			client.put_data(JSON.stringify(data).to_utf8_buffer())
 
 	#Go through each client and check if they have any messages and appends it to the buffer string.
 	for connection in connections:
 		connection.poll()
 		var available_bytes : int = connection.get_available_bytes()
 		if available_bytes > 0:
-			print(available_bytes)
 			data = connection.get_string(available_bytes)
 			buffer = buffer + data
 	
@@ -61,7 +67,7 @@ func _process(_delta):
 		if state == NetworkType.Host:
 			send_messages(data)	
 		else:
-			emit_signal("receive_data", data)
+			emit_signal("recieved_message", data)
 
 		data = parse_buffer()
 
@@ -92,7 +98,10 @@ func parse_buffer() -> Variant:
 
 func send_messages(data):
 	if state == NetworkType.Host:
-		emit_signal("receive_data", data)
+		emit_signal("recieved_message", data)
 		pass
 	for connection in connections:
 		connection.put_data(JSON.stringify(data).to_utf8_buffer())
+
+func is_host() -> bool:
+	return state == NetworkType.Host

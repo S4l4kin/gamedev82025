@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="4xCardGame"
-run/main_scene="uid://dn2hidutcxubv"
+run/main_scene="uid://c8ihcs1i62c0n"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://Scenes/GameManager.tscn"
 
 [display]
 
@@ -22,6 +26,10 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="4xCardGame"
+
+[editor]
+
+export/convert_text_resources_to_binary=false
 
 [filesystem]
 
