@@ -3,7 +3,7 @@ class_name BoardManager
 
 
 
-var hexes = []
+var hexes : Dictionary[Vector2i, Hex] = {}
 
 @export var conqured_hexes : Dictionary[Vector2i,Array]
 var player_colors : Dictionary[String, Color]
@@ -30,19 +30,17 @@ signal mouse_entered_hex (x:int, y:int)
 signal mouse_exited_hex (x:int, y:int)
 
 func init_tiles():
-	for i in grid_width:
-		var array : Array[Hex] = []
-		hexes.append(array)
-		for j in grid_height:
-			var hex_instance = board_generator.create_hex_tile(i,j)
+	for x in grid_width:
+		for y in grid_height:
+			var hex_instance = board_generator.create_hex_tile(x,y)
 			tiles.add_child(hex_instance)
 			var hex = Hex.new()
+			var coord = Vector2i(x,y)
 			hex.passable = true
-			hex.coord = Vector2i(i,j)
+			hex.coord = coord
 			hex.tile = hex_instance
 
-			hexes[i].append(hex)
-			print(hexes[i][j].resource_name)
+			hexes[coord] = hex
 
 func set_conqured_hex_colors(players):
 	for player in players:
@@ -91,15 +89,17 @@ func select_hex(x:int ,y:int):
 	var actors = get_actors(x, y)
 	if  actors != {}:
 		inspect_card.show_card("unit_selected", Vector2i(x,y))
-		if GameManager.is_mine(actors.unit) and GameManager.my_turn():
-			actor_actions.get_actions(Vector2i(x,y))
 	else:
 		inspect_card.change_lock("unit_selected", false)
+	
+	if GameManager.my_turn():
+		actor_actions.get_actions(Vector2i(x,y))
 
 func get_hex(x:int, y:int) -> Hex:
 	var hex : Hex = null
 	if x >= 0 and x < grid_width and y >= 0 and y < grid_height:
-		hex = hexes[x][y]
+
+		hex = hexes[Vector2i(x,y)]
 	return hex
 
 func add_hex_selector(selector: HexSelect):
@@ -197,16 +197,15 @@ func create_actor(coord: Vector2i, actor:Card) -> Actor:
 func remove_actor(actor: Actor):
 	actor.call_deferred("queue_free")
 	if actor is Unit:
-		hexes[actor.x][actor.y].unit = null
+		hexes[Vector2i(actor.x,actor.y)].unit = null
 	if actor is Structure:
-		hexes[actor.x][actor.y].structure = null
+		hexes[Vector2i(actor.x,actor.y)].structure = null
 
 
 func get_hex_from_tile(tile: Object) -> Hex:
-	for x in grid_width:
-		for y in grid_height:
-			if hexes[x][y].tile == tile:
-				return hexes[x][y]
+	for coord in hexes.keys():
+		if hexes[coord].tile == tile:
+			return hexes[coord]
 	return null
 func get_actors(x:int, y:int) -> Dictionary[String, Actor]:
 	var actors : Dictionary[String, Actor] = {}

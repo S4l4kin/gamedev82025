@@ -24,9 +24,11 @@ func _ready() -> void:
 	print("DeckManager initialized with deck: " + deck_resource.deck_name)
 	
 	_intialize_deck()
-	_deal_hand(5)
+	draw_starting_hand()
 	
 	print("Player's starting hand: ", hand)
+
+	GameManager.connect("turn_start", draw_hand)
 
 func _intialize_deck() -> void:	
 	hand.clear()
@@ -83,15 +85,26 @@ func _input(event):
 			print("draw card")
 			draw_card()
 
-func draw_card():
+func draw_card() -> Card:
 	var card = card_manager.get_card_data(_get_weighted_card())
 	hand.append(card)
+	add_card_node(card)
+	
+	return card
+
+func add_card_node(card: Card):
 	var playable_card = card_manager.get_playable_card_scene(card)
 	playable_card.deck_manager = self
+
 	hand_node.add_child(playable_card)
 
-func _deal_hand(hand_size: int = 5) -> void:
-	var draw: Array = []
+func draw_starting_hand(hand_size: int=5):
+	var hq_card = deck_resource.get_hq()
+	hand.append(hq_card)
+	add_card_node(hq_card)
+	draw_hand(hand_size)
+
+func draw_hand(hand_size: int = 5) -> void:
 	
-	for i in hand_size:
-		draw_card()	
+	for i in max(0, hand_size - len(hand)):
+		draw_card()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dkngb58gnxqv6"]
+[gd_scene load_steps=21 format=3 uid="uid://dkngb58gnxqv6"]
 
 [ext_resource type="Script" uid="uid://cd31ytfr0anly" path="res://Scripts/Managers/BoardManager.gd" id="1_p0ybc"]
 [ext_resource type="Script" uid="uid://4d2d2uwlm08j" path="res://Scripts/Outline.gd" id="2_d7frl"]
@@ -49,6 +49,9 @@ billboard_keep_scale = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r6t13"]
 size = Vector3(2, 3.3, 0.138)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_upw65"]
+viewport_path = NodePath("Card/3DControl/SubViewport")
 
 [node name="Board" type="Node3D"]
 script = ExtResource("1_p0ybc")
@@ -154,18 +157,52 @@ shape = SubResource("BoxShape3D_r6t13")
 [node name="SubViewport" type="SubViewport" parent="Card/3DControl"]
 transparent_bg = true
 physics_object_picking = true
-size = Vector2i(200, 345)
+size = Vector2i(200, 355)
 render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="Card/3DControl/SubViewport"]
+visible = false
+offset_right = 280.475
+offset_bottom = 354.275
 
 [node name="CenterContainer" type="CenterContainer" parent="Card/3DControl/SubViewport"]
 offset_right = 200.2
 offset_bottom = 345.4
+metadata/_edit_group_ = true
 
-[node name="Card" parent="Card/3DControl/SubViewport/CenterContainer" instance=ExtResource("8_5qf1t")]
+[node name="Control" type="Control" parent="Card/3DControl/SubViewport/CenterContainer"]
 layout_mode = 2
+
+[node name="Card2" parent="Card/3DControl/SubViewport/CenterContainer/Control" instance=ExtResource("8_5qf1t")]
+modulate = Color(0.48, 0.48, 0.48, 1)
+layout_mode = 0
+offset_left = -9.0
+offset_top = 9.0
+offset_right = 173.0
+offset_bottom = 323.0
+
+[node name="Card" parent="Card/3DControl/SubViewport/CenterContainer/Control" instance=ExtResource("8_5qf1t")]
+layout_mode = 0
+
+[node name="Left" type="Button" parent="Card/3DControl/SubViewport"]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 32.0
+offset_bottom = 345.0
+text = "
+"
+
+[node name="Right" type="Button" parent="Card/3DControl/SubViewport"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 168.0
+offset_right = 200.0
+offset_bottom = 345.0
+text = "
+"
 
 [node name="Raycast" type="RayCast3D" parent="Card/3DControl"]
 collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="ShowTimer" type="Timer" parent="Card"]
 one_shot = true
@@ -182,3 +219,9 @@ transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.3420
 cull_mask = 2
 current = true
 script = ExtResource("2_psm7c")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("ViewportTexture_upw65")

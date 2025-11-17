@@ -56,13 +56,7 @@ func get_playable_card_scene(card: Card) -> Node:
 	raycast.name = "Raycast"
 	card_base.add_child(raycast)
 	card_base.set_script(preload("res://Scripts/PlayableCard.gd"))
-	if card.type == Card.CARD_TYPE.HQ or card.type == Card.CARD_TYPE.Structure or card.type == Card.CARD_TYPE.Unit:
-		card_base.play_callable = (func (coord: Vector2i): GameManager.network.send_messages({
-			"type":"create_actor",
-			"player": GameManager.player_name,
-			"coord":{"x":coord.x,"y":coord.y}, 
-			"unit":{"id": card.id, "power":card.health, "speed":card.speed}}
-			))
+	card_base.get_node("Card").position = Vector2.ZERO
 	card_base.card = card
 	return card_base
 
@@ -73,13 +67,10 @@ func get_card_actor(card: Card) -> Actor:
 	
 
 	if not actor_object.has(card.id):
-		actor_object[card.id] = preload("res://Scenes/Bases/ActorBase.tscn")
+		actor_object[card.id] = card_generator.generate_actor(card)
 	
 	var actor_node = actor_object[card.id].instantiate()
-	actor_node.card_id = card.id
-	actor_node.health = card.health
-	actor_node.max_speed = card.speed
-	actor_node.start_color = card.color
+	card_generator.update_actor(actor_node, card)
 	return actor_node
 
 #Return all the loaded card ids

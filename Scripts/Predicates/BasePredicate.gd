@@ -1,4 +1,7 @@
+class_name Predicate
 
-
-func can_play(resources: Dictionary[GlobalEnums.COST_COLORS, int], coord: Vector2i, board: BoardManager) -> bool:
-    return true
+func can_play(coord) -> bool:
+    if coord:
+        return true
+    else: 
+        return GameManager.game_state != GameManager.GAME_STATE.Setup

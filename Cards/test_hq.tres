@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://bh01807tvrg0n"]
+
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_qv3df"]
+
+[resource]
+script = ExtResource("1_qv3df")
+name = "Test Headquarter"
+id = "test_headquarter"
+type = 0
+description = "This is a test headquarter, the first card you must play when starting a game"
+health = 30
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

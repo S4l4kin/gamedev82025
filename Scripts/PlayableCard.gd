@@ -9,11 +9,12 @@ var drag_start : Vector2
 var play_threshold : float = -100
 var threshold_met : bool
 
-var play_callable : Callable
 var deck_manager : DeckManager
+
 
 @onready var raycast_node : RayCast3D = $Raycast
 @onready var outline : Outline = $"/root/Board/Outline"
+@onready var predicate = card.play_predicate.new()
 func _ready():
 	$Card.connect("gui_input", test)
 	$Card.connect("mouse_entered", hover_start)
@@ -45,6 +46,7 @@ func treshold_cancelled():
 	old_hex = null
 	
 var old_hex
+var offset : Vector2 = Vector2(91.0,157.0)
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:
 		if event.button_mask & MOUSE_BUTTON_MASK_LEFT == MOUSE_BUTTON_LEFT:
@@ -71,13 +73,16 @@ func _input(event: InputEvent) -> void:
 					if raycast_node.get_collider() != null:
 						var hex_tile = raycast_node.get_collider().get_parent()
 						var hex = $"/root/Board".get_hex_from_tile(hex_tile)
+
+						
+					
 						if old_hex != null:
 							if old_hex != hex:
-								outline.set_hex_outline("ui",hex, Color.LIME)
+								outline.set_hex_outline("ui",hex, get_color(predicate.can_play(hex.coord)))
 								outline.set_hex_outline("ui", old_hex, Color.TRANSPARENT)
 								old_hex = hex
 						else:
-							outline.set_hex_outline("ui",hex, Color.LIME)
+							outline.set_hex_outline("ui",hex, get_color(predicate.can_play(hex.coord)))
 							old_hex = hex
 					#raycast.call_deferred("free")
 
@@ -87,10 +92,9 @@ func _input(event: InputEvent) -> void:
 				dragging = false
 				hover_stop()
 			else:
-				var predicate = card.play_predicate.new()
-				if predicate.can_play(deck_manager.resource_count, old_hex.coord, $"/root/Board"):
+				if predicate.can_play(old_hex.coord):
 					outline.set_hex_outline("ui", old_hex, Color.TRANSPARENT)
-					play_callable.call(old_hex.coord)
+					play_card()
 					call_deferred("free")
 
 				else:
@@ -99,12 +103,17 @@ func _input(event: InputEvent) -> void:
 					treshold_cancelled()
 					hover_stop()
 
+func play_card ():
+	card.play_callable.call(old_hex.coord)
+	GameManager.deck.hand.remove_at(get_index())
 
 func test(event: InputEvent):
 	if event is InputEventMouse:
 		if event.button_mask & MOUSE_BUTTON_MASK_LEFT == MOUSE_BUTTON_LEFT:
-			if not dragging and GameManager.my_turn():
+			if not dragging and GameManager.my_turn() and predicate.can_play(null):
 				dragging = true
 				drag_start = get_viewport().get_mouse_position()
 			
 	
+func get_color(flag : bool) -> Color:
+	return Color.LIME if flag else Color.RED

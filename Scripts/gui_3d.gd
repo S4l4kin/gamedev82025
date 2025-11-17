@@ -135,6 +135,8 @@ func _input(event: InputEvent) -> void:
 
 		# Finally, send the processed input event to the viewport.
 		node_viewport.push_input(input_event)
+		if get_parent().visible:
+			get_viewport().set_input_as_handled()
 
 
 func rotate_area_to_billboard() -> void:

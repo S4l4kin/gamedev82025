@@ -1,15 +1,19 @@
 extends Resource
 class_name Deck
 
+@export var hq : String
 @export var card_list : Array[String]
 @export var deck_name : String
 
-func _init():
-	card_list = []
-	deck_name = "Default Deck"
-	add_placeholder_cards()
+func get_cards() -> Array[Card]:
+	var cards : Array[Card] = []
+	if GameManager.card_manager:
+		for card_name in card_list:
+			cards.append(GameManager.card_manager.get_card_data(card_name))
+	
+	return cards
 
-func add_placeholder_cards():
-	for i in range(1, 11):
-		card_list.append("Placeholder Card " + str(i))
-		print("Appended Card: " + str(i))
+func get_hq() -> Card:
+	if GameManager.card_manager:
+		return GameManager.card_manager.get_card_data(hq)
+	return null

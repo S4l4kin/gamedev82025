@@ -28,7 +28,7 @@ var hide_in_collection
 
 var custom_script : Script
 var play_predicate : Script
-
+var play_callable : Callable
 #Variables unique for HQ, Unit and Structures
 var health : int
 var model : PackedScene
@@ -51,6 +51,38 @@ func set_defaults() -> void:
 		model = null
 	play_predicate = preload("res://Scripts/Predicates/BasePredicate.gd")
 
+	match type:
+		CARD_TYPE.HQ:
+			if not custom_script:
+				custom_script = preload("res://Scripts/Actor_scripts/Headquarter.gd")
+			elif not is_instance_of(custom_script, HQ):
+				custom_script = preload("res://Scripts/Actor_scripts/Headquarter.gd")
+				push_error("Card " + id + " custom script does not extend HQ as it should")
+				print("Card " + id + " custom script does not extend HQ as it should, changed it base HQ")
+			play_predicate = preload("res://Scripts/Predicates/HQPredicate.gd")
+		CARD_TYPE.Unit:
+			if not custom_script:
+				custom_script = preload("res://Scripts/Actor_scripts/Unit.gd")
+			elif not is_instance_of(custom_script, Unit):
+				custom_script = preload("res://Scripts/Actor_scripts/Unit.gd")
+				push_error("Card " + id + " custom script does not extend Unit as it should")
+				print("Card " + id + " custom script does not extend Unit as it should, changed it base Unit")
+		CARD_TYPE.Structure:
+			if not custom_script:
+				custom_script = preload("res://Scripts/Actor_scripts/Structure.gd")
+			elif not is_instance_of(custom_script, Structure):
+				custom_script = preload("res://Scripts/Actor_scripts/Structure.gd")
+				push_error("Card " + id + " custom script does not extend Structure as it should")
+				print("Card " + id + " custom script does not extend Structure as it should, changed it base Structure")
+		_:
+			push_error("Card " + id + " custom script is not assinged as it should")
+			print("Card " + id + " custom script is not assinged as it should")
+	play_callable = func (coord: Vector2i): GameManager.network.send_messages({
+			"type":"create_actor",
+			"player": GameManager.player_name,
+			"coord":{"x":coord.x,"y":coord.y}, 
+			"unit":{"id": id, "power":health, "speed":speed}}
+			)
 func generate_id(_name:String) -> String:
 	return _name.to_lower().replace(' ', '_')
 

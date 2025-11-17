@@ -1,5 +1,6 @@
 class_name CardGenerator
 var base_card : PackedScene = preload("res://Scenes/Bases/CardBase.tscn") 
+var base_actor : PackedScene = preload("res://Scenes/Bases/ActorBase.tscn") 
 var cost_symbol_color : Dictionary[GlobalEnums.COST_COLORS, SymbolColorPair]
 
 #Generates a prefab of the card that can be initalized
@@ -57,6 +58,24 @@ func generate_card(data:Card) -> PackedScene:
 
 	return packed_card
 
+func generate_actor(data: Card) -> PackedScene:
+	var actor :Actor = base_actor.instantiate()
+
+	actor.set_script(data.custom_script)
+	actor.card_id = data.id
+
+	var packed_actor : PackedScene = PackedScene.new()
+	packed_actor.pack(actor)
+
+	return packed_actor
+
+func update_actor(actor: Actor, data: Card):
+	if data.type == Card.CARD_TYPE.HQ or data.type == Card.CARD_TYPE.Unit or data.type == Card.CARD_TYPE.Structure:
+		actor.health = data.health
+		actor.start_color = data.color
+	if data.type == Card.CARD_TYPE.Unit:
+		actor.max_speed = data.speed
+		
 #Parses the description of special tags and changes them to the right BBCode syntaxes
 func parse_card_description(description:String) -> String:
 	return description

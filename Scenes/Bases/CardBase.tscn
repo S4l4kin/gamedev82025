@@ -9,14 +9,16 @@
 custom_minimum_size = Vector2(182, 314)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 182.0
+offset_bottom = 314.0
 
 [node name="Card" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(182, 314)
 layout_mode = 0
-offset_right = 182.0
-offset_bottom = 314.0
+offset_left = -91.0
+offset_top = -157.0
+offset_right = 91.0
+offset_bottom = 157.0
 pivot_offset = Vector2(91, 157)
 mouse_filter = 1
 color = Color(0.58, 0.58, 0.58, 1)
