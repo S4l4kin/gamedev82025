@@ -15,6 +15,7 @@ var hand : Array[Card] = []
 
 var weights : Dictionary[String, float] = {}
 const weight_multiplier : float = 1.6
+const weight_constant : float = 100
 
 func _ready() -> void:
 	if not deck_resource:
@@ -56,10 +57,28 @@ func _deck_shuffler() -> void:
 		print("Gave ", card_id, " the weight of ", current_weight)		
 		
 		cards.remove_at(index)
-		current_weight = current_weight * weight_multiplier + 100
+		current_weight = current_weight * weight_multiplier + weight_constant
 		print("New current_weight is: ", current_weight)
 	pass
-	
+
+func reweight_deck() -> void:
+	for card_id in deck_resource.card_list:
+		var is_in_hand = false
+		for card in hand:
+			if card.id == card_id:
+				is_in_hand = true
+				break
+		if not is_in_hand:
+			update_weight(card_id)
+
+func update_weight(card_id: String) -> void:
+	if not weights[card_id]:
+		return
+
+	var weight = weights[card_id]
+	weights[card_id] = weight * weight_multiplier + weight_constant
+	pass
+
 func _get_weighted_card() -> String:
 	var total_weight := 0.0
 	for w in weights.values():

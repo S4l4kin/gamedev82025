@@ -13,8 +13,9 @@ var deck_manager : DeckManager
 
 
 @onready var raycast_node : RayCast3D = $Raycast
-@onready var outline : Outline = $"/root/Board/Outline"
+@onready var outline : Outline = GameManager.board_manager.outline
 @onready var predicate = card.play_predicate.new()
+
 func _ready():
 	$Card.connect("gui_input", test)
 	$Card.connect("mouse_entered", hover_start)
@@ -42,8 +43,9 @@ func treshold_cancelled():
 	var tween = create_tween()
 	tween.tween_property($Card, "scale", Vector2.ONE * 1, 0.2)
 	tween.tween_property($Card, "modulate", Color.WHITE, 0.2)
-	outline.set_hex_outline("ui", old_hex, Color.TRANSPARENT)
-	old_hex = null
+	if old_hex:
+		outline.set_hex_outline("ui", old_hex, Color.TRANSPARENT)
+		old_hex = null
 	
 var old_hex
 var offset : Vector2 = Vector2(91.0,157.0)
@@ -92,19 +94,20 @@ func _input(event: InputEvent) -> void:
 				dragging = false
 				hover_stop()
 			else:
-				if predicate.can_play(old_hex.coord):
-					outline.set_hex_outline("ui", old_hex, Color.TRANSPARENT)
-					play_card()
-					call_deferred("free")
+				if old_hex:
+					if predicate.can_play(old_hex.coord):
+						outline.set_hex_outline("ui", old_hex, Color.TRANSPARENT)
+						play_card()
+						call_deferred("free")
 
-				else:
-					dragging = false
-					threshold_met = false
-					treshold_cancelled()
-					hover_stop()
+				dragging = false
+				threshold_met = false
+				treshold_cancelled()
+				hover_stop()
 
 func play_card ():
 	card.play_callable.call(old_hex.coord)
+	GameManager.deck.reweight_deck()
 	GameManager.deck.hand.remove_at(get_index())
 
 func test(event: InputEvent):

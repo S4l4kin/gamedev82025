@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://jcr223ndw4in"
+path="res://.godot/imported/draw_fog_of_war_mask.glsl-9afe5507a6941a84ade105b3aac32b5b.res"
+
+[deps]
+
+source_file="res://Scripts/Shaders/draw_fog_of_war_mask.glsl"
+dest_files=["res://.godot/imported/draw_fog_of_war_mask.glsl-9afe5507a6941a84ade105b3aac32b5b.res"]
+
+[params]
+

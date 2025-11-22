@@ -2,9 +2,29 @@ extends Node
 class_name Outline
 
 var layers : Dictionary[String, Dictionary] = {}
-@onready var board : BoardManager = $"/root/Board" 
+@onready var board : BoardManager = GameManager.board_manager
 
 
+var empty_multi_mesh : MultiMesh
+var mesh_material : Material
+func generate_empty_mulit_mesh():
+
+	empty_multi_mesh = MultiMesh.new()
+	empty_multi_mesh.mesh = preload("res://Assets/Models/Hex/HexTile.res")
+	empty_multi_mesh.use_colors = true
+	empty_multi_mesh.transform_format = MultiMesh.TRANSFORM_3D
+	empty_multi_mesh.instance_count = board.grid_width * board.grid_height
+	print("Generating multimesh")
+	for coord in board.hexes.keys():
+		var mesh_index = coord.y*board.grid_width + coord.x
+		var tile = board.hexes[coord].tile
+		empty_multi_mesh.set_instance_transform(mesh_index, tile.global_transform)
+		empty_multi_mesh.set_instance_color(mesh_index, Color.TRANSPARENT)
+	
+	mesh_material = StandardMaterial3D.new()
+	mesh_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mesh_material.vertex_color_use_as_albedo = true
+	mesh_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 
 func add_layer(layer_name:String, outline_thickness = 2):
 	var layer_viewport = SubViewport.new()
@@ -23,12 +43,22 @@ func add_layer(layer_name:String, outline_thickness = 2):
 	
 	layer_viewport.add_child(layer_camera)
 
+	if not empty_multi_mesh:
+		generate_empty_mulit_mesh()
+	var multi_mesh = empty_multi_mesh.duplicate()
+	var multi_mesh_instance = MultiMeshInstance3D.new()
+
+	multi_mesh_instance.multimesh = multi_mesh
+	multi_mesh_instance.material_override = mesh_material
+	multi_mesh_instance.material_override = mesh_material
+	layer_viewport.add_child(multi_mesh_instance)
+
+	
 
 
-	layers[layer_name] = {"hexes":{}, "colors": {}}
+	layers[layer_name] = {"viewport":layer_viewport, "multi_mesh":multi_mesh}
 
 	add_child(layer_viewport)
-	layers[layer_name].viewport = layer_viewport
 
 	var layer_color_rect = ColorRect.new()
 	layer_color_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -44,7 +74,7 @@ func add_layer(layer_name:String, outline_thickness = 2):
 	outline_material.set_shader_parameter("stencilMask", layer_viewport.get_texture())
 	outline_material.set_shader_parameter("lineThickness", outline_thickness)
 	layer_color_rect.material = outline_material
-	$SubViewportContainer.move_to_front()
+	#$SubViewportContainer.move_to_front()
 
 	
 
@@ -60,46 +90,22 @@ func set_outline(layer:String, obj:Node, color:Color):
 		obj_clone.set_layer_mask_value(3, true)
 	
 	if not layers[layer].colors.keys().has(color):
-		var color_material = create_outline_material(color)
-		layers[layer].colors[color] = color_material
+		pass
 	
 	obj_clone.material_override = layers[layer].colors[color]
 
 	layer_viewport.add_child(obj_clone)
 
 func set_hex_outline(layer_name:String, hex:Hex, color:Color):
-	if not layers.keys().has(layer_name):
-		add_layer(layer_name)
-		
-	var layer = layers[layer_name]
-
-	if color.a == 1:
-		if not layer.hexes.keys().has(hex.coord):
-			var hex_copy = MeshInstance3D.new()
-			hex_copy.mesh = hex.tile.mesh
-			hex_copy.global_transform = hex.tile.global_transform
-			layer.hexes[hex.coord] = hex_copy
-			layer.viewport.add_child(hex_copy)
-		if not layer.colors.keys().has(color):
-			var color_material = create_outline_material(color)
-			layer.colors[color] = color_material
-
-		layer.hexes[hex.coord].material_override = layer.colors[color]
-	else:
-		if layer.hexes.keys().has(hex.coord):
-			layer.hexes[hex.coord].free()
-			layer.hexes.erase(hex.coord)
-
-
-func create_outline_material(color:Color, line_thickness: float=2) -> Material:
-	var color_material = StandardMaterial3D.new()
-	color_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	color_material.albedo_color = color
-	return color_material
+	set_hex_coord_outline(layer_name, hex.coord, color)
 
 func set_hex_coord_outline(layer_name:String, coord:Vector2i, color:Color):
-	var hex = board.get_hex(coord.x, coord.y)
-	set_hex_outline(layer_name, hex, color)
+	if not layers.keys().has(layer_name):
+		add_layer(layer_name)
+
+	var mesh_index = coord.y*board.grid_width + coord.x
+	var layer = layers[layer_name]
+	layer.multi_mesh.set_instance_color(mesh_index, color)
 
 func _process(_delta: float) -> void:
 	var viewport := get_tree().root.get_viewport()

@@ -4,8 +4,8 @@ class_name PathHexSelect
 
 var path : Array[Vector2i]
 var selecting : bool = false
-@onready var board : BoardManager = $"/root/Board"
-@onready var outline : Outline = $"/root/Board/Outline"
+@onready var board : BoardManager = GameManager.board_manager
+@onready var outline : Outline = GameManager.board_manager.outline
 
 func _init(_x:int, _y:int, _range:int, _callable: Callable) -> void:
 	origin = Vector2i(_x, _y)

@@ -27,6 +27,8 @@ func get_actions() -> Dictionary[String, Dictionary]:
 
 	return {}
 
+func on_play():
+	pass
 
 func on_pre_defend(_enemy: Actor):
 	pass

@@ -3,6 +3,11 @@ class_name Unit
 
 @export var max_speed : int
 @onready var speed :int = max_speed 
+
+
+func _ready():
+	GameManager.connect("turn_start", func(): speed = max_speed)
+
 #Returns true if the unit survived the attack
 func attack(enemy:Actor) -> bool:
 	#Activate pre attack and defend abilities
@@ -38,11 +43,8 @@ func on_post_move():
 	pass
 
 func get_actions() -> Dictionary[String, Dictionary]:
-	return {"Move" = {"callable" = get_move_range, "active" = (speed > 0)},
-				"Get Speed" = {"callable" = test, "active"= true}}
+	return {"Move" = {"callable" = get_move_range, "active" = (speed > 0)}}
 
-func test ():
-	speed = max_speed
 
 func get_move_range():
 	$"/root/Board".add_hex_selector(PathHexSelect.new(x,y, speed, move))

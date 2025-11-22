@@ -37,9 +37,6 @@ func generate_card(data:Card) -> PackedScene:
 			if value >= 0:
 				var new_cost = cost_node.duplicate()
 				new_cost.name = GlobalEnums.COST_COLORS.keys()[cost]
-				
-
-
 
 				new_cost.texture = cost_symbol_color[cost].symbol
 				new_cost.self_modulate = cost_symbol_color[cost].color
@@ -75,7 +72,7 @@ func update_actor(actor: Actor, data: Card):
 		actor.start_color = data.color
 	if data.type == Card.CARD_TYPE.Unit:
 		actor.max_speed = data.speed
-		
+
 #Parses the description of special tags and changes them to the right BBCode syntaxes
 func parse_card_description(description:String) -> String:
 	return description

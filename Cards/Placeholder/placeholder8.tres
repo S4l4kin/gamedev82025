@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b55boyye3ivh4"]
+
+[ext_resource type="Script" uid="uid://bj28tm4il5hw6" path="res://Scripts/Predicates/BasePredicate.gd" id="1_apllr"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_hvjc4"]
+
+[resource]
+script = ExtResource("1_hvjc4")
+name = "Placeholder 8"
+id = "placeholder_8"
+type = 3
+cost = {
+0: 0
+}
+description = "Placeholder card 9"
+play_predicate = ExtResource("1_apllr")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://b80mfwe8dknpo"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b80mfwe8dknpo"]
 
 [ext_resource type="Texture2D" uid="uid://chy536ltbw7mp" path="res://icon.svg" id="1_okdny"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_xvkco"]
-[ext_resource type="Script" uid="uid://dvqe1ebwyhadu" path="res://Scripts/test.gd" id="2_jusre"]
 
 [resource]
 script = ExtResource("1_xvkco")
@@ -20,5 +19,4 @@ description = "This is a card
 unit_type = 1
 health = 3
 speed = 1
-custom_script = ExtResource("2_jusre")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

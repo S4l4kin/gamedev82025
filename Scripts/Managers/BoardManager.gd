@@ -5,7 +5,7 @@ class_name BoardManager
 
 var hexes : Dictionary[Vector2i, Hex] = {}
 
-@export var conqured_hexes : Dictionary[Vector2i,Array]
+@export var conqured_hexes : Dictionary[Vector2i, String]
 var player_colors : Dictionary[String, Color]
 
 @export var orientation : BoardGenerator.HEX_ROTATION
@@ -20,7 +20,8 @@ var current_hovered_hex : Vector2i
 @onready var inspect_card: CardInspector = $Card
 @onready var actor_actions: ActorActions = $Actions
 
-@onready var outline : Outline = $Outline
+@onready var outline : Outline = $"Shaders/Outline"
+@onready var fog : FogOfWar = $"Fog"
 
 var hex_selector : HexSelect
 
@@ -56,13 +57,19 @@ func _ready():
 	hover_timer.connect("timeout", (func ():  inspect_hex(current_hovered_hex.x, current_hovered_hex.y)))
 	connect("hex_pressed", select_hex)
 
-	$Outline.add_layer("conqured_hexes", 2)
-	$Outline.add_layer("ui",1.25)
-	$Outline.set_hex_outline("test", get_hex(2,2), Color.RED)
-	for i in get_neighbours(2,2):
-		$Outline.set_hex_outline("test", i, Color.RED)
-	$Outline.set_hex_outline("test", get_hex(2,5), Color.ORANGE_RED)
+	outline.add_layer("conqured_hexes", 2)
+	outline.add_layer("ui",1.25)
 
+	var padding :float = 2
+	
+	fog.set_bounding_box(-Vector3(1,0,1)*padding, get_hex(grid_width-1,grid_height-1).tile.position+Vector3(1,0,1)*padding)
+	fog.reveal_hex(0,0)
+
+func _process(delta):
+	#if Input.is_physical_key_pressed(KEY_L):
+	fog.update_fog_mask()
+	
+	pass
 
 func handle_network(data):
 	if (data.type == "create_actor"):
@@ -73,6 +80,8 @@ func handle_network(data):
 		card.speed = unit.speed
 		var actor = create_actor(Vector2i(coord.x, coord.y), card)
 		actor.player = data.player
+		actor.on_play()
+
 	if (data.type == "move_unit"):
 		var previous_hex = Vector2i(data.previous_hex.x, data.previous_hex.y)
 		var next_hex = Vector2i(data.next_hex.x, data.next_hex.y)
@@ -178,7 +187,7 @@ func move_unit(from :Vector2i, to:Vector2i) -> void:
 		to_hex.unit = unit
 		from_hex.unit = null
 		unit.on_post_move()
-		outline.set_hex_coord_outline("conqured_hexes", Vector2i(unit.x, unit.y), player_colors[unit.player])
+		fog.reveal_hex(unit.x, unit.y)
 
 
 func create_actor(coord: Vector2i, actor:Card) -> Actor:

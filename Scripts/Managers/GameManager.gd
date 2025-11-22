@@ -62,19 +62,20 @@ func handle_network(data):
 		if network.is_host():
 			var next_player = turn_order.pop_front()
 			turn_order.append(next_player)
-			network.send_messages({
-				"type":"change_turn",
-				"player": next_player
-			})
+			
 			turn_count += 1
 			if turn_count == len(players):
 				network.send_messages({
 				"type":"change_state",
 				"state": GAME_STATE.Normal
 			})
+			network.send_messages({
+				"type":"change_turn",
+				"player": next_player
+			})
 	if data.type == "change_turn":
 		current_turn = data.player
-		$"/root/Player/EndTurn".disabled = not my_turn()
+		$"/root/Player/EndTurn".disabled = not my_turn() if game_state != GAME_STATE.Setup else true
 		$"/root/Player/EndTurn/CurrentTurn".text = current_turn
 		if my_turn():
 			emit_signal("turn_start")

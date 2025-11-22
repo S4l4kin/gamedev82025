@@ -49,7 +49,10 @@ func set_defaults() -> void:
 		speed = -1
 		health = -1
 		model = null
-	play_predicate = preload("res://Scripts/Predicates/BasePredicate.gd")
+	
+	if type != CARD_TYPE.HQ:
+		if len(cost) == 0:
+			cost[GlobalEnums.COST_COLORS.Generic] = 0
 
 	match type:
 		CARD_TYPE.HQ:
@@ -67,9 +70,13 @@ func set_defaults() -> void:
 				custom_script = preload("res://Scripts/Actor_scripts/Unit.gd")
 				push_error("Card " + id + " custom script does not extend Unit as it should")
 				print("Card " + id + " custom script does not extend Unit as it should, changed it base Unit")
+			if not play_predicate:
+				play_predicate = preload("res://Scripts/Predicates/UnitPredicate.gd")
 		CARD_TYPE.Structure:
 			if not custom_script:
 				custom_script = preload("res://Scripts/Actor_scripts/Structure.gd")
+				if not play_predicate:
+					play_predicate = preload("res://Scripts/Predicates/StructurePredicate.gd")
 			elif not is_instance_of(custom_script, Structure):
 				custom_script = preload("res://Scripts/Actor_scripts/Structure.gd")
 				push_error("Card " + id + " custom script does not extend Structure as it should")
@@ -77,12 +84,17 @@ func set_defaults() -> void:
 		_:
 			push_error("Card " + id + " custom script is not assinged as it should")
 			print("Card " + id + " custom script is not assinged as it should")
-	play_callable = func (coord: Vector2i): GameManager.network.send_messages({
-			"type":"create_actor",
-			"player": GameManager.player_name,
-			"coord":{"x":coord.x,"y":coord.y}, 
-			"unit":{"id": id, "power":health, "speed":speed}}
-			)
+			play_predicate = preload("res://Scripts/Predicates/BasePredicate.gd")
+	
+	if type != CARD_TYPE.Spell:
+		play_callable = func (coord: Vector2i): GameManager.network.send_messages({
+				"type":"create_actor",
+				"player": GameManager.player_name,
+				"coord":{"x":coord.x,"y":coord.y}, 
+				"unit":{"id": id, "power":health, "speed":speed}}
+				)
+	else :
+		play_callable = func (coord: Vector2i): GameManager.deck.draw_card();
 func generate_id(_name:String) -> String:
 	return _name.to_lower().replace(' ', '_')
 

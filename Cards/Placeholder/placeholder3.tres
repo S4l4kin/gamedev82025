@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://l71pthx8765j"]
+
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_s02qq"]
+
+[resource]
+script = ExtResource("1_s02qq")
+name = "Placeholder 3"
+id = "placeholder_3"
+type = 3
+cost = {}
+description = "Placeholder card 3"
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"
