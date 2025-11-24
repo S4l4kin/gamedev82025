@@ -63,13 +63,14 @@ func _ready():
 	var padding :float = 2
 	
 	fog.set_bounding_box(-Vector3(1,0,1)*padding, get_hex(grid_width-1,grid_height-1).tile.position+Vector3(1,0,1)*padding)
-	fog.reveal_hex(0,0)
-
-func _process(delta):
-	#if Input.is_physical_key_pressed(KEY_L):
-	fog.update_fog_mask()
 	
-	pass
+	
+	var start_hex = get_hex(randi_range(0, grid_width-1), randi_range(0, grid_height-1))
+	fog.reveal_coord(start_hex.tile.global_position, 6)
+	var camera = get_viewport().get_camera_3d()
+	camera.global_position = Vector3(start_hex.tile.global_position.x, camera.global_position.y,start_hex.tile.global_position.z)
+	fog.start_updating()
+
 
 func handle_network(data):
 	if (data.type == "create_actor"):
@@ -80,6 +81,7 @@ func handle_network(data):
 		card.speed = unit.speed
 		var actor = create_actor(Vector2i(coord.x, coord.y), card)
 		actor.player = data.player
+		actor.color = player_colors[data.player]
 		actor.on_play()
 
 	if (data.type == "move_unit"):

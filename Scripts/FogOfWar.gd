@@ -1,3 +1,4 @@
+@tool
 extends MeshInstance3D
 class_name FogOfWar
 
@@ -5,6 +6,7 @@ class_name FogOfWar
 
 @export var pixel_resolution : int = 28800000
 var resolution : Vector2i
+var pixel_density : int
 var vertical_offset : float = 1
 
 var rd : RenderingDevice
@@ -14,7 +16,7 @@ var current_texture : ImageTexture
 var target_mask : Image
 
 var circles : Array[Dictionary]
-
+@onready var timer : Timer = $UpdateTimer
 #Configures so that the cameras bounding box is point a and point b
 func set_bounding_box(a: Vector3, b: Vector3):
 
@@ -28,7 +30,7 @@ func set_bounding_box(a: Vector3, b: Vector3):
 	var resolution_x : int = roundi((dx/dz*resolution_y)+0.4)
 	
 	resolution = Vector2i(resolution_x, resolution_y)
-
+	pixel_density = resolution_x / dx
 	mesh = QuadMesh.new()
 	
 	mesh.size.x = dx
@@ -59,7 +61,7 @@ var current_mask_format : RDTextureFormat
 var target_mask_texture : RID
 var current_mask_texture : RID
 
-@export var bounding_box : Rect2
+var bounding_box : Rect2
 
 func set_rendering_device():
 
@@ -97,6 +99,13 @@ func set_rendering_device():
 	texture_rd.texture_rd_rid = current_mask_texture
 	self.material_override.set_shader_parameter("mask", texture_rd)
 	$"/root/Board/TextureRect".texture = texture_rd
+
+func start_updating():
+	timer.connect("timeout", update_fog_mask)
+	timer.start()
+func stop_updating():
+	timer.stop()
+	timer.disconnect("timeout", update_fog_mask)
 
 func update_fog_mask():
 	if not rd:
@@ -157,7 +166,7 @@ func draw_onto_fog_mask(pos: Vector2, radius: float, seed: bool):
 	target_mask_uniform.binding = 0
 	target_mask_uniform.add_id(target_mask_texture)
 
-	var input := PackedFloat32Array([pos.x, pos.y, radius, seed])
+	var input := PackedFloat32Array([pos.x, pos.y, radius * pixel_density, seed])
 	var input_bytes := input.to_byte_array()
 	var buffer := rd.storage_buffer_create(input_bytes.size(), input_bytes)
 
@@ -197,14 +206,20 @@ func reveal_hex(x: int, y:int):
 
 
 
+	var radius : float = 4
+	draw_onto_fog_mask(uv, radius, not circle_overlap(uv, radius))
+	circles.append({"x": uv.x, "y":uv.y, "radius": radius})
 
-	draw_onto_fog_mask(uv, 100, not circle_overlap(uv, 100))
-	circles.append({"x": uv.x, "y":uv.y, "radius": 100})
+func reveal_coord(pos: Vector3, radius: float):
 
-func circle_overlap (pos: Vector2i, radius: int) -> bool:
+	var uv = world_space_to_pixel_space(Vector2(pos.x,pos.z))
+
+	draw_onto_fog_mask(uv, radius, not circle_overlap(uv, radius))
+	circles.append({"x": uv.x, "y":uv.y, "radius": radius})
+
+func circle_overlap (pos: Vector2i, radius: float) -> bool:
 	for circle in circles:
-		print(  sqrt((pos.x-circle.x)**2+(pos.y-circle.y)**2))
-		if sqrt((pos.x-circle.x)**2+(pos.y-circle.y)**2) < circle.radius + radius:
+		if sqrt((pos.x-circle.x)**2+(pos.y-circle.y)**2) < (circle.radius + radius) * pixel_density:
 			return true
 	print("No Overlapp!")
 	return false

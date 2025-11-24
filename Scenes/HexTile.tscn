@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccxi80sux3lk6"]
+[gd_scene load_steps=5 format=3 uid="uid://ccxi80sux3lk6"]
 
 [ext_resource type="ArrayMesh" uid="uid://dku333w2w1vuk" path="res://Assets/Models/Hex/HexTile.res" id="1_y3rtd"]
 [ext_resource type="Script" uid="uid://bhy26frokd6jb" path="res://Scripts/HexTile.gd" id="2_1spyd"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1spyd"]
 points = PackedVector3Array(0, 1, 0, -0.866, 0.5, 0, -0.866, -0.5, 0, 0, -1, 0, 0.866, -0.5, 0, 0.866, 0.5, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_1spyd"]
+radius = 1.0
+height = 2.0
 
 [node name="Tile" type="MeshInstance3D"]
 layers = 2
@@ -16,3 +20,7 @@ script = ExtResource("2_1spyd")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("ConvexPolygonShape3D_1spyd")
 debug_color = Color(0.9445424, 0.23574084, 5.7756904e-07, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+visible = false
+mesh = SubResource("SphereMesh_1spyd")

@@ -39,7 +39,9 @@ var speed : int = 1
 @export var color : Color
 #Instantiates the card, set unused variables to null (or empty for string and -1 for int)
 # and empty needed variables to their default values.
-func set_defaults() -> void:
+func set_defaults():
+	#var card = self.duplicate()
+
 	print("load card: " + id)
 	if type == CARD_TYPE.HQ or type == CARD_TYPE.Structure:
 		unit_type = -1
@@ -93,8 +95,11 @@ func set_defaults() -> void:
 				"coord":{"x":coord.x,"y":coord.y}, 
 				"unit":{"id": id, "power":health, "speed":speed}}
 				)
+	#Placeholder fix for placeholder cards that have the type Spell
 	else :
-		play_callable = func (coord: Vector2i): GameManager.deck.draw_card();
+		play_callable = func (_coord: Vector2i): GameManager.deck.draw_card();
+
+	#return card
 func generate_id(_name:String) -> String:
 	return _name.to_lower().replace(' ', '_')
 

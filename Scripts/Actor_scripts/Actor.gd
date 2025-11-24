@@ -14,9 +14,8 @@ signal done_attacking
 var color : Color:
 	set(s):
 		color = s
-		for child in get_node("Models").get_children():
-			print(child.name)
-			child.modulate = color
+		$Model.color = s
+
 var x : int
 var y : int
 

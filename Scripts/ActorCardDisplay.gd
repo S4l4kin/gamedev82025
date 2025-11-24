@@ -61,20 +61,20 @@ func hide_card() -> void:
 		hide()
 
 func show_card(lock: String, hex: Vector2i) -> void:
-	if hex != inspecting_hex:
-		show_lock = {}
-		inspecting_hex = hex
+	
+	show_lock = {}
+	inspecting_hex = hex
 
-		global_position = board.get_hex(hex.x,hex.y).tile.global_position
-		for child in card_stack.get_children():
-			child.call_deferred("free")
-		var hex_data = board.hexes[Vector2i(hex.x, hex.y)]
-		if hex_data.unit:
-			var unit_card_scene = GameManager.card_manager.get_card_scene(hex_data.unit.card_id).instantiate()
-			card_stack.add_child(unit_card_scene)
-		if hex_data.structure:
-			var structure_card_scene = GameManager.card_manager.get_card_scene(hex_data.structure.card_id).instantiate()
-			card_stack.add_child(structure_card_scene)
+	global_position = board.get_hex(hex.x,hex.y).tile.global_position
+	for child in card_stack.get_children():
+		child.call_deferred("free")
+	var hex_data = board.hexes[Vector2i(hex.x, hex.y)]
+	if hex_data.unit:
+		var unit_card_scene = GameManager.card_manager.get_card_scene(hex_data.unit.card_id).instantiate()
+		card_stack.add_child(unit_card_scene)
+	if hex_data.structure:
+		var structure_card_scene = GameManager.card_manager.get_card_scene(hex_data.structure.card_id).instantiate()
+		card_stack.add_child(structure_card_scene)
 
 
 	change_lock(lock, true)

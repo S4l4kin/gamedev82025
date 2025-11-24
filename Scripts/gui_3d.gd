@@ -61,7 +61,7 @@ func _input(event: InputEvent) -> void:
 		#var event_pos3D := event_position
 		var mousePos=get_viewport().get_mouse_position()
 		var from = _camera.project_ray_origin(mousePos)
-		var to = from + _camera.project_ray_normal(mousePos) * 1000
+		var to = from + _camera.project_ray_normal(mousePos) * 10000
 		node_raycast.global_position = from
 		node_raycast.target_position = to
 		var collider = node_raycast.get_collider()

@@ -56,11 +56,10 @@ func generate_card(data:Card) -> PackedScene:
 	return packed_card
 
 func generate_actor(data: Card) -> PackedScene:
-	var actor :Actor = base_actor.instantiate()
+	var actor : Actor = base_actor.instantiate()
 
 	actor.set_script(data.custom_script)
 	actor.card_id = data.id
-
 	var packed_actor : PackedScene = PackedScene.new()
 	packed_actor.pack(actor)
 

@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_vgqql"]
 script = ExtResource("2_6t5aa")
 hq = "test_headquarter"
-card_list = Array[String](["test_card", "test_card_1", "test_card_2"])
+card_list = Array[String](["test_card", "test_card_1", "test_card_2", "test_structure", "placeholder_1", "placeholder_2", "placeholder_3", "placeholder_4", "placeholder_5", "placeholder_6", "placeholder_7", "placeholder_8", "placeholder_9", "placeholder_10", "placeholder_11"])
 deck_name = "Test Deck"
 metadata/_custom_type_script = "uid://dk61f267qiwks"
 
@@ -26,10 +26,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 19.0
-offset_top = 20.0
-offset_right = 19.0
-offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -39,10 +35,10 @@ deck_resource = SubResource("Resource_vgqql")
 [node name="Hand" type="CenterContainer" parent="Deck"]
 custom_minimum_size = Vector2(1020, 0)
 layout_mode = 0
-offset_left = -20.0
-offset_top = 422.0
-offset_right = 1000.0
-offset_bottom = 736.0
+offset_left = 3.0
+offset_top = 471.0
+offset_right = 1023.0
+offset_bottom = 785.0
 metadata/_edit_group_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Deck/Hand"]
@@ -50,12 +46,14 @@ layout_mode = 2
 
 [node name="EndTurn" type="Button" parent="."]
 custom_minimum_size = Vector2(78, 78)
-layout_mode = 0
-offset_left = 1029.0
-offset_top = 514.0
-offset_right = 1107.0
-offset_bottom = 592.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8932292
+anchor_top = 0.79320985
+anchor_right = 0.9609375
+anchor_bottom = 0.91358024
 text = "End Turn"
+metadata/_edit_use_anchors_ = true
 
 [node name="CurrentTurn" type="Label" parent="EndTurn"]
 modulate = Color(0, 0, 0, 1)
@@ -65,3 +63,15 @@ offset_top = 79.0
 offset_right = 64.0
 offset_bottom = 102.0
 text = "Player"
+
+[node name="ReadingCenter" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -108.0
+offset_bottom = -108.0
+grow_horizontal = 2
+grow_vertical = 2

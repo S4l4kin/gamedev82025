@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://iswtrmynu2lm"]
+
+[ext_resource type="PackedScene" uid="uid://5fo83kxhoywh" path="res://Scenes/Bases/CardBase.tscn" id="1_avgbt"]
+
+[node name="CenterContainer" type="CenterContainer"]
+offset_right = 200.2
+offset_bottom = 345.4
+metadata/_edit_group_ = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Card2" parent="Control" instance=ExtResource("1_avgbt")]
+layout_mode = 0
+
+[node name="Card" parent="Control" instance=ExtResource("1_avgbt")]
+layout_mode = 0
