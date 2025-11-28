@@ -12,7 +12,8 @@ void vertex() {
 			MAIN_CAM_INV_VIEW_MATRIX[2],
 			MODEL_MATRIX[3]);
 	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
-	VERTEX = VERTEX + vec3(offset.x/100.0, -offset.y/140.0, 0);
+	ivec2 size = textureSize(sprite,0);
+	VERTEX = VERTEX + vec3(offset.x/float(size.x), -offset.y/float(size.y), 0);
 }
 void fragment() {
 	vec4 pixelColor = texture(sprite, UV);

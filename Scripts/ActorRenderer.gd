@@ -79,7 +79,8 @@ func _ready() -> void:
 			multi_mesh_instance.material_override = material
 			
 			var multi_mesh = MultiMesh.new()
-			multi_mesh.mesh = QuadMesh.new()
+			var mesh = QuadMesh.new()
+			multi_mesh.mesh = mesh
 			multi_mesh.transform_format = MultiMesh.TRANSFORM_3D
 			multi_mesh.instance_count = 9
 			multi_mesh_instance.multimesh = multi_mesh
