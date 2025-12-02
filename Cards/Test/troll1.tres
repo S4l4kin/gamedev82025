@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://cdv8nhfs52lqq"]
+
+[ext_resource type="Texture2D" uid="uid://dyybborpsght3" path="res://Assets/Icons/Resources/troll.jpg" id="1_mqx64"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_7augl"]
+
+[resource]
+script = ExtResource("2_7augl")
+name = "Troll1"
+id = "troll1"
+type = 1
+cost = {}
+card_image = ExtResource("1_mqx64")
+description = "This is a troll that slows enemies"
+unit_type = 2
+health = 3
+speed = 8
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

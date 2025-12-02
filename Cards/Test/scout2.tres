@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b1keu7toxfky2"]
+
+[ext_resource type="Texture2D" uid="uid://brsc0s1ltstq4" path="res://Assets/Icons/Resources/scoutPic.jpg" id="1_wptvm"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_akm5d"]
+
+[resource]
+script = ExtResource("2_akm5d")
+name = "Scout2"
+id = "scout2"
+type = 1
+cost = {}
+card_image = ExtResource("1_wptvm")
+description = "This is a scout that can see further than others"
+unit_type = 3
+health = 3
+speed = 8
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

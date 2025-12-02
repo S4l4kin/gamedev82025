@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_vgqql"]
 script = ExtResource("2_6t5aa")
 hq = "test_headquarter"
-card_list = Array[String](["test_card", "test_card_1", "test_card_2", "test_structure", "placeholder_1", "placeholder_2", "placeholder_3", "placeholder_4", "placeholder_5", "placeholder_6", "placeholder_7", "placeholder_8", "placeholder_9", "placeholder_10", "placeholder_11"])
+card_list = Array[String](["dragon2", "dragon1", "dragon3", "test_structure", "scout1", "scout2", "troll1", "warrior1", "warrior1", "warrior1", "troll1", "troll1", "dragon3", "dragon1", "dragon2"])
 deck_name = "Test Deck"
 metadata/_custom_type_script = "uid://dk61f267qiwks"
 

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://bxqwps8m0f21q"]
+
+[ext_resource type="Texture2D" uid="uid://dupagjh2ieine" path="res://Assets/Icons/Resources/dragonPic.jpg" id="1_4u80l"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_jbh3o"]
+
+[resource]
+script = ExtResource("2_jbh3o")
+name = "Dragon1"
+id = "dragon1"
+type = 1
+cost = {}
+card_image = ExtResource("1_4u80l")
+description = "This is a dragon with long ranged attack"
+unit_type = 1
+health = 8
+speed = 4
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"
