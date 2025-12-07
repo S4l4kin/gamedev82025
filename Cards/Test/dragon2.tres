@@ -10,8 +10,7 @@ name = "Dragon2"
 id = "dragon2"
 type = 1
 cost = {
-0: 2,
-1: 1
+0: 2
 }
 card_image = ExtResource("1_4t4gb")
 description = "This is the firebreathing dragon"

@@ -44,6 +44,8 @@ func get_attack_damage():
 
 func set_health(new_health: int):
 	health = new_health
+	#print(health)
 	if health <=0:
 		on_death()
+		#print("dödens dö")
 		$"/root/Board".remove_actor(self)

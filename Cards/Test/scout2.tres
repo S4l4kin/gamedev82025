@@ -8,7 +8,9 @@ script = ExtResource("2_akm5d")
 name = "Scout2"
 id = "scout2"
 type = 1
-cost = {}
+cost = {
+0: 1
+}
 card_image = ExtResource("1_wptvm")
 description = "This is a scout that can see further than others"
 unit_type = 3

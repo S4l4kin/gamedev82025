@@ -8,7 +8,9 @@ script = ExtResource("2_likdm")
 name = "Warrior1"
 id = "warrior1"
 type = 1
-cost = {}
+cost = {
+0: 3
+}
 card_image = ExtResource("1_p4m22")
 description = "This is a human warrior it takes less damage"
 unit_type = 0

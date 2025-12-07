@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b80mfwe8dknpo"]
 
-[ext_resource type="Texture2D" uid="uid://chy536ltbw7mp" path="res://icon.svg" id="1_k4udq"]
+[ext_resource type="Texture2D" uid="uid://dupagjh2ieine" path="res://Assets/Icons/Resources/dragonPic.jpg" id="1_k4udq"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_2mks1"]
 
 [resource]
@@ -10,8 +10,7 @@ name = "Dragon3"
 id = "dragon3"
 type = 1
 cost = {
-0: 2,
-1: 1
+0: 5
 }
 card_image = ExtResource("1_k4udq")
 description = "This is a big and strong dragon

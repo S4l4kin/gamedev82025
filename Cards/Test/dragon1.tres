@@ -8,7 +8,10 @@ script = ExtResource("2_jbh3o")
 name = "Dragon1"
 id = "dragon1"
 type = 1
-cost = {}
+cost = {
+0: 2,
+1: 2
+}
 card_image = ExtResource("1_4u80l")
 description = "This is a dragon with long ranged attack"
 unit_type = 1
