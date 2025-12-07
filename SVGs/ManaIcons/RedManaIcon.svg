@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1079.9999"
+   height="1080"
+   viewBox="0 0 1079.9999 1080"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="RedManaIcon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     inkscape:zoom="0.40478515"
+     inkscape:cx="-16.057901"
+     inkscape:cy="-24.704464"
+     inkscape:window-width="958"
+     inkscape:window-height="1000"
+     inkscape:window-x="946"
+     inkscape:window-y="438"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1" />
+  <defs
+     id="defs1" />
+  <g
+     id="g22"
+     inkscape:label="RedManaIcon"
+     transform="matrix(7.7632028,0,0,7.1345019,-1586.7983,-2417.8153)"
+     style="clip-rule:evenodd;display:inline;fill-rule:nonzero;stroke-linecap:round;stroke-linejoin:round">
+    <path
+       style="clip-rule:evenodd;display:inline;fill:#a33d23;fill-opacity:1;fill-rule:nonzero;stroke:#c1763e;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 247.52329,484.80368 -35.93355,-18.87724 -4.1898,-23.8694 14.26262,-26.85403 -9.04183,-34.91836 35.86066,-30.06405 -7.50679,31.85175 9.64581,21.71164 4.43834,21.64969 c 0,0 3.30036,-3.24063 11.83201,-15.35792 -5.35191,-15.05339 -6.53334,-14.14756 -7.60016,-18.72916 l 8.14822,-22.08228 21.97121,24.28221 -2.72373,9.88312 6.53669,11.8946 12.33078,2.65239 -7.82386,-14.90126 5.1451,-18.44625 -14.85009,-21.57538 -8.69049,-21.1633 34.93363,7.07256 3.94342,14.95571 14.65167,15.93267 1.42166,19.58637 -4.464,16.6315 10.69698,14.7264 -3.65013,24.14116 -18.88501,18.58476 -24.39517,13.74605 z"
+       id="path18"
+       sodipodi:nodetypes="cccccccccccccccccccccccccccccc"
+       inkscape:label="RedManaIcon" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:49.8216px;line-height:0;font-family:'Alfa Slab One';-inkscape-font-specification:'Alfa Slab One';text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:start;clip-rule:evenodd;display:none;fill:#641d0b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:7.08508;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:0"
+       x="261.56976"
+       y="469.32303"
+       id="text3"><tspan
+         id="tspan3"
+         x="0"
+         y="0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:49.8216px;line-height:0;font-family:'Alfa Slab One';-inkscape-font-specification:'Alfa Slab One';letter-spacing:0px;fill:#641d0b;fill-opacity:1;stroke:#000000;stroke-width:7.08508;stroke-dasharray:none;stroke-opacity:0"
+         sodipodi:role="line">2</tspan></text>
+  </g>
+</svg>

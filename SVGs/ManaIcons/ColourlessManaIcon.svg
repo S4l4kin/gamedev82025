@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1080"
+   height="1080"
+   viewBox="0 0 1080 1080"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="ColourlessManaIcon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:vectornator="http://vectornator.io">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     inkscape:zoom="0.20239258"
+     inkscape:cx="165.5199"
+     inkscape:cy="365.62605"
+     inkscape:window-width="958"
+     inkscape:window-height="1000"
+     inkscape:window-x="946"
+     inkscape:window-y="438"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1" />
+  <defs
+     id="defs1" />
+  <g
+     opacity="1"
+     vectornator:layerName="Group 1"
+     id="g77"
+     style="clip-rule:evenodd;display:inline;fill-rule:nonzero;stroke-linecap:round;stroke-linejoin:round"
+     transform="matrix(7.7135923,0,0,7.7136596,-1186.1508,-5142.8584)"
+     inkscape:label="ColourlessMana">
+    <path
+       d="m 223.78102,671.91513 64.8115,64.8115 -64.8115,64.81149 -64.81272,-64.81149 z"
+       fill="#5a94bc"
+       fill-rule="nonzero"
+       opacity="1"
+       stroke="#abcadf"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-width="10.3888"
+       vectornator:layerName="Polygon 1"
+       id="path23"
+       style="display:inline" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.1418px;line-height:0;font-family:'Alfa Slab One';-inkscape-font-specification:'Alfa Slab One';text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:start;clip-rule:evenodd;display:none;fill:#244258;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:7.13062;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:0"
+       x="208.67212"
+       y="755.83545"
+       id="text16-4"><tspan
+         id="tspan16-8"
+         x="0"
+         y="0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.1418px;line-height:0;font-family:'Alfa Slab One';-inkscape-font-specification:'Alfa Slab One';letter-spacing:0px;fill:#244258;fill-opacity:1;stroke:#000000;stroke-width:7.13062;stroke-dasharray:none;stroke-opacity:0"
+         sodipodi:role="line">2</tspan></text>
+  </g>
+</svg>
