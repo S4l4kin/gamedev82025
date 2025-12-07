@@ -115,8 +115,10 @@ func get_hex(x:int, y:int) -> Hex:
 
 func add_hex_selector(selector: HexSelect):
 	inspect_card.change_lock("unit_selected", false)
-	hex_selector = selector
 	add_child(selector)
+	hex_selector = selector
+	inspect_card.get_node("3DControl").active = false
+	actor_actions.get_node("3DControl").active = false
 
 func cube_to_coord(q:int,r:int) -> Vector2i:
 	var parity : int

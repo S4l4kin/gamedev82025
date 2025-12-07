@@ -15,6 +15,10 @@ var last_event_time := -1.0
 @onready var node_area: Area3D = $Quad/Area3D
 @onready var node_raycast : RayCast3D = $Raycast
 
+var active : bool = true:
+	set(s):
+		active = s
+		$Quad/Area3D/CollisionShape3D.disabled = not s
 
 func _ready() -> void:
 	# If the material is NOT set to use billboard settings, then avoid running billboard specific code
@@ -51,6 +55,8 @@ func _unhandled_input(input_event: InputEvent) -> void:
 
 var old_collider : Object
 func _input(event: InputEvent) -> void:
+	if not active:
+		return
 	if event is InputEventMouse:
 		var input_event = event.duplicate()
 		var _camera = get_viewport().get_camera_3d()
@@ -134,9 +140,9 @@ func _input(event: InputEvent) -> void:
 		last_event_time = now
 
 		# Finally, send the processed input event to the viewport.
-		node_viewport.push_input(input_event)
+		get_viewport().set_input_as_handled()
 		if get_parent().visible:
-			get_viewport().set_input_as_handled()
+			node_viewport.push_input(input_event)
 
 
 func rotate_area_to_billboard() -> void:

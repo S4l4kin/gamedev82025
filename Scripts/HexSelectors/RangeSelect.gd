@@ -15,7 +15,7 @@ func _ready():
 func pressed(pressed_x: int, pressed_y:int):
 	var origin_cube = board.coord_to_cube(origin.x, origin.y)
 	var pressed_cube = board.coord_to_cube(pressed_x, pressed_y)
-	call_deferred("free")
+	done_selecting()
 
 	if cube_distance(origin_cube, pressed_cube) <= hex_range:
 		
