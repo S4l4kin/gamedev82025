@@ -5,13 +5,15 @@ class_name Unit
 @onready var speed :int = max_speed 
 
 
-func _ready():
+func _ready(): 
 	GameManager.connect("turn_start", func(): speed = max_speed)
 
 #Returns true if the unit survived the attack
 func attack(enemy:Actor) -> bool:
 	#Activate pre attack and defend abilities
+	print(player + " före pre attack")
 	on_pre_attack(enemy)
+	print(player + " före enemy pre defend")
 	enemy.on_pre_defend(self)
 
 	#Deal damage to both attacker and defender
@@ -29,7 +31,9 @@ func attack(enemy:Actor) -> bool:
 	return health > 0
 
 func on_pre_attack(_enemy: Actor):
-	pass
+	print(player)
+	print("Unit pre attack")
+	#pass
 func on_post_attack(_enemy: Actor):
 	pass
 
@@ -48,7 +52,22 @@ func get_actions() -> Dictionary[String, Dictionary]:
 
 func get_move_range():
 	$"/root/Board".add_hex_selector(PathHexSelect.new(x,y, speed, move))
+
+func change_speed(speed_change: int):
+	#Apply change to both max_speed and current speed
+	max_speed += speed_change
+	speed = clamp(speed + speed_change, 0, max_speed)
+
+	#print("%s speed changed" % player)
+	#print("max_speed: %d, current speed: %d" % [max_speed, speed])
+	#max_speed = 0 
+	#max_speed + speed_change
+	#print(player + "speed")
+	#print(self.max_speed)
 	
+
+func get_speed():
+	return speed
 
 func move(path : Array):
 	if len(path) > 1:

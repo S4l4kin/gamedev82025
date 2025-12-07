@@ -7,8 +7,23 @@
 script/source = "extends Unit
 class_name troll1
 
-func on_pre_attack(_enemy: Actor):
-	_enemy.speed -= 15
+func on_pre_attack(enemy: Actor):
+	ability(enemy)
+	#print(\"pre attack\")
+	#enemy.change_speed(-3)
+	#print(\"enemy speed\")
+	#print(str(enemy.get_speed()))
+
+func on_pre_defend(enemy: Actor):
+	ability(enemy)
+	#print(\"pre defend\")
+	#enemy.change_speed(-3)
+	#print(\"enemy speed\")
+	#print(str(enemy.get_speed()))
+
+func ability(enemy: Actor):
+	#print(\"in ability\")
+	enemy.change_speed(-3)
 "
 
 [resource]

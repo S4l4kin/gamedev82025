@@ -30,7 +30,9 @@ func on_play():
 	pass
 
 func on_pre_defend(_enemy: Actor):
-	pass
+	print(player)
+	print("Actor pre defend")
+	#pass
 
 func on_post_defend(_enemy: Actor):
 	pass
@@ -47,5 +49,5 @@ func set_health(new_health: int):
 	#print(health)
 	if health <=0:
 		on_death()
-		#print("dödens dö")
+		print(player + "dödens dö")
 		$"/root/Board".remove_actor(self)
