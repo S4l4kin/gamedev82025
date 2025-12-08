@@ -5,7 +5,7 @@
 
 [sub_resource type="GDScript" id="GDScript_mqx64"]
 script/source = "extends Unit
-class_name troll1
+class_name Troll1
 
 func on_pre_attack(enemy: Actor):
 	ability(enemy)

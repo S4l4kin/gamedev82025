@@ -17,18 +17,23 @@ func attack(enemy:Actor) -> bool:
 	enemy.on_pre_defend(self)
 
 	#Deal damage to both attacker and defender
-	var current_attack = get_attack_damage()
-	set_health(health - enemy.get_attack_damage())
-	enemy.set_health(enemy.health - current_attack)
+	on_deal_damage(enemy)
 
 
 	#If either attacker or defender survived actiave post attack and defend abilities
+	print(player + str(get_health()))
 	if health > 0:
 		on_post_attack(enemy)
+	print(enemy.player + str(enemy.get_health()))
 	if enemy.health > 0:
 		enemy.on_post_defend(self)
 	emit_signal("done_attacking")
 	return health > 0
+
+func on_deal_damage(enemy: Actor):
+	var current_attack = get_attack_damage()
+	set_health(health - enemy.get_attack_damage()*damage_factor)
+	enemy.set_health(enemy.health - current_attack*enemy.damage_factor)
 
 func on_pre_attack(_enemy: Actor):
 	print(player)
