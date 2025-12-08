@@ -2,7 +2,7 @@ extends Node3D
 class_name Actor
 
 @export var health: int
-@export var damage_factor: float
+@export var damage_modifier: int
 
 @export var card_id : String
 @export var player : String
@@ -21,7 +21,7 @@ var y : int
 
 func _ready() -> void:
 	color = start_color
-	damage_factor = 1.00
+	damage_modifier = 0
 
 func get_actions() -> Dictionary[String, Dictionary]:
 
@@ -44,8 +44,8 @@ func on_death():
 func get_attack_damage():
 	return 0
 
-func set_damage_factor(factor: float):
-	damage_factor = factor
+func set_damage_modifier(modifier: int):
+	damage_modifier += modifier
 
 func get_health():
 	return health

@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://5vcqtak3qdc7" path="res://Assets/Icons/speed_icon.svg" id="6_p3l8k"]
 [ext_resource type="Texture2D" uid="uid://b1vyqomjd60t0" path="res://Assets/Icons/strength_icon.svg" id="7_ljuny"]
 
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tpmiq"]
 no_depth_test = true
 shading_mode = 0

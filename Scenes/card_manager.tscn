@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://h7jmfm5sfi24" path="res://Assets/Icons/Resources/icon1.svg" id="3_bdei6"]
 [ext_resource type="Texture2D" uid="uid://boyx36tjquy7s" path="res://Assets/Icons/Resources/icon2.svg" id="4_fua0e"]
 
+
 [sub_resource type="Resource" id="Resource_dyqno"]
 script = ExtResource("2_w6ora")
 symbol = ExtResource("3_bdei6")

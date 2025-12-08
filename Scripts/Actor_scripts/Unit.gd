@@ -32,8 +32,8 @@ func attack(enemy:Actor) -> bool:
 
 func on_deal_damage(enemy: Actor):
 	var current_attack = get_attack_damage()
-	set_health(health - enemy.get_attack_damage()*damage_factor)
-	enemy.set_health(enemy.health - current_attack*enemy.damage_factor)
+	set_health(health - (enemy.get_attack_damage()+damage_modifier))
+	enemy.set_health(enemy.health - (current_attack+enemy.damage_modifier))
 
 func on_pre_attack(_enemy: Actor):
 	print(player)

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://h7jmfm5sfi24" path="res://Assets/Icons/Resources/icon1.svg" id="3_oe7qr"]
 [ext_resource type="Texture2D" uid="uid://5vcqtak3qdc7" path="res://Assets/Icons/speed_icon.svg" id="5_y3eib"]
 
+
 [node name="Offset" type="Control"]
 custom_minimum_size = Vector2(182, 314)
 layout_mode = 3

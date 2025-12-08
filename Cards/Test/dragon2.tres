@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dupagjh2ieine" path="res://Assets/Icons/Resources/dragonPic.jpg" id="1_4t4gb"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_v8x5o"]
 
+
 [resource]
 script = ExtResource("2_v8x5o")
 color = Color(0, 0.7019608, 0, 1)

@@ -10,7 +10,7 @@ class_name Warrior1
 func _ready():
 	color = start_color
 	GameManager.connect(\"turn_start\", func(): speed = max_speed)
-	set_damage_factor(0.75)
+	set_damage_modifier(-2)
 "
 
 [resource]

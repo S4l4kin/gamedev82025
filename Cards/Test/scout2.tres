@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://brsc0s1ltstq4" path="res://Assets/Icons/Resources/scoutPic.jpg" id="1_wptvm"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_akm5d"]
 
+
 [resource]
 script = ExtResource("2_akm5d")
 name = "Scout2"
