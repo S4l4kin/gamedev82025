@@ -36,12 +36,12 @@ func on_deal_damage(enemy: Actor):
 	enemy.set_health(enemy.health - (current_attack+enemy.damage_modifier))
 
 func on_pre_attack(_enemy: Actor):
-	print(player)
-	print("Unit pre attack")
-	#pass
-func on_post_attack(_enemy: Actor):
+	#print(player)
+	#print("Unit pre attack")
 	pass
 
+func on_post_attack(_enemy: Actor):
+	pass
 
 func get_attack_damage():
 	return health
