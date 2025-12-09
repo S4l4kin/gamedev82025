@@ -194,7 +194,10 @@ func move_unit(from :Vector2i, path: Array[Vector2i]) -> void:
 		var next_hex = get_hex(step.x, step.y)
 		if not next_hex.passable:
 			break
-		tween.tween_callback(unit.on_pre_move)
+		tween.tween_callback(func ():
+			unit.on_pre_move()
+			fog.reveal_hex(step.x, step.y)
+		)
 		tween.tween_property(unit, "position", next_hex.tile.global_position, moving_speed)
 		tween.tween_callback(func ():
 			if not unit:
@@ -214,7 +217,7 @@ func move_unit(from :Vector2i, path: Array[Vector2i]) -> void:
 					next_hex.unit = unit
 				
 				unit.on_post_move()
-				fog.reveal_hex(unit.x, unit.y)
+				
 		)
 
 
