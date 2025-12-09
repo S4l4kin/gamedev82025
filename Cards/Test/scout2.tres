@@ -1,8 +1,26 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b1keu7toxfky2"]
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://b1keu7toxfky2"]
 
 [ext_resource type="Texture2D" uid="uid://brsc0s1ltstq4" path="res://Assets/Icons/Resources/scoutPic.jpg" id="1_wptvm"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_akm5d"]
 
+[sub_resource type="GDScript" id="GDScript_wptvm"]
+script/source = "extends Unit
+class_name scout2
+
+var conquring_hexes : Array[Vector2i]
+
+func on_post_move():
+	var neighbours = GameManager.board_manager.get_neighbours(x,y)
+	conquring_hexes.append(Vector2i(x,y))
+	for neighbour : Hex in neighbours:
+		conquring_hexes.append(neighbour.coord)
+	extended_sight()
+
+func extended_sight():
+	var board = GameManager.board_manager
+	for coord : Vector2i in conquring_hexes:
+		board.fog.reveal_hex(coord.x, coord.y)
+"
 
 [resource]
 script = ExtResource("2_akm5d")
@@ -17,4 +35,5 @@ description = "This is a scout that can see further than others"
 unit_type = 3
 health = 3
 speed = 8
+custom_script = SubResource("GDScript_wptvm")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

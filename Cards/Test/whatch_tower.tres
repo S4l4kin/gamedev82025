@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://crpqymbdwcg5m"]
+
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_6jr08"]
+
+[sub_resource type="GDScript" id="GDScript_5k02a"]
+script/source = "extends Structure
+class_name watch_tower
+
+var visible_hexes : Array[Vector2i]
+
+func on_play():
+	var neighbours = GameManager.board_manager.get_neighbours(x,y)
+	conquring_hexes.append(Vector2i(x,y))
+	for neighbour : Hex in neighbours:
+		var new_neighbours = GameManager.board_manager.get_neighbours(neighbour.coord.x, neighbour.coord.y)
+		for new_neighbour : Hex in new_neighbours:
+			visible_hexes.append(new_neighbour.coord)
+		conquring_hexes.append(neighbour.coord)
+	conqure_hexes()
+
+func conqure_hexes():
+	var board = GameManager.board_manager
+	for coord : Vector2i in conquring_hexes:
+		print(coord)
+		if not board.conqured_hexes.has(coord):
+			board.conqured_hexes[coord] = player
+			board.outline.set_hex_coord_outline(\"conqured_hexes\", coord, board.player_colors[player])
+			board.fog.reveal_hex(coord.x, coord.y)
+	for visible_coord : Vector2i in visible_hexes:
+		board.fog.reveal_hex(visible_coord.x, visible_coord.y)
+"
+
+[resource]
+script = ExtResource("1_6jr08")
+name = "Watch Tower"
+id = "watch_tower"
+type = 2
+cost = {}
+description = "This is a placeholder Structure"
+health = 3
+custom_script = SubResource("GDScript_5k02a")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"
