@@ -38,7 +38,7 @@ func get_attack_damage():
 	return health
 
 func on_pre_move():
-	pass
+	print("X:%s, Y:%s"%[x,y])
 func on_post_move():
 	pass
 
@@ -52,12 +52,12 @@ func get_move_range():
 
 func move(path : Array):
 	if len(path) > 1:
-		var previous_hex = path.pop_front()
+		var from = path.pop_front()
+		var move_path = []
 		for next_hex in path:
-			GameManager.network.send_messages({
-				"type":"move_unit",
-				"previous_hex": {"x": previous_hex.x, "y": previous_hex.y},
-				"next_hex": {"x": next_hex.x, "y": next_hex.y}
-			})
-			previous_hex = next_hex
-			speed -= 1
+			move_path.append({"x": next_hex.x, "y": next_hex.y})
+		GameManager.network.send_messages({
+			"type":"move_unit",
+			"from": {"x": from.x, "y": from.y},
+			"path": move_path
+		})

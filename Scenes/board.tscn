@@ -63,8 +63,8 @@ shader_parameter/fogColor = Color(0.3, 0.3, 0.3, 1)
 
 [node name="Board" type="Node3D"]
 script = ExtResource("1_p0ybc")
-grid_width = 64
-grid_height = 64
+grid_width = 16
+grid_height = 16
 
 [node name="Tiles" type="Node3D" parent="."]
 

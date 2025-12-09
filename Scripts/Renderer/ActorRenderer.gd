@@ -42,7 +42,7 @@ func _process(_delta):
 			multi_mesh.set_instance_color(i, gizmo_color[i])
 
 func render_amount(amount: int):
-	if amount > max_model:
+	if amount > max_model or actor is Structure:
 		numerical_power.show()
 		numerical_power.get_node("Viewport/Text").text = str(amount)
 		amount = max_model
