@@ -77,8 +77,8 @@ func set_defaults():
 		CARD_TYPE.Structure:
 			if not custom_script:
 				custom_script = preload("res://Scripts/Actor_scripts/Structure.gd")
-				if not play_predicate:
-					play_predicate = preload("res://Scripts/Predicates/StructurePredicate.gd")
+			if not play_predicate:
+				play_predicate = preload("res://Scripts/Predicates/StructurePredicate.gd")
 			elif not is_instance_of(custom_script.new(), Structure):
 				custom_script = preload("res://Scripts/Actor_scripts/Structure.gd")
 				push_error("Card " + id + " custom script does not extend Structure as it should")
