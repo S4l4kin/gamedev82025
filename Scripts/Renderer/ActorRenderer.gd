@@ -73,7 +73,7 @@ func init_renderer():
 	var model_node = model.instantiate()
 	max_model = model_node.max_model
 	if model_node.pixel_density > 0:
-		pixel_density = model.pixel_density
+		pixel_density = model_node.pixel_density
 	for child in model_node.get_children():
 		if child is Sprite2D:
 			var mask = child.get_node("Mask")
