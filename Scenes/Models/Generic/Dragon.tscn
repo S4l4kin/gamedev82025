@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://btwqxn54ps0ie"]
+[gd_scene load_steps=7 format=3 uid="uid://cvyh3ymdjnem"]
 
 [ext_resource type="Script" uid="uid://bujesqlx6hrhx" path="res://Scripts/Renderer/RendererData.gd" id="1_c4bv7"]
 [ext_resource type="Texture2D" uid="uid://5vcqtak3qdc7" path="res://Assets/Icons/speed_icon.svg" id="1_kerfn"]

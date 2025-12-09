@@ -22,12 +22,8 @@ func _ready():
 		GameManager.players.append(player)
 		))
 	$"Join Menu/Options/Color".connect("color_changed", (func(color: Color):
-		var lum = 0.2126*color.r + 0.7152*color.g + 0.0722*color.b
-		if lum > 0.5:
-			$"Join Menu/Options/Color/Label".self_modulate = Color.BLACK
-		else:
-			$"Join Menu/Options/Color/Label".self_modulate = Color.WHITE
-		))
+		$"Join Menu/Options/Color/Label".self_modulate = Color.BLACK if color.get_luminance() > 0.5 else Color.WHITE
+	))
 	$Lobby/StartButton.connect("pressed", (func():
 		GameManager.network.send_messages({"type":"start_game"})
 		GameManager.network.send_messages({"type":"hide_start_ui"})

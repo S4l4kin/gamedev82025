@@ -6,9 +6,12 @@ class_name Actor
 
 @export var card_id : String
 @export var player : String
-@export var start_color : Color
 
 var tween : Tween
+@onready var renderer : ActorRenderer:
+	get():
+		return $Model
+
 signal done_attacking
 
 var color : Color:
@@ -19,8 +22,6 @@ var color : Color:
 var x : int
 var y : int
 
-func _ready() -> void:
-	color = start_color
 
 func get_actions() -> Dictionary[String, Dictionary]:
 
@@ -44,6 +45,7 @@ func get_attack_damage():
 
 func set_health(new_health: int):
 	health = new_health
+	renderer.render_amount(new_health)
 	if health <=0:
 		on_death()
 		$"/root/Board".remove_actor(self)

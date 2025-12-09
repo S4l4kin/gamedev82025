@@ -97,6 +97,7 @@ func inspect_hex(x:int, y:int):
 func select_hex(x:int ,y:int):
 	if hex_selector != null:
 		return
+	print("Clicked Hex %s, %s"%[x,y])
 	var actors = get_actors(x, y)
 	if  actors != {}:
 		inspect_card.show_card("unit_selected", Vector2i(x,y))

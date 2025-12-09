@@ -1,10 +1,10 @@
 @tool
 extends Node3D
-
+class_name ActorRenderer
 var color : Color
 @export var model : PackedScene
 var animations : Dictionary[String, Texture]
-
+var max_model : int
 @export var offsets : Array[PackedVector2Array]
 @export_range(1,9, 1) var show_offset : int:
 	set(s):
@@ -21,7 +21,7 @@ var gizmo_color := [Color.RED, Color.ORANGE_RED, Color.ORANGE, Color.YELLOW, Col
 
 var actor : Actor
 @onready var numerical_power : Sprite3D = get_parent().get_node("NumericalPower")
-
+var pixel_density : int = 128
 func _process(_delta):
 	if Engine.is_editor_hint():
 		
@@ -42,10 +42,10 @@ func _process(_delta):
 			multi_mesh.set_instance_color(i, gizmo_color[i])
 
 func render_amount(amount: int):
-	if amount > 9:
+	if amount > max_model:
 		numerical_power.show()
 		numerical_power.get_node("Viewport/Text").text = str(amount)
-		amount = 9
+		amount = max_model
 	else:
 		numerical_power.hide()
 
@@ -64,15 +64,31 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	$Gizmo.free()
-
+	call_deferred("init_renderer")
+var setuped : bool = false
+func init_renderer():
+	setuped = true
 	actor = get_parent()
+	color = GameManager.board_manager.player_colors[actor.player]
 	var model_node = model.instantiate()
+	max_model = model_node.max_model
+	if model_node.pixel_density > 0:
+		pixel_density = model.pixel_density
 	for child in model_node.get_children():
 		if child is Sprite2D:
+			var mask = child.get_node("Mask")
+
 			var material = ShaderMaterial.new()
 			material.shader = preload("res://Scripts/Shaders/actor_renderer_shader.gdshader")
+
 			material.set_shader_parameter("offset", child.position)
 			material.set_shader_parameter("sprite", child.texture)
+			material.set_shader_parameter("playerMask", mask.texture)
+			material.set_shader_parameter("playerColor", color)
+			material.set_shader_parameter("center", child.offset)
+			material.set_shader_parameter("rotation", child.rotation_degrees)
+			material.set_shader_parameter("scale", child.scale)
+			material.set_shader_parameter("skew", rad_to_deg(child.skew))
 
 			var multi_mesh_instance = MultiMeshInstance3D.new()
 			multi_mesh_instance.name = child.name
@@ -80,9 +96,13 @@ func _ready() -> void:
 			
 			var multi_mesh = MultiMesh.new()
 			var mesh = QuadMesh.new()
+			mesh.size = child.texture.get_size() / pixel_density
 			multi_mesh.mesh = mesh
 			multi_mesh.transform_format = MultiMesh.TRANSFORM_3D
 			multi_mesh.instance_count = 9
 			multi_mesh_instance.multimesh = multi_mesh
 			add_child(multi_mesh_instance)
-	render_amount(1)
+	render_amount(actor.health)
+	numerical_power.get_node("Viewport/Fill").color = color
+	#numerical_power.get_node("Viewport/Border").color = Color.BLACK if color.get_luminance() > 0.5 else Color.WHITE
+	numerical_power.get_node("Viewport/Text").self_modulate = Color.BLACK if color.get_luminance() > 0.5 else Color.WHITE

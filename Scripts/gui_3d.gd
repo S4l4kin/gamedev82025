@@ -29,6 +29,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# NOTE: Remove this function if you don't plan on using billboard settings.
 	rotate_area_to_billboard()
+	if active:
+		$Quad/Area3D/CollisionShape3D.disabled = not get_parent().visible
 	pass
 
 

@@ -98,8 +98,7 @@ func set_rendering_device():
 	var texture_rd = Texture2DRD.new()
 	texture_rd.texture_rd_rid = current_mask_texture
 	self.material_override.set_shader_parameter("mask", texture_rd)
-	$"/root/Board/TextureRect".texture = texture_rd
-
+	
 func start_updating():
 	timer.connect("timeout", update_fog_mask)
 	timer.start()

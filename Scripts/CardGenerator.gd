@@ -60,6 +60,7 @@ func generate_actor(data: Card) -> PackedScene:
 
 	actor.set_script(data.custom_script)
 	actor.card_id = data.id
+	actor.renderer.model = data.model
 	var packed_actor : PackedScene = PackedScene.new()
 	packed_actor.pack(actor)
 
@@ -68,9 +69,28 @@ func generate_actor(data: Card) -> PackedScene:
 func update_actor(actor: Actor, data: Card):
 	if data.type == Card.CARD_TYPE.HQ or data.type == Card.CARD_TYPE.Unit or data.type == Card.CARD_TYPE.Structure:
 		actor.health = data.health
-		actor.start_color = data.color
 	if data.type == Card.CARD_TYPE.Unit:
 		actor.max_speed = data.speed
+
+func update_card_from_actor(actor: Actor, card: Node , data: Card):
+	card = card.get_node("Card")
+	if data.type == Card.CARD_TYPE.HQ or data.type == Card.CARD_TYPE.Unit or data.type == Card.CARD_TYPE.Structure:
+		card.get_node("Power/Numb").text = str(actor.health)
+		if actor.health > data.health:
+			card.get_node("Power/Numb").self_modulate = Color.GREEN
+		#elif actor.health < data.health:
+		#	card.get_node("Power/Numb").self_modulate = Color.RED
+		else:
+			card.get_node("Power/Numb").self_modulate = Color.WHITE
+
+	if data.type == Card.CARD_TYPE.Unit:
+		card.get_node("Speed/Numb").text = str(actor.max_speed)
+		if actor.max_speed > data.speed:
+			card.get_node("Speed/Numb").self_modulate = Color.GREEN
+		elif actor.max_speed < data.speed:
+			card.get_node("Speed/Numb").self_modulate = Color.RED
+		else:
+			card.get_node("Speed/Numb").self_modulate = Color.WHITE
 
 #Parses the description of special tags and changes them to the right BBCode syntaxes
 func parse_card_description(description:String) -> String:

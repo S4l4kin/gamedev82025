@@ -50,6 +50,17 @@ func get_card_scene(card_name:String) -> PackedScene:
 		card_object[card_name] = card
 		return card
 
+func get_updated_card_scene(from) -> Node:
+	if from is Actor:
+		var card = get_card_scene(from.card_id).instantiate()
+		var data = get_card_data(from.card_id)
+		card_generator.update_card_from_actor(from, card, data)
+
+		return card
+	elif from is Card:
+		push_warning("Updating by card not yet implemented")
+	return null
+
 func get_playable_card_scene(card: Card) -> Node:
 	var card_base = get_card_scene(card.id).instantiate()
 	var raycast = RayCast3D.new()

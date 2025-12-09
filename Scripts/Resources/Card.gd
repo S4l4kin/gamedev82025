@@ -36,7 +36,6 @@ var model : PackedScene
 #Variables unique for Units
 var unit_type : int = 0
 var speed : int = 1
-@export var color : Color
 #Instantiates the card, set unused variables to null (or empty for string and -1 for int)
 # and empty needed variables to their default values.
 func set_defaults():
@@ -64,6 +63,9 @@ func set_defaults():
 				custom_script = preload("res://Scripts/Actor_scripts/Headquarter.gd")
 				push_error("Card " + id + " custom script does not extend HQ as it should")
 				print("Card " + id + " custom script does not extend HQ as it should, changed it base HQ")
+			if not model:
+				model = preload("res://Scenes/Models/Generic/Structure.tscn")
+				push_error("Card " + id + " should have a model attached to it as a HQ")
 			play_predicate = preload("res://Scripts/Predicates/HQPredicate.gd")
 		CARD_TYPE.Unit:
 			if not custom_script:
@@ -74,6 +76,17 @@ func set_defaults():
 				print("Card " + id + " custom script does not extend Unit as it should, changed it base Unit")
 			if not play_predicate:
 				play_predicate = preload("res://Scripts/Predicates/UnitPredicate.gd")
+			if not model:
+				match unit_type:
+					GlobalEnums.UNIT_TYPES.Warrior:
+						model = preload("res://Scenes/Models/Generic/Warrior.tscn")
+					GlobalEnums.UNIT_TYPES.Dragon:
+						model = preload("res://Scenes/Models/Generic/Dragon.tscn")
+					GlobalEnums.UNIT_TYPES.Scout:
+						model = preload("res://Scenes/Models/Generic/Scout.tscn")
+					GlobalEnums.UNIT_TYPES.Troll:
+						model = preload("res://Scenes/Models/Generic/Troll.tscn")
+				
 		CARD_TYPE.Structure:
 			if not custom_script:
 				custom_script = preload("res://Scripts/Actor_scripts/Structure.gd")
@@ -83,6 +96,9 @@ func set_defaults():
 				custom_script = preload("res://Scripts/Actor_scripts/Structure.gd")
 				push_error("Card " + id + " custom script does not extend Structure as it should")
 				print("Card " + id + " custom script does not extend Structure as it should, changed it base Structure")
+			if not model:
+				model = preload("res://Scenes/Models/Generic/Structure.tscn")
+				push_error("Card " + id + " should have a model attached to it as a Structure")
 		_:
 			push_error("Card " + id + " custom script is not assinged as it should")
 			print("Card " + id + " custom script is not assinged as it should")
