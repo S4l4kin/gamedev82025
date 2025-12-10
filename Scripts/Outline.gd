@@ -38,8 +38,9 @@ func add_layer(layer_name:String, outline_thickness = 2):
 	var layer_camera = Camera3D.new()
 	layer_camera.name = "Camera"
 
-	layer_camera.set_cull_mask_value(2, false)
-	layer_camera.set_cull_mask_value(3, true)
+	#layer_camera.set_cull_mask_value(2, false)
+	#layer_camera.set_cull_mask_value(3, false)
+	#layer_camera.set_cull_mask_value(4, true)
 	
 	layer_viewport.add_child(layer_camera)
 

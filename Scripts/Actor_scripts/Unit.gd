@@ -6,7 +6,7 @@ class_name Unit
 
 
 func _ready():
-	GameManager.connect("turn_start", func(): speed = max_speed)
+	GameManager.connect("turn_start", func(_player_name : String): speed = max_speed)
 
 #Returns true if the unit survived the attack
 func attack(enemy:Actor) -> bool:

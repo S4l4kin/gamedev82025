@@ -5,8 +5,9 @@ class_name FogOfWar
 @onready var board: BoardManager = GameManager.board_manager
 
 @export var pixel_resolution : int = 28800000
+@export var fog_speed: float 	#m/s
 var resolution : Vector2i
-var pixel_density : int
+var pixel_density : float		#px/m
 var vertical_offset : float = 1
 
 var rd : RenderingDevice
@@ -30,7 +31,7 @@ func set_bounding_box(a: Vector3, b: Vector3):
 	var resolution_x : int = roundi((dx/dz*resolution_y)+0.4)
 	
 	resolution = Vector2i(resolution_x, resolution_y)
-	pixel_density = resolution_x / dx
+	pixel_density = resolution_x / dx	
 	mesh = QuadMesh.new()
 	
 	mesh.size.x = dx
@@ -100,11 +101,21 @@ func set_rendering_device():
 	self.material_override.set_shader_parameter("mask", texture_rd)
 	
 func start_updating():
-	timer.connect("timeout", update_fog_mask)
+
+	var pixel_speed = pixel_density * fog_speed		#px/s
+	print("THE SPEED OF THE FOG SHOULD BE %s px/s"%pixel_speed)
+	timer.wait_time = max(1/60.0, pixel_speed**-1)
+	var updates_per_tick = max(1, ceili(pixel_speed/60))
+	timer.connect("timeout", fog_tick.bind(updates_per_tick))
 	timer.start()
+
+func fog_tick(amount: int):
+	for i in amount:
+		update_fog_mask()
+
 func stop_updating():
 	timer.stop()
-	timer.disconnect("timeout", update_fog_mask)
+	timer.disconnect("timeout", fog_tick)
 
 func update_fog_mask():
 	if not rd:

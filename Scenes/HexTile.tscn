@@ -11,7 +11,6 @@ radius = 1.0
 height = 2.0
 
 [node name="Tile" type="MeshInstance3D"]
-layers = 2
 mesh = ExtResource("1_y3rtd")
 script = ExtResource("2_1spyd")
 

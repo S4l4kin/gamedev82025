@@ -5,7 +5,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dku333w2w1vuk" path="res://Assets/Models/Hex/HexTile.res" id="3_tpmiq"]
 [ext_resource type="PackedScene" uid="uid://btwqxn54ps0ie" path="res://Scenes/Models/TestModel.tscn" id="3_vqg2v"]
 [ext_resource type="Shader" uid="uid://da0yr61dab25m" path="res://Scripts/Shaders/actor_renderer_shader.gdshader" id="5_umoby"]
-[ext_resource type="Texture2D" uid="uid://dp56xpx6dodpm" path="res://Assets/Icons/speed_mask.svg" id="6_ljuny"]
+[ext_resource type="Texture2D" uid="uid://08hee1hgy24t" path="res://Assets/Icons/speed_mask.svg" id="6_ljuny"]
 [ext_resource type="Texture2D" uid="uid://chy536ltbw7mp" path="res://icon.svg" id="7_ljuny"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tpmiq"]
@@ -50,7 +50,6 @@ script = ExtResource("1_tpmiq")
 max_speed = 3
 health = 2
 card_id = "test_card"
-start_color = Color(1, 1, 1, 1)
 
 [node name="Model" type="Node3D" parent="."]
 script = ExtResource("2_tpmiq")
@@ -74,6 +73,7 @@ mesh = SubResource("QuadMesh_a7l81")
 
 [node name="NumericalPower" type="Sprite3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.7543679, 0, 0.50363874)
+layers = 2
 billboard = 1
 no_depth_test = true
 texture = SubResource("ViewportTexture_ljuny")

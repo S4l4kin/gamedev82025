@@ -101,6 +101,8 @@ func init_renderer():
 			multi_mesh.transform_format = MultiMesh.TRANSFORM_3D
 			multi_mesh.instance_count = 9
 			multi_mesh_instance.multimesh = multi_mesh
+			multi_mesh_instance.layers = 4
+			
 			add_child(multi_mesh_instance)
 	render_amount(actor.health)
 	numerical_power.get_node("Viewport/Fill").color = color
