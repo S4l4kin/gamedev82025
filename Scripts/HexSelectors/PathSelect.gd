@@ -4,8 +4,6 @@ class_name PathHexSelect
 
 var path : Array[Vector2i]
 var selecting : bool = false
-@onready var board : BoardManager = GameManager.board_manager
-@onready var outline : Outline = GameManager.board_manager.outline
 
 func _init(_x:int, _y:int, _range:int, _callable: Callable) -> void:
 	origin = Vector2i(_x, _y)
@@ -29,7 +27,7 @@ func move_selec(new_x:int, new_y:int):
 func add_to_path(hex_x:int, hex_y:int ):
 	path.append(Vector2i(hex_x,hex_y))
 	hex_range -= 1
-	outline.set_hex_outline("ui",board.get_hex(hex_x,hex_y),Color.LIME_GREEN)
+	outline.set_hex_outline("ui",board.get_hex(hex_x,hex_y),Color.LIME_GREEN) 
 
 
 func remove_top_from_path():

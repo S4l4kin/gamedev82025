@@ -1,8 +1,6 @@
 extends HexSelect
 class_name RangeHexSelect
 
-@onready var board : BoardManager = $"/root/Board"
-
 func _init(_x:int, _y:int, _range:int, _callable: Callable) -> void:
 	origin.x = _x
 	origin.y = _y

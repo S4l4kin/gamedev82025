@@ -58,7 +58,7 @@ func _ready():
 	connect("hex_pressed", select_hex)
 
 	outline.add_layer("conqured_hexes", 2)
-	outline.add_layer("ui",1.25)
+	outline.add_layer("ui", 1.25)
 
 	var padding :float = 2
 	

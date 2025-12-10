@@ -24,9 +24,10 @@ func generate_empty_mulit_mesh():
 	mesh_material = StandardMaterial3D.new()
 	mesh_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	mesh_material.vertex_color_use_as_albedo = true
+	mesh_material.vertex_color_is_srgb = true
 	mesh_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 
-func add_layer(layer_name:String, outline_thickness = 2):
+func add_layer(layer_name:String, outline_thickness : float = 2):
 	var layer_viewport = SubViewport.new()
 	layer_viewport.name = layer_name +"Viewport"
 
@@ -103,7 +104,7 @@ func set_hex_outline(layer_name:String, hex:Hex, color:Color):
 func set_hex_coord_outline(layer_name:String, coord:Vector2i, color:Color):
 	if not layers.keys().has(layer_name):
 		add_layer(layer_name)
-
+	print("The hexes new color is: %s"%color)
 	var mesh_index = coord.y*board.grid_width + coord.x
 	var layer = layers[layer_name]
 	layer.multi_mesh.set_instance_color(mesh_index, color)
