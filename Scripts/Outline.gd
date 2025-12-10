@@ -104,7 +104,6 @@ func set_hex_outline(layer_name:String, hex:Hex, color:Color):
 func set_hex_coord_outline(layer_name:String, coord:Vector2i, color:Color):
 	if not layers.keys().has(layer_name):
 		add_layer(layer_name)
-	print("The hexes new color is: %s"%color)
 	var mesh_index = coord.y*board.grid_width + coord.x
 	var layer = layers[layer_name]
 	layer.multi_mesh.set_instance_color(mesh_index, color)

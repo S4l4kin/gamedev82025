@@ -85,12 +85,19 @@ func handle_network(data):
 		actor.on_play()
 
 	if (data.type == "move_unit"):
-		var from := Vector2i(data.from.x, data.from.y)
+		var unit := get_actor(data.unit)
 		var path : Array[Vector2i] = []
 		for coord in data.path:
 			path.append(Vector2i(coord.x, coord.y))
 			
-		move_unit(from, path)
+		move_unit(unit, path)
+	
+	if (data.type == "actor_ability"):
+		var actor = get_actor(data.id)
+		if actor.has_method(data.method):
+			actor.callv(data.method, data.args)
+		else:
+			push_error("Tried to call an undefined method on actor %s"%actor.card_id)
 
 
 func inspect_hex(x:int, y:int):
@@ -179,11 +186,7 @@ func attack_structures(player_turn : String):
 				unit.attack(structure)	
 
 
-func move_unit(from :Vector2i, path: Array[Vector2i]) -> void:
-	print(get_hex(from.x, from.y).unit)
-	print(path)
-	var from_hex = get_hex(from.x, from.y)
-	var unit = from_hex.unit
+func move_unit(unit : Actor, path: Array[Vector2i]) -> void:
 	var moving_speed = 1
 	if unit == null:
 		push_warning("tried to move a non-existant unit")
@@ -220,11 +223,13 @@ func move_unit(from :Vector2i, path: Array[Vector2i]) -> void:
 				
 		)
 
-
+var next_id = "start_id".sha256_text()
 func create_actor(coord: Vector2i, actor:Card) -> Actor:
 	var actor_node : Actor = GameManager.card_manager.get_card_actor(actor)
 	actor_node.x = coord.x
 	actor_node.y = coord.y
+	actor_node.actor_id = next_id
+	next_id = next_id.sha256_text()
 	add_child(actor_node)
 	var hex = get_hex(coord.x, coord.y)
 	if actor_node is Unit:
@@ -247,6 +252,16 @@ func get_hex_from_tile(tile: Object) -> Hex:
 		if hexes[coord].tile == tile:
 			return hexes[coord]
 	return null
+func get_actor(actor_id: String) -> Actor:
+	for hex in hexes.values():
+		if hex.unit:
+			if hex.unit.actor_id == actor_id:
+				return hex.unit
+		if hex.structure:
+			if hex.structure.actor_id == actor_id:
+				return hex.structure
+	return null
+			
 func get_actors(x:int, y:int) -> Dictionary[String, Actor]:
 	var actors : Dictionary[String, Actor] = {}
 	var hex = get_hex(x,y)

@@ -1,15 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4gwpskpu4isl"]
+[gd_scene load_steps=4 format=3 uid="uid://d4gwpskpu4isl"]
 
 [ext_resource type="Script" uid="uid://dcmjxuaevcgkk" path="res://Scripts/Managers/DeckManager.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dcv52k3r5ntqw" path="res://Scripts/Player.gd" id="1_6t5aa"]
-[ext_resource type="Script" uid="uid://dk61f267qiwks" path="res://Scripts/Resources/Deck.gd" id="2_6t5aa"]
-
-[sub_resource type="Resource" id="Resource_vgqql"]
-script = ExtResource("2_6t5aa")
-hq = "test_headquarter"
-card_list = Array[String](["test_card", "test_card_1", "test_card_2", "test_structure", "placeholder_1", "placeholder_2", "placeholder_3", "placeholder_4", "placeholder_5", "placeholder_6", "placeholder_7", "placeholder_8", "placeholder_9", "placeholder_10", "placeholder_11"])
-deck_name = "Test Deck"
-metadata/_custom_type_script = "uid://dk61f267qiwks"
+[ext_resource type="Resource" uid="uid://dpjlqcgwhaqo0" path="res://Deck.tres" id="3_6t5aa"]
 
 [node name="Player" type="Control"]
 layout_mode = 3
@@ -30,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_4flbx")
-deck_resource = SubResource("Resource_vgqql")
+deck_resource = ExtResource("3_6t5aa")
 
 [node name="Hand" type="CenterContainer" parent="Deck"]
 custom_minimum_size = Vector2(1020, 0)

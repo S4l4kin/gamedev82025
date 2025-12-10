@@ -1,10 +1,18 @@
 extends Node3D
 class_name Actor
 
-@export var health: int
+@export var health: int = 1:
+	set(s):
+		health = s
+		if health <= 0:
+			on_death()
+			GameManager.board_manager.remove_actor(self)
+		elif renderer:
+			renderer.call_deferred("render_amount", s)
 
 
 @export var card_id : String
+var actor_id : String
 @export var player : String
 
 var tween : Tween
@@ -42,10 +50,5 @@ func on_death():
 func get_attack_damage():
 	return 0
 
-
-func set_health(new_health: int):
-	health = new_health
-	renderer.render_amount(new_health)
-	if health <=0:
-		on_death()
-		$"/root/Board".remove_actor(self)
+func damage(damage):
+	health -= damage

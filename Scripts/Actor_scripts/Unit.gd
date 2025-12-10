@@ -6,7 +6,8 @@ class_name Unit
 
 
 func _ready():
-	GameManager.connect("turn_start", func(_player_name : String): speed = max_speed)
+	GameManager.connect("turn_start", on_turn_start)
+	GameManager.connect("turn_end", on_turn_end)
 
 #Returns true if the unit survived the attack
 func attack(enemy:Actor) -> bool:
@@ -16,8 +17,8 @@ func attack(enemy:Actor) -> bool:
 
 	#Deal damage to both attacker and defender
 	var current_attack = get_attack_damage()
-	set_health(health - enemy.get_attack_damage())
-	enemy.set_health(enemy.health - current_attack)
+	damage(enemy.get_attack_damage())
+	enemy.damage(current_attack)
 
 
 	#If either attacker or defender survived actiave post attack and defend abilities
@@ -45,19 +46,34 @@ func on_post_move():
 func get_actions() -> Dictionary[String, Dictionary]:
 	return {"Move" = {"callable" = get_move_range, "active" = (speed > 0)}}
 
+func on_turn_start(_player_name: String):
+	speed = max_speed
+
+func on_turn_end(_player_name: String):
+	pass
 
 func get_move_range():
-	$"/root/Board".add_hex_selector(PathHexSelect.new(x,y, speed, move))
+	var press_check = (func(_x: int, _y:int):
+		return x ==_x and y == _y
+		)
+	var path_check = (func(path: Array[Vector2i]):
+		var coord = path[-1]
+		var hex = GameManager.board_manager.get_hex(coord.x, coord.y)
+		if hex.unit:
+			return hex.unit.player != player or hex.unit.actor_id == actor_id
+		return true
+		)
+	GameManager.board_manager.add_hex_selector(PathHexSelect.new(speed, move, press_check, path_check))
 	
 
 func move(path : Array):
 	if len(path) > 1:
-		var from = path.pop_front()
+		path.pop_front()
 		var move_path = []
 		for next_hex in path:
 			move_path.append({"x": next_hex.x, "y": next_hex.y})
 		GameManager.network.send_messages({
 			"type":"move_unit",
-			"from": {"x": from.x, "y": from.y},
+			"unit": actor_id,
 			"path": move_path
 		})
