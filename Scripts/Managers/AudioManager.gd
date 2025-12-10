@@ -5,7 +5,7 @@ var instance: AudioManager
 
 @export var MusicPlayer: AudioStreamPlayer
 @export var GlobalSFXPlayer: AudioStreamPlayer
-@export var TwoDSFXPlayer: AudioStreamPlayer2D
+@export var ThreeDSFXPlayer: AudioStreamPlayer3D
 
 var _sfx := {}
 
@@ -20,8 +20,8 @@ func _ready():
 		MusicPlayer = $MusicPlayer
 	if not GlobalSFXPlayer:
 		GlobalSFXPlayer = $GlobalSFXPlayer
-	if not TwoDSFXPlayer:
-		TwoDSFXPlayer = $TwoDSFXPlayer
+	if not ThreeDSFXPlayer:
+		ThreeDSFXPlayer = $ThreeDSFXPlayer
 
 	#Preload audio files
 	_sfx["test_click"] = preload("res://Assets/Resources/Audio/SFX/TestAudioClick.wav")
@@ -73,7 +73,7 @@ func play_on_specific_bus(keyOrPath: String, busName: String, volumeDb := 0.0):
 	player.finished.connect(func(): if player.is_inside_tree(): player.queue_free())
 	
 
-func play_2d_sfx(keyOrPath: String, position: Vector2, volumeDb := 0.0):
+func play_3d_sfx(keyOrPath: String, position: Vector3, volumeDb := 0.0):
 	var stream: AudioStream = null
 		
 	if _sfx.has(keyOrPath):
@@ -85,8 +85,8 @@ func play_2d_sfx(keyOrPath: String, position: Vector2, volumeDb := 0.0):
 		push_error("SFX %s couldn't be found" % keyOrPath)
 		return
 	
-	var player := AudioStreamPlayer2D.new()
-	player.bus = "TwoDSFX"
+	var player := AudioStreamPlayer3D.new()
+	player.bus = "ThreeDSFX"
 	player.position = position
 	player.stream = stream
 	player.volume_db = volumeDb

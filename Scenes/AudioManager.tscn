@@ -6,9 +6,10 @@
 script = ExtResource("1_dygvs")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
 
 [node name="MenuSFXPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="GlobalSFXPlayer" type="AudioStreamPlayer" parent="."]
 
-[node name="TwoDSFXPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="ThreeDSFXPlayer" type="AudioStreamPlayer3D" parent="."]
