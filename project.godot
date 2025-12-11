@@ -29,6 +29,17 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="4xCardGame"
 
+[editor]
+
+export/convert_text_resources_to_binary=false
+
 [filesystem]
 
 import/blender/enabled=false
+
+[layer_names]
+
+3d_render/layer_1="Tiles"
+3d_render/layer_2="3D UI"
+3d_render/layer_3="Actors"
+3d_render/vsync/vsync_mode=1

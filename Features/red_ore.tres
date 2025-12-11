@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="OreFeature" load_steps=3 format=3 uid="uid://dgxqy1lcrhbfq"]
 
+[ext_resource type="PackedScene" uid="uid://c1kbflhrtd1xg" path="res://Scenes/Models/Features/Boulder.tscn" id="1_10idx"]
 [ext_resource type="Script" uid="uid://cuyjw4ua8xvqt" path="res://Scripts/Resources/Features/Ore.gd" id="2_10idx"]
-[ext_resource type="PackedScene" uid="uid://btwqxn54ps0ie" path="res://Scenes/Models/TestModel.tscn" id="2_j74w0"]
 
 [resource]
 script = ExtResource("2_10idx")
 color = 2
 display_card = "red_ore"
-model = ExtResource("2_j74w0")
+model = ExtResource("1_10idx")
 metadata/_custom_type_script = "uid://3vx3gf6esjan"

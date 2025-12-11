@@ -20,10 +20,9 @@ _data = {
 [node name="TestModel" type="Node2D"]
 script = ExtResource("1_c4bv7")
 max_model = 3
+pixel_density = 5800
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.035, 0.035)
 texture = ExtResource("2_6blq5")
 
 [node name="Mask" type="Sprite2D" parent="Sprite2D"]

@@ -5,7 +5,7 @@ var generating_resource : GlobalEnums.COST_COLORS
 func setup_renderer():
 	print("SETUP MINER RENDERER")
 	renderer.add_mask(Color.WHITE, color)
-	renderer.add_mask(Color.WHITE, GameManager.card_manager.get_resource_color(generating_resource))
+	renderer.add_mask(Color(0,1,1,1), GameManager.card_manager.get_resource_color(generating_resource))
 	renderer.set_numeric_label_color(color)
 	renderer.call_deferred("render_amount", health)
 

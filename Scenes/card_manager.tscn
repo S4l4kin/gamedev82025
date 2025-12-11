@@ -1,14 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://b04d581kcwt5b"]
+[gd_scene load_steps=11 format=3 uid="uid://b04d581kcwt5b"]
 
 [ext_resource type="Script" uid="uid://brbe0jrph2krb" path="res://Scripts/Managers/CardManager.gd" id="1_pikqg"]
 [ext_resource type="Script" uid="uid://baatn6443ogbc" path="res://Scripts/Resources/SymbolColorPair.gd" id="2_w6ora"]
-[ext_resource type="Texture2D" uid="uid://h7jmfm5sfi24" path="res://Assets/Icons/Resources/icon1.svg" id="3_bdei6"]
-[ext_resource type="Texture2D" uid="uid://boyx36tjquy7s" path="res://Assets/Icons/Resources/icon2.svg" id="4_fua0e"]
-
+[ext_resource type="Texture2D" uid="uid://d2i1ihopi8y36" path="res://Assets/Icons/Resources/ColourlessManaIconGSN.svg" id="3_fua0e"]
+[ext_resource type="Texture2D" uid="uid://co51h0vti8ywx" path="res://Assets/Icons/Resources/BlueMangaIconGSN.svg" id="4_fua0e"]
+[ext_resource type="Texture2D" uid="uid://dpde2k1qegkhw" path="res://Assets/Icons/Resources/RedManaIconGSN.svg" id="5_dyqno"]
+[ext_resource type="Texture2D" uid="uid://bpkg84rk4jn05" path="res://Assets/Icons/Resources/GreenManaIconGSN.svg" id="6_t02fo"]
 
 [sub_resource type="Resource" id="Resource_dyqno"]
 script = ExtResource("2_w6ora")
-symbol = ExtResource("3_bdei6")
+symbol = ExtResource("3_fua0e")
 color = Color(0.7260147, 0.9659241, 0.92046237, 1)
 metadata/_custom_type_script = "uid://baatn6443ogbc"
 
@@ -20,13 +21,13 @@ metadata/_custom_type_script = "uid://baatn6443ogbc"
 
 [sub_resource type="Resource" id="Resource_w6ora"]
 script = ExtResource("2_w6ora")
-symbol = ExtResource("3_bdei6")
+symbol = ExtResource("5_dyqno")
 color = Color(1, 0, 0, 1)
 metadata/_custom_type_script = "uid://baatn6443ogbc"
 
 [sub_resource type="Resource" id="Resource_bdei6"]
 script = ExtResource("2_w6ora")
-symbol = ExtResource("4_fua0e")
+symbol = ExtResource("6_t02fo")
 color = Color(1, 0.5803922, 0, 1)
 metadata/_custom_type_script = "uid://baatn6443ogbc"
 

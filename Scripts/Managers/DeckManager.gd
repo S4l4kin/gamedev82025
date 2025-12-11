@@ -93,6 +93,7 @@ func _get_weighted_card() -> String:
 		cumulative += weights[card_id]
 		if random_pick <= cumulative:
 			weights[card_id] = 1
+			print("ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ %s"%card_id)
 			return card_id
 	
 	# Fallback (This shoudln't happen if "weights" aren't empty.

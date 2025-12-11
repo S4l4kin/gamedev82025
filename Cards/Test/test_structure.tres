@@ -4,4 +4,9 @@
 
 [resource]
 script = ExtResource("1_pubdn")
+name = "New Card"
+id = "new_card"
+type = 0
+description = "This is a card"
+health = 0
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

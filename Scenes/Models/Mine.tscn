@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkl27mjw67jn7"]
+[gd_scene load_steps=4 format=3 uid="uid://cqjod5iarclsl"]
 
 [ext_resource type="Texture2D" uid="uid://cp2nrh04ylhnp" path="res://Assets/Structures/MineGSN.svg" id="1_qax4h"]
 [ext_resource type="Texture2D" uid="uid://dfirnnja07cx2" path="res://Assets/Structures/Mask/BoulderMASK.svg" id="2_fsyf2"]

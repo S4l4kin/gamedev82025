@@ -4,4 +4,11 @@
 
 [resource]
 script = ExtResource("4_1iy4l")
+name = "Placeholder 1"
+id = "placeholder_1"
+type = 3
+cost = {
+0: 1
+}
+description = "This is a card"
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"
