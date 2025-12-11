@@ -116,7 +116,19 @@ func _input(event: InputEvent) -> void:
 				hover_stop()
 
 func play_card ():
-	#audiomanager.play_3d_sfx_for_all("click", Vector3(0,0,0), 10.0)
+
+	match card.type:
+		Card.CARD_TYPE.HQ:
+			audiomanager.play_3d_sfx_for_all("play_HQ", Vector3(0,0,0))
+		Card.CARD_TYPE.Spell:
+			audiomanager.play_3d_sfx_for_all("play_spell", Vector3(0,0,0))
+		Card.CARD_TYPE.Structure:
+			audiomanager.play_3d_sfx_for_all("play_structure", Vector3(0,0,0))
+		Card.CARD_TYPE.Unit:
+			audiomanager.play_3d_sfx_for_all("play_unit", Vector3(0,0,0))
+		Card.CARD_TYPE.Equipment:
+			pass
+
 	GameManager.player.pay_cost(card.cost)
 	card.play_callable.call(old_hex.coord)
 	GameManager.deck.reweight_deck()

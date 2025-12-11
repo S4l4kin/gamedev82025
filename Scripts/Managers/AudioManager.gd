@@ -24,10 +24,13 @@ func _ready():
 		ThreeDSFXPlayer = $ThreeDSFXPlayer
 
 	#Preload audio files
-	_sfx["test_click"] = preload("res://Assets/Resources/Audio/SFX/TestAudioClick.wav")
 	_sfx["click"] = preload("res://Assets/Resources/Audio/SFX/Click.wav")
 	_sfx["hover_card"] = preload("res://Assets/Resources/Audio/SFX/HoverCard.wav")
 	_sfx["game_win"] = preload("res://Assets/Resources/Audio/SFX/GameWin.wav")
+	_sfx["play_HQ"] = preload("res://Assets/Resources/Audio/SFX/PlayHQ.wav")
+	_sfx["play_structure"] = preload("res://Assets/Resources/Audio/SFX/PlayStructure.wav")
+	_sfx["play_spell"] = preload("res://Assets/Resources/Audio/SFX/PlaySpell.wav")
+	_sfx["play_unit"] = preload("res://Assets/Resources/Audio/SFX/PlayUnit.wav")
 
 #Play music
 func play_music(resourcePath: String, loop := true ):

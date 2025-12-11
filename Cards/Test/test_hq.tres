@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://bh01807tvrg0n"]
 
-[ext_resource type="Script" uid="uid://c5oqenw1k15y8" path="res://Scripts/Actor_scripts/Headquarter.gd" id="1_m8dy2"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_qv3df"]
 [ext_resource type="Script" uid="uid://bjglrwoj5v07k" path="res://Scripts/Predicates/HQPredicate.gd" id="2_8m0vi"]
 [ext_resource type="PackedScene" uid="uid://dtuean06q2x5j" path="res://Scenes/Models/Generic/Structure.tscn" id="2_j0y7e"]
