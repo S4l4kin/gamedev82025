@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://dv6o131ctal4o"]
+[gd_resource type="AudioBusLayout" load_steps=0 format=3 uid="uid://dv6o131ctal4o"]
 
 [resource]
 bus/1/name = &"MenuSFX"
