@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkl27mjw67jn7"]
+
+[ext_resource type="Texture2D" uid="uid://cp2nrh04ylhnp" path="res://Assets/Structures/MineGSN.svg" id="1_qax4h"]
+[ext_resource type="Texture2D" uid="uid://dfirnnja07cx2" path="res://Assets/Structures/Mask/BoulderMASK.svg" id="2_fsyf2"]
+[ext_resource type="Texture2D" uid="uid://bcv0b0ibwlj3s" path="res://Assets/Structures/Mask/MineFlagMASK.svg" id="3_o7mn0"]
+
+[node name="Mine" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qax4h")
+
+[node name="Mask" type="Sprite2D" parent="Sprite2D"]
+texture = ExtResource("2_fsyf2")
+
+[node name="MaskFlag" type="Sprite2D" parent="Sprite2D"]
+texture = ExtResource("3_o7mn0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

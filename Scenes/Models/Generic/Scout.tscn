@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bwbjm8qkqac8y"]
 
 [ext_resource type="Script" uid="uid://bujesqlx6hrhx" path="res://Scripts/Renderer/RendererData.gd" id="1_c4bv7"]
-[ext_resource type="Texture2D" uid="uid://5vcqtak3qdc7" path="res://Assets/Icons/speed_icon.svg" id="1_kerfn"]
-[ext_resource type="Texture2D" uid="uid://dp56xpx6dodpm" path="res://Assets/Icons/speed_mask.svg" id="2_kerfn"]
+[ext_resource type="Texture2D" uid="uid://dvjwmw2c7413t" path="res://Assets/Mobs/GoblinGSN.svg" id="2_ln4y4"]
+[ext_resource type="Texture2D" uid="uid://dp50vh270scud" path="res://Assets/Mobs/Mask/GoblinMASK.svg" id="3_48hxs"]
 
 [sub_resource type="Animation" id="Animation_c4bv7"]
 length = 0.001
@@ -19,17 +19,14 @@ _data = {
 
 [node name="TestModel" type="Node2D"]
 script = ExtResource("1_c4bv7")
-pixel_density = null
 
-[node name="Leg2" type="Sprite2D" parent="."]
-position = Vector2(0, -72.485)
-rotation = -1.1152654
-skew = 0.75398225
-texture = ExtResource("1_kerfn")
+[node name="Goblin" type="Sprite2D" parent="."]
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("2_ln4y4")
 
-[node name="Mask" type="Sprite2D" parent="Leg2"]
+[node name="Mask" type="Sprite2D" parent="Goblin"]
 visible = false
-texture = ExtResource("2_kerfn")
+texture = ExtResource("3_48hxs")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

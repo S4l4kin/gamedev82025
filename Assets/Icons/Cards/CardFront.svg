@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="559.87714"
+   height="1080"
+   viewBox="0 0 559.87714 1080"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="CardFront.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     inkscape:zoom="0.57245265"
+     inkscape:cx="-164.20572"
+     inkscape:cy="435.84391"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="430"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g10" />
+  <defs
+     id="defs1" />
+  <g
+     id="g10"
+     inkscape:label="CardBackground"
+     style="clip-rule:evenodd;display:inline;fill-rule:nonzero;stroke-linecap:round;stroke-linejoin:round"
+     transform="matrix(1.3664101,0,0,1.3664101,-794.71135,-69.450793)">
+    <path
+       id="path9"
+       d="m 906.09004,55.828292 c 0,0 -214.74199,3.681318 -240.05499,1.020118 -7.986,-0.8395 -79.10004,80.26199 -79.10004,80.26199 0,0 1.75752,154.33502 0.60552,328.49702 -1.152,174.161 -0.91374,290.46898 -0.91374,290.46898 l 79.35371,80.14198 260.29096,-0.32731 60.0042,-80.1338 c 0,0 0.12891,-155.50414 0.0409,-319.38414 C 986.22757,272.49213 986.142,135.8448 986.142,135.8448 Z M 632.63574,211.24078 H 940.38672 V 404.09759 H 632.63574 Z"
+       style="fill:#6d523c;fill-opacity:1;stroke:#b1935d;stroke-width:10.0022;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       style="clip-rule:evenodd;fill:#b1935d;fill-opacity:1;fill-rule:nonzero;stroke:#b1935d;stroke-width:9.04121;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       id="rect4"
+       width="307.08871"
+       height="225.0218"
+       x="632.96747"
+       y="428.58859"
+       inkscape:label="DescriptionBox" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:36.9474px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre-wrap;shape-inside:url(#rect4);display:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:8.37915;stroke-opacity:1"
+       x="938.23834"
+       y="449.30908"
+       id="text9"
+       inkscape:label="DescriptionText"><tspan
+         x="632.9668"
+         y="457.25"
+         id="tspan2">Description text 
+</tspan><tspan
+         x="632.9668"
+         y="494.19739"
+         id="tspan6">we can alter the </tspan><tspan
+         x="632.9668"
+         y="531.14477"
+         id="tspan7">size and font on a </tspan><tspan
+         x="632.9668"
+         y="568.09216"
+         id="tspan8">later day.
+</tspan><tspan
+         x="632.9668"
+         y="605.03955"
+         id="tspan9">
+</tspan><tspan
+         x="632.9668"
+         y="641.98694"
+         id="tspan10">Gosha's gosh.</tspan></text>
+    <rect
+       style="fill:#b1935d;fill-opacity:1;stroke:#b1935d;stroke-width:8.37915;stroke-opacity:1"
+       id="rect19"
+       width="237.43958"
+       height="68.668877"
+       x="664.29547"
+       y="121.98056"
+       inkscape:label="CardNameBox" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:47.5038px;line-height:1.5;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre-wrap;shape-inside:url(#rect19);clip-rule:evenodd;display:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       x="477.3927"
+       y="236.77884"
+       id="text19"
+       transform="translate(5.5860994e-6)"><tspan
+         x="668.17514"
+         y="170.7077"
+         id="tspan11">CardName</tspan></text>
+  </g>
+</svg>
