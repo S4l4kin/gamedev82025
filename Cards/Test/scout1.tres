@@ -31,7 +31,7 @@ cost = {
 0: 2
 }
 card_image = ExtResource("1_qxlsc")
-description = "This is a scout that can see further than others"
+description = "This is a scout that can see further than creatures"
 unit_type = 3
 health = 2
 speed = 9

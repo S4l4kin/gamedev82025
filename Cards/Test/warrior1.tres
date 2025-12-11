@@ -22,7 +22,7 @@ cost = {
 0: 3
 }
 card_image = ExtResource("1_p4m22")
-description = "This is a human warrior it takes less damage"
+description = "This is a human warrior it takes less damage than other creatures"
 unit_type = 0
 health = 8
 speed = 6
