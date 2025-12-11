@@ -122,7 +122,12 @@ func handle_network(data):
 			actor.callv(data.method, data.args)
 		else:
 			push_error("Tried to call an undefined method on actor %s"%actor.card_id)
-
+	if(data.type == "cast_spell"):
+		var card = GameManager.card_manager.get_card_data(data.id)
+		var spell = card.custom_script.new()
+		spell.player = data.player
+		spell.coord = Vector2i(data.coord.x, data.coord.y)
+		spell.play()
 
 func inspect_hex(x:int, y:int):
 	var hex = get_hex(x,y)

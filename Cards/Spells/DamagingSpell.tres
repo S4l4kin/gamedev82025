@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://ptesrn88tnv7"]
+
+[ext_resource type="Texture2D" uid="uid://d6c0iaye4cxp" path="res://Assets/Potions/DamagePotion.svg" id="1_r3q13"]
+[ext_resource type="Script" uid="uid://ctfs7eio77leg" path="res://Scripts/Spells/DamageSpell.gd" id="2_ahj2w"]
+[ext_resource type="Script" uid="uid://dxhdyubkygoy6" path="res://Scripts/Predicates/TargetEnemyUnitPredicate.gd" id="3_84l2f"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="4_yn6fl"]
+
+[resource]
+script = ExtResource("4_yn6fl")
+name = "Damaging Potion"
+id = "damaging_potion"
+type = 3
+cost = {}
+card_image = ExtResource("1_r3q13")
+description = "Deal 3 damage to a enemy unit"
+custom_script = ExtResource("2_ahj2w")
+play_predicate = ExtResource("3_84l2f")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

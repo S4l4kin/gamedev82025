@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_0q10b")
 hq = "test_headquarter"
-card_list = Array[String](["warrior1", "scout2", "scout1", "spawner", "placeholder_1", "placeholder_2", "placeholder_3", "placeholder_4", "placeholder_5", "placeholder_6", "placeholder_7", "placeholder_8", "mine_structure", "ranged_dragon", "fire_dragon"])
+card_list = Array[String](["warrior1", "scout2", "scout1", "spawner", "dragon_hatchling", "watch_tower", "big_dragon", "spawner", "guard_tower", "mind_control_potion", "damaging_potion", "healing_potion", "mine_structure", "ranged_dragon", "fire_dragon"])
 deck_name = "Test Deck"
 metadata/_custom_type_script = "uid://dk61f267qiwks"

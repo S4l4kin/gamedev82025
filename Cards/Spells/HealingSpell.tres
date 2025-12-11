@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://boxnld3xqwvhy"]
+
+[ext_resource type="Script" uid="uid://c7c4nsilqx64p" path="res://Scripts/Spells/HealingSpell.gd" id="1_mitk7"]
+[ext_resource type="Texture2D" uid="uid://dsvvm2gi2a7ct" path="res://Assets/Potions/HealingPotion.svg" id="1_n12q1"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_qjidc"]
+[ext_resource type="Script" uid="uid://w3mvkppowboa" path="res://Scripts/Predicates/TargetFriendlyUnitPredicate.gd" id="2_n12q1"]
+
+[resource]
+script = ExtResource("1_qjidc")
+name = "Healing Potion"
+id = "healing_potion"
+type = 3
+cost = {}
+card_image = ExtResource("1_n12q1")
+description = "Heal a Friendly unit by 3"
+custom_script = ExtResource("1_mitk7")
+play_predicate = ExtResource("2_n12q1")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

@@ -13,7 +13,7 @@ func can_play(coord) -> bool:
 						return false
 		return not played_on_feature(coord)
 	else:
-		return GameManager.game_state == GameManager.GAME_STATE.Setup
+		return is_setup_phase()
 
 func cube_subtract(a, b):
 	return {"q":a.q - b.q, "r": a.r - b.r, "s":a.s - b.s}

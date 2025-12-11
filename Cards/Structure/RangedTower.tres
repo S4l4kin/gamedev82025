@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://chi6samfp0pt7"]
+
+[ext_resource type="Script" uid="uid://dmgf6hoda2wgw" path="res://Scripts/Actor_scripts/Structures/RangedTower.gd" id="1_66d21"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_j8ns6"]
+[ext_resource type="PackedScene" uid="uid://blgk1h7jh4ykl" path="res://Scenes/Models/Structures/GuardTower.tscn" id="2_vfjm0"]
+
+[resource]
+script = ExtResource("1_j8ns6")
+name = "Guard Tower"
+id = "guard_tower"
+type = 2
+cost = {}
+description = "Once per turn can deal 1 damage to a enemy up to 2 hexes"
+health = 1
+model = ExtResource("2_vfjm0")
+custom_script = ExtResource("1_66d21")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

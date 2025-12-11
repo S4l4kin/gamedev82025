@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://c6owmllr2ghfe"]
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://c6owmllr2ghfe"]
 
+[ext_resource type="PackedScene" uid="uid://cdgq1olwif7k5" path="res://Scenes/Models/Structures/LookoutTower.tscn" id="1_5k02a"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_6jr08"]
 
 [sub_resource type="GDScript" id="GDScript_5k02a"]
@@ -38,5 +39,6 @@ type = 2
 cost = {}
 description = "This is a structure that can see farther than other structures"
 health = 3
+model = ExtResource("1_5k02a")
 custom_script = SubResource("GDScript_5k02a")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

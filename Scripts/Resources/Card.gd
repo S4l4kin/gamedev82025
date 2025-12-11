@@ -99,10 +99,15 @@ func set_defaults():
 			if not model:
 				model = preload("res://Scenes/Models/Generic/Structure.tscn")
 				push_error("Card " + id + " should have a model attached to it as a Structure")
-		_:
-			push_error("Card " + id + " custom script is not assinged as it should")
-			print("Card " + id + " custom script is not assinged as it should")
-			play_predicate = preload("res://Scripts/Predicates/BasePredicate.gd")
+		CARD_TYPE.Spell:
+			if not custom_script:
+				custom_script = preload("res://Scripts/Spells/Spell.gd")
+			elif not is_instance_of(custom_script.new(), Spell):
+				custom_script = preload("res://Scripts/Spells/Spell.gd")
+				push_error("Card " + id + " custom script does not extend Spell as it should")
+				print("Card " + id + " custom script does not extend Spell as it should, changed it base Spell")
+			if not play_predicate:
+					play_predicate = preload("res://Scripts/Predicates/BasePredicate.gd")
 	
 	if type != CARD_TYPE.Spell:
 		play_callable = func (coord: Vector2i): GameManager.network.send_messages({
@@ -111,9 +116,13 @@ func set_defaults():
 				"coord":{"x":coord.x,"y":coord.y}, 
 				"unit":{"id": id, "power":health, "speed":speed}}
 				)
-	#Placeholder fix for placeholder cards that have the type Spell
 	else :
-		play_callable = func (_coord: Vector2i): GameManager.deck.draw_card();
+		play_callable = func (coord: Vector2i): GameManager.network.send_messages({
+				"type":"cast_spell",
+				"player": GameManager.player_name,
+				"coord":{"x":coord.x,"y":coord.y}, 
+				"id": id}
+				)
 
 	#return card
 func generate_id(_name:String) -> String:

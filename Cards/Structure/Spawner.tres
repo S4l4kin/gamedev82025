@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://be1t57j8xrq18"]
+
+[ext_resource type="Script" uid="uid://c6bnlyjsgtms8" path="res://Scripts/Actor_scripts/Structures/Spawner.gd" id="1_0m23d"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_86gdo"]
+[ext_resource type="PackedScene" uid="uid://u27klmo0su24" path="res://Scenes/Models/Structures/Spawner.tscn" id="2_qf06v"]
+
+[resource]
+script = ExtResource("1_86gdo")
+name = "Spawner"
+id = "spawner"
+type = 2
+cost = {}
+description = "This is a spawner that spawns farmers at the start of your turn."
+health = 3
+model = ExtResource("2_qf06v")
+custom_script = ExtResource("1_0m23d")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

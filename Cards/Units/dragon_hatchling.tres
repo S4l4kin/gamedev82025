@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://ddqitmmxx0il0"]
+
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_471vf"]
+
+[resource]
+script = ExtResource("1_471vf")
+name = "Dragon Hatchling"
+id = "dragon_hatchling"
+type = 1
+cost = {}
+description = ""
+unit_type = 1
+health = 1
+speed = 1
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"
