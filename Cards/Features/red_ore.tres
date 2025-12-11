@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://d0iummwv0va6m"]
+
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_ixtr8"]
+
+[resource]
+script = ExtResource("1_ixtr8")
+name = "Red Ore"
+id = "red_ore"
+type = 6
+cost = {}
+description = "This rock contains radiant red crystal.
+When mined will generate Red Resource"
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

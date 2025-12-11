@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=3 uid="uid://dh6q6gxb0pqv0"]
+
+[ext_resource type="ArrayMesh" uid="uid://dku333w2w1vuk" path="res://Assets/Models/Hex/HexTile.res" id="2_2rvgm"]
+[ext_resource type="Script" uid="uid://dk6drtfmanu8f" path="res://Scripts/ViewpoertSyncer.gd" id="2_05d0c"]
+[ext_resource type="Shader" uid="uid://c1csbenspstba" path="res://Scripts/Shaders/outline_shader.gdshader" id="2_k1aq6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k1aq6"]
+shading_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2rvgm"]
+shading_mode = 0
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="Environment" id="Environment_oucmq"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2rvgm"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_05d0c"]
+resource_local_to_scene = true
+shader = ExtResource("2_k1aq6")
+shader_parameter/lineThickness = 1.499999966472
+shader_parameter/stencilMask = SubResource("ViewportTexture_2rvgm")
+shader_parameter/checkAmount = 53
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.0051496)
+cull_mask = 1048573
+current = true
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.085, 0, 0.465)
+
+[node name="HexTile" type="MeshInstance3D" parent="Node3D"]
+layers = 2
+mesh = ExtResource("2_2rvgm")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_k1aq6")
+
+[node name="HexTile2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 1.75, 0, 0)
+layers = 2
+mesh = ExtResource("2_2rvgm")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_2rvgm")
+
+[node name="HexTile3" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73, 0, 0)
+layers = 2
+mesh = ExtResource("2_2rvgm")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_k1aq6")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+canvas_cull_mask = 4293918722
+size = Vector2i(1152, 648)
+script = ExtResource("2_05d0c")
+
+[node name="Camera3D2" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.005)
+cull_mask = 2
+environment = SubResource("Environment_oucmq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Outline" type="ColorRect" parent="Control"]
+visibility_layer = 4
+material = SubResource("ShaderMaterial_05d0c")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

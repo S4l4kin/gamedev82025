@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://bllmndmjj7cu7"]
+
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_6w62x"]
+
+[resource]
+script = ExtResource("1_6w62x")
+name = "Yellow Ore"
+id = "yellow_ore"
+type = 6
+cost = {}
+description = "This rock contains shimmering yellow crystal.
+When mined will generate Yellow Resource"
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://86yah3hcmlwj"]
+
+[ext_resource type="Script" uid="uid://cwwv5r41ae1xj" path="res://Scripts/Actor_scripts/Units/ranged_dragon.gd" id="1_rls8v"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_ke7ij"]
+
+[resource]
+script = ExtResource("2_ke7ij")
+name = "Ranged Dragon"
+id = "ranged_dragon"
+type = 1
+cost = {}
+description = "Once per turn this Unit can deal damage to another unit in range of 3"
+unit_type = 1
+health = 60
+speed = 2
+custom_script = ExtResource("1_rls8v")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

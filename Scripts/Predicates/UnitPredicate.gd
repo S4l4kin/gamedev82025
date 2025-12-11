@@ -13,4 +13,4 @@ func can_play(coord) -> bool:
 			return board.conqured_hexes[coord] == GameManager.player_name
 		return false
 	else: 
-		return GameManager.game_state != GameManager.GAME_STATE.Setup
+		return GameManager.game_state != GameManager.GAME_STATE.Setup and can_afford()

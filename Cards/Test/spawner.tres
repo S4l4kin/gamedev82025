@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://be1t57j8xrq18"]
+
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_86gdo"]
+
+[sub_resource type="GDScript" id="GDScript_5k02a"]
+script/source = "extends Structure
+class_name spawner
+
+
+
+		
+func spawn():
+	print(player + \" spawner\")
+	
+"
+
+[resource]
+script = ExtResource("1_86gdo")
+name = "Spawner"
+id = "spawner"
+type = 2
+cost = {}
+description = "This is a spawner that spawns farmers at the start of your turn."
+health = 3
+custom_script = SubResource("GDScript_5k02a")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

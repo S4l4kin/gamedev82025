@@ -11,7 +11,8 @@ var card_manager : CardManager
 var board_manager : BoardManager
 var deck : DeckManager
 var network : NetworkManager
-
+var player : Player
+ 
 var turn_count : int = -1
 
 
@@ -28,10 +29,10 @@ signal turn_end (player_name : String)
 func start_game():
 	board_manager = board_manager_scene.instantiate()
 	board_manager.set_conqured_hex_colors(players)
-	var player_node = player_scene.instantiate()
-	deck = player_node.get_node("Deck")
+	player = player_scene.instantiate()
+	deck = player.get_node("Deck")
 	get_tree().root.add_child.call_deferred(board_manager)
-	get_tree().root.add_child.call_deferred(player_node)
+	get_tree().root.add_child.call_deferred(player)
 	game_state = GAME_STATE.Setup
 	if network.is_host():
 		for player in players:

@@ -4,4 +4,7 @@
 
 [resource]
 script = ExtResource("1_0q10b")
+hq = "test_headquarter"
+card_list = Array[String](["test_card", "test_card_1", "test_card_2", "test_structure", "placeholder_1", "placeholder_2", "placeholder_3", "placeholder_4", "placeholder_5", "placeholder_6", "placeholder_7", "placeholder_8", "mine_structure", "ranged_dragon", "fire_dragon"])
+deck_name = "Test Deck"
 metadata/_custom_type_script = "uid://dk61f267qiwks"

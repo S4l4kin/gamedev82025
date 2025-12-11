@@ -17,8 +17,8 @@ func _ready():
 	$"3DControl".node_area.connect("mouse_entered", change_lock.bind("hover_card", true))
 	$"3DControl".node_area.connect("mouse_exited", change_lock.bind("hover_card", false))
 	hide_timer.connect("timeout", hide_card)
-	$"3DControl/SubViewport/Left".connect("pressed", func(): card_stack.move_child(card_stack.get_child(-1),0))
-	$"3DControl/SubViewport/Right".connect("pressed", func(): card_stack.move_child(card_stack.get_child(-1),-2))
+	$"3DControl/SubViewport/Left".connect("pressed", func(): card_stack.move_child(card_stack.get_child(0),-1))
+	$"3DControl/SubViewport/Right".connect("pressed", func(): card_stack.move_child(card_stack.get_child(-1),0))
 	card_stack.connect("child_order_changed", position_cards)
 
 func mouse_entered(x:int, y:int):
@@ -62,6 +62,7 @@ func _input(event: InputEvent) -> void:
 func hide_card() -> void:
 	if not get_lock():
 		hide()
+		pass
 
 func show_card(lock: String, hex: Vector2i) -> void:
 	
@@ -72,13 +73,16 @@ func show_card(lock: String, hex: Vector2i) -> void:
 	for child in card_stack.get_children():
 		child.call_deferred("free")
 	var hex_data = board.hexes[Vector2i(hex.x, hex.y)]
-	if hex_data.unit:
-		var unit_card_scene = GameManager.card_manager.get_updated_card_scene(hex_data.unit)
-		card_stack.add_child(unit_card_scene)
+	if hex_data.feature != null:
+		print(hex_data.feature.display_card)
+		var feature_card_node = GameManager.card_manager.get_card_scene(hex_data.feature.display_card).instantiate()
+		card_stack.add_child(feature_card_node)
 	if hex_data.structure:
-		var structure_card_scene = GameManager.card_manager.get_updated_card_scene(hex_data.structure)
-		card_stack.add_child(structure_card_scene)
-
+		var structure_card_node = GameManager.card_manager.get_updated_card_scene(hex_data.structure)
+		card_stack.add_child(structure_card_node)
+	if hex_data.unit:
+		var unit_card_node = GameManager.card_manager.get_updated_card_scene(hex_data.unit)
+		card_stack.add_child(unit_card_node)
 
 	change_lock(lock, true)
 	show_timer.stop()

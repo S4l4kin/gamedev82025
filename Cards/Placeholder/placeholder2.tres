@@ -4,9 +4,4 @@
 
 [resource]
 script = ExtResource("1_lp1jd")
-name = "Placeholder 2"
-id = "placeholder_2"
-type = 3
-cost = {}
-description = "Placeholder card 2"
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

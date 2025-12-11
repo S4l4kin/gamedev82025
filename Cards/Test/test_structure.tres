@@ -4,10 +4,4 @@
 
 [resource]
 script = ExtResource("1_pubdn")
-name = "Test Structure"
-id = "test_structure"
-type = 2
-cost = {}
-description = "This is a placeholder Structure"
-health = 3
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

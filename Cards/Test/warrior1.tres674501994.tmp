@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://c86q8ee6ym5ao"]
+
+[ext_resource type="Texture2D" uid="uid://bobg1i7pwc0iv" path="res://Assets/Icons/Resources/warrior.png" id="1_p4m22"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_likdm"]
+
+[sub_resource type="GDScript" id="GDScript_p4m22"]
+script/source = "extends Unit
+class_name Warrior1
+
+func _ready():
+	
+	GameManager.connect(\"turn_start\", func(): speed = max_speed)
+	set_damage_modifier(-2)
+"
+
+[resource]
+script = ExtResource("2_likdm")
+name = "Warrior1"
+id = "warrior1"
+type = 1
+cost = {
+0: 3
+}
+card_image = ExtResource("1_p4m22")
+description = "This is a human warrior it takes less damage"
+unit_type = 0
+health = 8
+speed = 6
+custom_script = SubResource("GDScript_p4m22")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

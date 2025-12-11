@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://bie87r47vk380"]
+
+[ext_resource type="Texture2D" uid="uid://dupagjh2ieine" path="res://Assets/Icons/Resources/dragonPic.jpg" id="1_4t4gb"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_v8x5o"]
+
+
+[resource]
+script = ExtResource("2_v8x5o")
+color = Color(0, 0.7019608, 0, 1)
+name = "Dragon2"
+id = "dragon2"
+type = 1
+cost = {
+0: 2
+}
+card_image = ExtResource("1_4t4gb")
+description = "This is the firebreathing dragon"
+unit_type = 1
+health = 6
+speed = 7
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

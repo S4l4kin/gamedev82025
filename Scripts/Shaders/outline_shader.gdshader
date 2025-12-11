@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 //uniform int lineWeight : hint_range(-10, 10) = 3; // How thick the outline is
 uniform float lineThickness : hint_range(0, 10, 0.01) = 3; // How thick the outline is
+uniform float centerAlpha : hint_range(0.0, 1.0, 0.01) = 0;
 uniform sampler2D stencilMask : source_color;
 uniform int checkAmount : hint_range(1,720,1) = 20;
 //bool isLine2(vec4 pixelColor, vec2 pos, float dx, float dy){
@@ -29,8 +30,14 @@ void fragment() {
 	float dx = (SCREEN_PIXEL_SIZE.x) * float(lineThickness);
 	float dy = (SCREEN_PIXEL_SIZE.y) * float(lineThickness);
 	vec4 pixelColor = texture(stencilMask, SCREEN_UV);
-	COLOR = vec4(0);
-	if(isLine(pixelColor, SCREEN_UV,dx,dy))
+	
+	if(pixelColor.a > 0.1){
 		COLOR = pixelColor;
-
+		if(isLine(pixelColor, SCREEN_UV,dx,dy))
+			COLOR.a = 1.0;
+		else
+			COLOR.a = centerAlpha;
+	}
+	else
+		COLOR = vec4(0);
 }

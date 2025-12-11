@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqp7pjiuvql2p"]
+
+[ext_resource type="Script" uid="uid://cjqv16yacmtv6" path="res://Scripts/FogOfWar.gd" id="1_a202f"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_4xowi"]
+size = Vector2(4, 2)
+center_offset = Vector3(2, -1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a202f"]
+shading_mode = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_4xowi"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_a202f"]
+viewport_path = NodePath("Viewport")
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_a202f")
+pixel_resolution = 900000
+
+[node name="Viewport" type="SubViewport" parent="."]
+size = Vector2i(1107, 1097)
+
+[node name="Camera" type="Camera3D" parent="Viewport"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2.76, 0.626, 0)
+projection = 1
+current = true
+size = 2.683
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 6.0530157, 0, 0)
+mesh = SubResource("QuadMesh_4xowi")
+surface_material_override/0 = SubResource("StandardMaterial3D_a202f")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.0530157, -4.371139e-08, -1)
+mesh = SubResource("SphereMesh_4xowi")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 8.053016, 0, 1)
+mesh = SubResource("SphereMesh_4xowi")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_a202f")
+expand_mode = 1

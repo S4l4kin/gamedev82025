@@ -7,8 +7,8 @@ uniform float rotation: hint_range(-360.0, 360.0, 0.1) = 0;
 uniform float skew: hint_range(-89.9, 89.9, 0.1) = 0;
 uniform vec2 scale = vec2(1,1);
 uniform sampler2D sprite : source_color;
-uniform sampler2D playerMask : source_color;
-uniform vec3 playerColor : source_color;
+uniform sampler2D mask : source_color;
+uniform sampler2D maskPallet : source_color, filter_nearest;
 
 void vertex() {
 
@@ -53,10 +53,22 @@ void vertex() {
 void fragment() {
 
 	vec4 pixelColor = texture(sprite, UV);
-	vec4 maskColor = texture(playerMask, UV);
+	vec4 maskColor = texture(mask, UV);
 	ALBEDO = pixelColor.rgb;
 	ALPHA = pixelColor.a;
-	if (maskColor.a >= 0.1) {
-		ALBEDO = pixelColor.rgb * playerColor;
+	
+	//Goes through the maskColor Texture
+	ivec2 mask_size = textureSize(mask, 0);
+	float error_degree = 0.001;
+	for (float mask_y = 0.25; mask_y < 1.0; mask_y += 1.0/float(mask_size.y)){
+		vec4 check_color = texture(maskPallet, vec2(0.25, mask_y));
+		vec4 recolor = texture(maskPallet, vec2(0.5, mask_y));
+		if( maskColor.a >= error_degree &&
+		maskColor.r - check_color.r <= error_degree &&
+		maskColor.g - check_color.g <= error_degree &&
+		maskColor.b - check_color.b <= error_degree)
+			ALBEDO = pixelColor.rgb * recolor.rgb;
 	}
+	
+	
 }
