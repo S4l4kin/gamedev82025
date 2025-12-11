@@ -9,7 +9,7 @@ class_name Actor
 			GameManager.board_manager.remove_actor(self)
 		elif renderer:
 			renderer.call_deferred("render_amount", s)
-			
+
 @export var damage_modifier: int
 
 @export var card_id : String
@@ -69,10 +69,5 @@ func on_death():
 func get_attack_damage():
 	return 0
 
-
-func set_health(new_health: int):
-	health = new_health
-	renderer.render_amount(new_health)
-	if health <=0:
-		on_death()
-		$"/root/Board".remove_actor(self)
+func damage(amount: int):
+	health -= amount
