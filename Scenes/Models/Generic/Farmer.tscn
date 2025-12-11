@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj13ebf5u2tmt"]
+
+[ext_resource type="Script" uid="uid://bujesqlx6hrhx" path="res://Scripts/Renderer/RendererData.gd" id="1_hvegy"]
+[ext_resource type="Texture2D" uid="uid://q2eb8so3e75g" path="res://Assets/Mobs/FarmerGSN.svg" id="1_st5en"]
+[ext_resource type="Texture2D" uid="uid://11lbsjpif45c" path="res://Assets/Mobs/Mask/FarmerMASK.svg" id="2_hvegy"]
+
+[node name="Farmer" type="Node2D"]
+script = ExtResource("1_hvegy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_st5en")
+
+[node name="Mask" type="Sprite2D" parent="Sprite2D"]
+visible = false
+texture = ExtResource("2_hvegy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

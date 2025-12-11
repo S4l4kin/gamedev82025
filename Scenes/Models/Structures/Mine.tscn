@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dev3k7oyopby"]
+
+[ext_resource type="Texture2D" uid="uid://cp2nrh04ylhnp" path="res://Assets/Structures/MineGSN.svg" id="1_df7iv"]
+[ext_resource type="Script" uid="uid://bujesqlx6hrhx" path="res://Scripts/Renderer/RendererData.gd" id="1_xmrh7"]
+[ext_resource type="Texture2D" uid="uid://dou0e7ji6y4po" path="res://Assets/Structures/Mask/MineMASK.svg" id="2_xmrh7"]
+[ext_resource type="Texture2D" uid="uid://bcv0b0ibwlj3s" path="res://Assets/Structures/Mask/MineFlagMASK.svg" id="4_ti5dn"]
+
+[node name="Mine" type="Node2D"]
+script = ExtResource("1_xmrh7")
+max_model = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_df7iv")
+
+[node name="Mask" type="Sprite2D" parent="Sprite2D"]
+texture = ExtResource("4_ti5dn")
+
+[node name="MaskGems" type="Sprite2D" parent="Sprite2D"]
+texture = ExtResource("2_xmrh7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
