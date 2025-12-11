@@ -39,6 +39,7 @@ func start_game():
 			turn_order.append(player.name)
 		turn_order.shuffle()
 		network.call_deferred("send_messages", {"type":"next_turn"})
+	#audiomanager.play_global_sfx("click")
 	Audiomanager.play_music("res://Assets/Resources/Audio/Music/4x Card Game Theme.ogg")
 
 func update_players(updated_players):
