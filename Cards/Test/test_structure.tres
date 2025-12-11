@@ -1,13 +1,21 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://crpqymbdwcg5m"]
+[gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://crpqymbdwcg5m"]
 
+[ext_resource type="Script" uid="uid://2cfco33sllqd" path="res://Scripts/Actor_scripts/Structure.gd" id="1_a8ws0"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_pubdn"]
+[ext_resource type="PackedScene" uid="uid://dtuean06q2x5j" path="res://Scenes/Models/Generic/Structure.tscn" id="2_ldf7r"]
+[ext_resource type="Script" uid="uid://d3h8qkdu4r1na" path="res://Scripts/Predicates/StructurePredicate.gd" id="3_qclya"]
 
 [resource]
 script = ExtResource("1_pubdn")
 name = "Test Structure"
 id = "test_structure"
 type = 2
-cost = {}
+cost = {
+0: 0
+}
 description = "This is a placeholder Structure"
 health = 3
+model = ExtResource("2_ldf7r")
+custom_script = ExtResource("1_a8ws0")
+play_predicate = ExtResource("3_qclya")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

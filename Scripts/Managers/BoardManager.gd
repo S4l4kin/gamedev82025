@@ -70,7 +70,31 @@ func _ready():
 	var camera = get_viewport().get_camera_3d()
 	camera.global_position = Vector3(start_hex.tile.global_position.x, camera.global_position.y,start_hex.tile.global_position.z)
 	fog.start_updating()
+	call_deferred("test_ore")
+	
 
+func test_ore():
+	var rng = RandomNumberGenerator.new()
+	rng.seed = 137
+	var red_ore = ResourceLoader.load("res://Features/red_ore.tres", "Feature")
+	var yellow_ore = ResourceLoader.load("res://Features/yellow_ore.tres", "Feature")
+	var orange_ore = ResourceLoader.load("res://Features/orange_ore.tres", "Feature")
+	for i in 3:
+		var hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+		print(hex)
+		while hex.feature:
+			hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+		hex.feature = red_ore
+	for i in 3:
+		var hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+		while hex.feature:
+			hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+		hex.feature = yellow_ore
+	for i in 6:
+		var hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+		while hex.feature:
+			hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+		hex.feature = orange_ore
 
 func handle_network(data):
 	if (data.type == "create_actor"):
@@ -101,15 +125,20 @@ func handle_network(data):
 
 
 func inspect_hex(x:int, y:int):
+	var hex = get_hex(x,y)
 	if get_actors(x, y) != {}:
 		inspect_card.show_card("unit_hovered", Vector2i(x,y))
+	if hex:
+		if hex.feature:
+			inspect_card.show_card("unit_hovered", Vector2i(x,y))
+
 
 func select_hex(x:int ,y:int):
 	if hex_selector != null:
 		return
 	print("Clicked Hex %s, %s"%[x,y])
 	var actors = get_actors(x, y)
-	if  actors != {}:
+	if  actors != {} or get_hex(x,y).feature:
 		inspect_card.show_card("unit_selected", Vector2i(x,y))
 	else:
 		inspect_card.change_lock("unit_selected", false)
@@ -252,6 +281,7 @@ func get_hex_from_tile(tile: Object) -> Hex:
 		if hexes[coord].tile == tile:
 			return hexes[coord]
 	return null
+
 func get_actor(actor_id: String) -> Actor:
 	for hex in hexes.values():
 		if hex.unit:
@@ -272,7 +302,6 @@ func get_actors(x:int, y:int) -> Dictionary[String, Actor]:
 		unit = hex.unit
 		var structure : Structure = null
 		structure = hex.structure
-		
 		if unit != null:
 			actors["unit"] = unit
 		if structure != null:

@@ -28,10 +28,11 @@ deck_resource = ExtResource("3_6t5aa")
 [node name="Hand" type="CenterContainer" parent="Deck"]
 custom_minimum_size = Vector2(1020, 0)
 layout_mode = 0
-offset_left = 3.0
-offset_top = 471.0
-offset_right = 1023.0
-offset_bottom = 785.0
+offset_left = 1.9999981
+offset_top = 462.99994
+offset_right = 1022.0
+offset_bottom = 776.99994
+scale = Vector2(0.85, 0.85)
 metadata/_edit_group_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Deck/Hand"]
@@ -68,3 +69,42 @@ offset_top = -108.0
 offset_bottom = -108.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ResourceLists" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ResourceLists"]
+layout_mode = 0
+offset_left = 839.0
+offset_top = 482.0
+offset_right = 1024.0
+offset_bottom = 641.0
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Etheral" type="ScrollContainer" parent="ResourceLists/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.78431374)
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+tooltip_text = "Etheral"
+
+[node name="List" type="VBoxContainer" parent="ResourceLists/HBoxContainer/Etheral"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ResourceLists/HBoxContainer"]
+custom_minimum_size = Vector2(7.445, 0)
+layout_mode = 2
+
+[node name="Persisten" type="ScrollContainer" parent="ResourceLists/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+tooltip_text = "Persistent"
+
+[node name="List" type="VBoxContainer" parent="ResourceLists/HBoxContainer/Persisten"]
+layout_mode = 2

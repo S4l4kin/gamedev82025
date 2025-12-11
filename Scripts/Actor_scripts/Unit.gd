@@ -6,8 +6,8 @@ class_name Unit
 
 
 func _ready():
-	GameManager.connect("turn_start", on_turn_start)
-	GameManager.connect("turn_end", on_turn_end)
+
+	super._ready()
 
 #Returns true if the unit survived the attack
 func attack(enemy:Actor) -> bool:
@@ -46,17 +46,17 @@ func on_post_move():
 func get_actions() -> Dictionary[String, Dictionary]:
 	return {"Move" = {"callable" = get_move_range, "active" = (speed > 0)}}
 
-func on_turn_start(_player_name: String):
+func on_turn_start():
 	speed = max_speed
 
-func on_turn_end(_player_name: String):
-	pass
 
 func get_move_range():
 	var press_check = (func(_x: int, _y:int):
 		return x ==_x and y == _y
 		)
 	var path_check = (func(path: Array[Vector2i]):
+		if len(path) == 0:
+			return true
 		var coord = path[-1]
 		var hex = GameManager.board_manager.get_hex(coord.x, coord.y)
 		if hex.unit:

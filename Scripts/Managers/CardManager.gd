@@ -107,3 +107,10 @@ func _get_property_list():
 			})
 		
 		return ret
+
+func get_resource_color(resource: GlobalEnums.COST_COLORS):
+	return cost_symbol_color[resource].color
+
+
+func get_resource_symbol(resource: GlobalEnums.COST_COLORS):
+	return cost_symbol_color[resource].symbol

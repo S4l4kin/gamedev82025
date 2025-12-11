@@ -1,4 +1,4 @@
-extends Predicate
+extends StructurePredicate
 
 const min_distance : int = 5
 func can_play(coord) -> bool:
@@ -11,7 +11,7 @@ func can_play(coord) -> bool:
 				if is_instance_of(actors.structure, HQ):
 					if cube_distance(cube_coord, board.coord_to_cube(_coord.x, _coord.y)) < min_distance:
 						return false
-		return true
+		return not played_on_feature(coord)
 	else:
 		return GameManager.game_state == GameManager.GAME_STATE.Setup
 

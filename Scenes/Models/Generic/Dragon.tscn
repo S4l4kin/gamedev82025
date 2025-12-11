@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvyh3ymdjnem"]
+[gd_scene load_steps=8 format=3 uid="uid://cvyh3ymdjnem"]
 
 [ext_resource type="Script" uid="uid://bujesqlx6hrhx" path="res://Scripts/Renderer/RendererData.gd" id="1_c4bv7"]
 [ext_resource type="Texture2D" uid="uid://5vcqtak3qdc7" path="res://Assets/Icons/speed_icon.svg" id="1_kerfn"]
 [ext_resource type="Texture2D" uid="uid://08hee1hgy24t" path="res://Assets/Icons/speed_mask.svg" id="2_kerfn"]
+[ext_resource type="Texture2D" uid="uid://cv1t3f6dfui8o" path="res://Assets/mask_test.png" id="4_ofuat"]
 
 [sub_resource type="Animation" id="Animation_c4bv7"]
 length = 0.001
@@ -28,6 +29,12 @@ texture = ExtResource("1_kerfn")
 [node name="Mask" type="Sprite2D" parent="Leg2"]
 visible = false
 texture = ExtResource("2_kerfn")
+
+[node name="MaskTest" type="Sprite2D" parent="Leg2"]
+texture_filter = 1
+position = Vector2(505.5, 27)
+scale = Vector2(98.5, 77)
+texture = ExtResource("4_ofuat")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -2,7 +2,7 @@
 extends Resource
 class_name Card
 
-enum CARD_TYPE {HQ, Unit, Structure, Spell, Equipment}
+enum CARD_TYPE {HQ, Unit, Structure, Spell, Equipment, Effect, Feature}
 
 #Variables for all card types
 var name : String = "New Card":

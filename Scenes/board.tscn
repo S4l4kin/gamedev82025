@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://cnpv1eihk3jgb" path="res://Scripts/ActorActions.gd" id="4_tngv2"]
 [ext_resource type="Script" uid="uid://bo8smjjmvvgim" path="res://Scripts/gui_3d.gd" id="5_c4ttu"]
 [ext_resource type="PackedScene" uid="uid://i10utqmhvwrj" path="res://Scenes/action_menu.tscn" id="5_tngv2"]
-[ext_resource type="Script" uid="uid://b5v2rlnouxmgi" path="res://Scripts/ActorCardDisplay.gd" id="6_xhrpu"]
+[ext_resource type="Script" uid="uid://b5v2rlnouxmgi" path="res://Scripts/CardDisplay.gd" id="6_xhrpu"]
 [ext_resource type="Script" uid="uid://ce7fgb7slwf3v" path="res://Scripts/billboard_area_3d.gd" id="7_nk23n"]
 [ext_resource type="PackedScene" uid="uid://5fo83kxhoywh" path="res://Scenes/Bases/CardBase.tscn" id="8_5qf1t"]
 [ext_resource type="Script" uid="uid://dk6drtfmanu8f" path="res://Scripts/ViewpoertSyncer.gd" id="10_upw65"]
@@ -282,6 +282,7 @@ keyboard_speed = 10.0
 
 [node name="Fog" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+visible = false
 material_override = SubResource("ShaderMaterial_d7frl")
 mesh = SubResource("QuadMesh_vjsom")
 script = ExtResource("3_d7frl")

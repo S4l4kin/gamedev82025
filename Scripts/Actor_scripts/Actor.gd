@@ -16,26 +16,40 @@ var actor_id : String
 @export var player : String
 
 var tween : Tween
-@onready var renderer : ActorRenderer:
+
+@onready var renderer : ObjectRenderer = $Model:
 	get():
 		return $Model
 
 signal done_attacking
 
-var color : Color:
-	set(s):
-		color = s
-		$Model.color = s
+var color : Color
 
 var x : int
 var y : int
 
+
+func _ready() -> void:
+	call_deferred("setup_renderer")
+	GameManager.connect("turn_start", func(player_turn): if player_turn == GameManager.player_name: on_turn_start())
+	GameManager.connect("turn_end",  func(player_turn): if player_turn == GameManager.player_name: on_turn_end())
+
+func setup_renderer():
+	renderer.add_mask(Color.WHITE, color)
+	renderer.set_numeric_label_color(color)
+	renderer.call_deferred("render_amount", health)
 
 func get_actions() -> Dictionary[String, Dictionary]:
 
 	return {}
 
 func on_play():
+	pass
+
+func on_turn_start():
+	pass
+
+func on_turn_end():
 	pass
 
 func on_pre_defend(_enemy: Actor):

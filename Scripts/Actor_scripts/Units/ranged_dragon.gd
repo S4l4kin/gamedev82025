@@ -3,9 +3,10 @@ extends Unit
 var shot_fire : bool = true
 var shot_range : int = 3
 var shot_damage : int = 2
-func on_turn_start(_player_name: String):
+
+func on_turn_start():
 	shot_fire = true
-	super.on_turn_start(_player_name)
+	super.on_turn_start()
 
 func get_actions() -> Dictionary[String, Dictionary]:
 	var actions : Dictionary[String, Dictionary] = {"Fire" = {"callable" = get_fire_range, "active" = shot_fire}}
