@@ -97,3 +97,9 @@ func play_3d_sfx(keyOrPath: String, position: Vector3, volumeDb := 0.0):
 	player.play()
 	
 	player.finished.connect(func(): if player.is_inside_tree(): player.queue_free())
+
+func play_3d_sfx_for_all(keyOrPath: String, position: Vector3, volumeDb := 0.0):
+	if GameManager.network.is_host():
+		play_3d_sfx(keyOrPath, position, volumeDb)
+	
+	GameManager.network.send_messages({"type":"play_3d_sfx", "key":keyOrPath, "pos": {"x": position.x, "y": position.y, "z": position.z}, "vol": volumeDb})

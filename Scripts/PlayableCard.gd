@@ -115,6 +115,7 @@ func _input(event: InputEvent) -> void:
 				hover_stop()
 
 func play_card ():
+	audiomanager.play_3d_sfx_for_all("click", Vector3(0,0,0), 10.0)
 	card.play_callable.call(old_hex.coord)
 	GameManager.deck.reweight_deck()
 	GameManager.deck.hand.remove_at(get_index())
