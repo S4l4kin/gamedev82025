@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://btwqxn54ps0ie"]
+[gd_scene load_steps=7 format=3 uid="uid://dtuean06q2x5j"]
 
 [ext_resource type="Script" uid="uid://bujesqlx6hrhx" path="res://Scripts/Renderer/RendererData.gd" id="1_c4bv7"]
 [ext_resource type="Texture2D" uid="uid://5vcqtak3qdc7" path="res://Assets/Icons/speed_icon.svg" id="1_kerfn"]
 [ext_resource type="Texture2D" uid="uid://dp56xpx6dodpm" path="res://Assets/Icons/speed_mask.svg" id="2_kerfn"]
-
 
 [sub_resource type="Animation" id="Animation_c4bv7"]
 length = 0.001
@@ -18,13 +17,14 @@ _data = {
 &"test": SubResource("Animation_kerfn")
 }
 
-[node name="TestModel" type="Node2D"]
+[node name="GenericStructure" type="Node2D"]
 script = ExtResource("1_c4bv7")
-max_model = 3
+max_model = 1
 
 [node name="Leg2" type="Sprite2D" parent="."]
-position = Vector2(0, -73)
+position = Vector2(65, 0)
 texture = ExtResource("1_kerfn")
+offset = Vector2(-65, 0)
 
 [node name="Mask" type="Sprite2D" parent="Leg2"]
 visible = false

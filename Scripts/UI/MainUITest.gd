@@ -6,6 +6,7 @@ func _ready():
 	current_menu = $"Join Menu"
 	GameManager.network.connect("recieved_message", handle_network)
 	$"Join Menu/HostButton".connect("pressed", (func(): 
+		audiomanager.play_global_sfx("click")
 		change_menu($Lobby)
 		GameManager.network.start_server(int($"Join Menu/Options/Port".text))
 		var player = get_player_data()
@@ -15,6 +16,7 @@ func _ready():
 		$Lobby/StartButton.show()
 		))
 	$"Join Menu/JoinButton".connect("pressed", (func(): 
+		audiomanager.play_global_sfx("click")
 		change_menu($Lobby)
 		GameManager.network.join_server($"Join Menu/Options/IP".text, int($"Join Menu/Options/Port".text))
 		var player = get_player_data()
@@ -22,13 +24,10 @@ func _ready():
 		GameManager.players.append(player)
 		))
 	$"Join Menu/Options/Color".connect("color_changed", (func(color: Color):
-		var lum = 0.2126*color.r + 0.7152*color.g + 0.0722*color.b
-		if lum > 0.5:
-			$"Join Menu/Options/Color/Label".self_modulate = Color.BLACK
-		else:
-			$"Join Menu/Options/Color/Label".self_modulate = Color.WHITE
-		))
+		$"Join Menu/Options/Color/Label".self_modulate = Color.BLACK if color.get_luminance() > 0.5 else Color.WHITE
+	))
 	$Lobby/StartButton.connect("pressed", (func():
+		audiomanager.play_global_sfx("click")
 		GameManager.network.send_messages({"type":"start_game"})
 		GameManager.network.send_messages({"type":"hide_start_ui"})
 		))

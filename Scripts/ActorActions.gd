@@ -1,6 +1,13 @@
 extends Node3D
 class_name ActorActions
 @onready var button_list : Control = $"3DControl/SubViewport/ScrollContainer/CenterContainer/VBoxContainer"
+@onready var area : CollisionShape3D = $"3DControl/Quad/Area3D/CollisionShape3D"
+var pixel_density : float
+var padding : float = 0.1
+func _ready() -> void:
+	var viewport = $"3DControl/SubViewport"
+	var quad = $"3DControl/Quad"
+	pixel_density = quad.mesh.size.y / viewport.size.y
 
 func get_actions(hex: Vector2i) -> void:
 	var actors = GameManager.board_manager.get_actors(hex.x, hex.y)
@@ -10,8 +17,8 @@ func get_actions(hex: Vector2i) -> void:
 		child.free()
 	
 	if len(actors) == 0:
+		hide()
 		return
-	
 	if actors.has("unit"):
 		if not GameManager.is_mine(actors.unit):
 			actors.erase("unit")
@@ -38,4 +45,10 @@ func get_actions(hex: Vector2i) -> void:
 		button_list.add_child(button)
 		button.connect("pressed", (func (): actions[action].callable.call(); hide()))
 		button.add_theme_font_size_override("font_size", 35)
+	
+	call_deferred("set_clickable_zone")
 	show()
+
+func set_clickable_zone():
+	print(button_list.size.y * pixel_density + padding)
+	area.shape.size.y = button_list.size.y * pixel_density + padding

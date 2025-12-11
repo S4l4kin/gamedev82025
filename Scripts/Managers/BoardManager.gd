@@ -51,7 +51,7 @@ func set_conqured_hex_colors(players):
 func _ready():
 	init_tiles()
 	GameManager.network.connect("recieved_message", handle_network)
-	
+	GameManager.connect("turn_end", attack_structures)
 	connect("mouse_exited_hex", (func (_x, _y): current_hovered_hex = Vector2i(-1,-1)))
 	connect("mouse_entered_hex", (func (x, y): current_hovered_hex = Vector2i(x, y); hover_timer.start()))
 	hover_timer.connect("timeout", (func ():  inspect_hex(current_hovered_hex.x, current_hovered_hex.y)))
@@ -85,9 +85,12 @@ func handle_network(data):
 		actor.on_play()
 
 	if (data.type == "move_unit"):
-		var previous_hex = Vector2i(data.previous_hex.x, data.previous_hex.y)
-		var next_hex = Vector2i(data.next_hex.x, data.next_hex.y)
-		move_unit(previous_hex, next_hex)
+		var from := Vector2i(data.from.x, data.from.y)
+		var path : Array[Vector2i] = []
+		for coord in data.path:
+			path.append(Vector2i(coord.x, coord.y))
+			
+		move_unit(from, path)
 
 
 func inspect_hex(x:int, y:int):
@@ -97,6 +100,7 @@ func inspect_hex(x:int, y:int):
 func select_hex(x:int ,y:int):
 	if hex_selector != null:
 		return
+	print("Clicked Hex %s, %s"%[x,y])
 	var actors = get_actors(x, y)
 	if  actors != {}:
 		inspect_card.show_card("unit_selected", Vector2i(x,y))
@@ -115,8 +119,10 @@ func get_hex(x:int, y:int) -> Hex:
 
 func add_hex_selector(selector: HexSelect):
 	inspect_card.change_lock("unit_selected", false)
-	hex_selector = selector
 	add_child(selector)
+	hex_selector = selector
+	inspect_card.get_node("3DControl").active = false
+	actor_actions.get_node("3DControl").active = false
 
 func cube_to_coord(q:int,r:int) -> Vector2i:
 	var parity : int
@@ -161,35 +167,58 @@ func get_neighbours(x:int, y:int) -> Array[Hex]:
 	
 	return neighbours
 
-# TODO: Refactor using tweens
-func move_unit(from :Vector2i, to:Vector2i) -> void:
+
+func attack_structures(player_turn : String):
+	for hex in hexes.values():
+		var unit = hex.unit
+		var structure = hex.structure
+		if not unit or not structure:
+			continue
+		if unit.player == player_turn:
+			if unit.player != structure.player:
+				unit.attack(structure)	
+
+
+func move_unit(from :Vector2i, path: Array[Vector2i]) -> void:
+	print(get_hex(from.x, from.y).unit)
+	print(path)
 	var from_hex = get_hex(from.x, from.y)
-	var to_hex = get_hex(to.x, to.y)
 	var unit = from_hex.unit
+	var moving_speed = 1
 	if unit == null:
 		push_warning("tried to move a non-existant unit")
 		return
-
-	if not to_hex.passable:
-		return
-
-	unit.on_pre_move()
-
-	var defender : Actor = to_hex.structure if to_hex.unit == null else to_hex.unit
-	var move : bool = true
-	
-	unit.global_position = to_hex.tile.global_position
-	
-	if defender != null:
-		move = unit.attack(defender)
-
-	if move:
-		unit.x = to.x
-		unit.y = to.y
-		to_hex.unit = unit
-		from_hex.unit = null
-		unit.on_post_move()
-		fog.reveal_hex(unit.x, unit.y)
+	var tween = get_tree().create_tween()
+	for step in path:
+		unit.speed -= 1
+		var next_hex = get_hex(step.x, step.y)
+		if not next_hex.passable:
+			break
+		tween.tween_callback(func ():
+			unit.on_pre_move()
+			fog.reveal_hex(step.x, step.y)
+		)
+		tween.tween_property(unit, "position", next_hex.tile.global_position, moving_speed)
+		tween.tween_callback(func ():
+			if not unit:
+				return
+			var defender : Actor = next_hex.unit
+			var survived : bool = true
+			if defender:
+				if defender.player != unit.player:
+					survived = unit.attack(defender)
+			if survived:
+				var current_hex = get_hex(unit.x, unit.y)
+				unit.x = step.x
+				unit.y = step.y
+				if current_hex.unit == unit:
+					current_hex.unit = null
+				if not defender:
+					next_hex.unit = unit
+				
+				unit.on_post_move()
+				
+		)
 
 
 func create_actor(coord: Vector2i, actor:Card) -> Actor:

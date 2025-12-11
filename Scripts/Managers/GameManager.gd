@@ -22,8 +22,8 @@ var players : Array = []
 var turn_order : Array = []
 var current_turn : String = ""
 
-signal turn_start
-signal turn_end
+signal turn_start (player_name : String)
+signal turn_end (player_name : String)
 
 func start_game():
 	board_manager = board_manager_scene.instantiate()
@@ -39,12 +39,33 @@ func start_game():
 			turn_order.append(player.name)
 		turn_order.shuffle()
 		network.call_deferred("send_messages", {"type":"next_turn"})
+	#audiomanager.play_global_sfx("click")
+	Audiomanager.play_music("res://Assets/Resources/Audio/Music/4x Card Game Theme.ogg")
 
 func update_players(updated_players):
 	players = updated_players
 
 func append_players(append_players):
 	players.append_array(append_players)
+
+func remove_player(player):
+	if not turn_order.has(player):
+		return
+	
+	turn_order.erase(player)
+
+	if len(turn_order) == 1:
+		network.send_messages({"type":"announce_victor","victor":turn_order[0]})
+
+func announce_victor(victor):
+	var victor_label = Label.new()
+	victor_label.set_anchors_preset(Control.PRESET_FULL_RECT)
+	victor_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	victor_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	victor_label.text = "%s won!"%victor
+	victor_label.self_modulate = board_manager.player_colors[victor]
+	victor_label.add_theme_font_size_override("font_size", 32)
+	get_tree().root.add_child(victor_label)
 
 func handle_network(data):
 	if data.type == "join_server":
@@ -74,13 +95,15 @@ func handle_network(data):
 				"player": next_player
 			})
 	if data.type == "change_turn":
+		emit_signal("turn_end", current_turn)
 		current_turn = data.player
 		$"/root/Player/EndTurn".disabled = not my_turn() if game_state != GAME_STATE.Setup else true
 		$"/root/Player/EndTurn/CurrentTurn".text = current_turn
-		if my_turn():
-			emit_signal("turn_start")
+		emit_signal("turn_start", current_turn)
 	if data.type == "change_state":
 		game_state = data.state
+	if data.type == "announce_victor":
+		announce_victor(data.victor)
 func get_players():
 	return players
 

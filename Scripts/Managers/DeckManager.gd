@@ -121,9 +121,10 @@ func draw_starting_hand(hand_size: int=5):
 	var hq_card = deck_resource.get_hq()
 	hand.append(hq_card)
 	add_card_node(hq_card)
-	draw_hand(hand_size)
+	draw_hand(GameManager.player_name, hand_size)
 
-func draw_hand(hand_size: int = 5) -> void:
-	
+func draw_hand(player_name: String, hand_size: int = 5) -> void:
+	if player_name != GameManager.player_name:
+		return
 	for i in max(0, hand_size - len(hand)):
 		draw_card()

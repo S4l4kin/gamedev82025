@@ -52,4 +52,4 @@ func _input(event: InputEvent) -> void:
 					
 					for hex in path:
 						outline.set_hex_outline("ui",board.get_hex(hex.x, hex.y),Color.TRANSPARENT)
-					call_deferred("free")
+					done_selecting()

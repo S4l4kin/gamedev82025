@@ -54,6 +54,9 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_MIDDLE:
 			change_lock("moving", event.pressed)
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			change_lock("unit_selected", false)
+
 
 
 func hide_card() -> void:
@@ -70,10 +73,10 @@ func show_card(lock: String, hex: Vector2i) -> void:
 		child.call_deferred("free")
 	var hex_data = board.hexes[Vector2i(hex.x, hex.y)]
 	if hex_data.unit:
-		var unit_card_scene = GameManager.card_manager.get_card_scene(hex_data.unit.card_id).instantiate()
+		var unit_card_scene = GameManager.card_manager.get_updated_card_scene(hex_data.unit)
 		card_stack.add_child(unit_card_scene)
 	if hex_data.structure:
-		var structure_card_scene = GameManager.card_manager.get_card_scene(hex_data.structure.card_id).instantiate()
+		var structure_card_scene = GameManager.card_manager.get_updated_card_scene(hex_data.structure)
 		card_stack.add_child(structure_card_scene)
 
 

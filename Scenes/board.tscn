@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dkngb58gnxqv6"]
+[gd_scene load_steps=24 format=3 uid="uid://dkngb58gnxqv6"]
 
 [ext_resource type="Script" uid="uid://cd31ytfr0anly" path="res://Scripts/Managers/BoardManager.gd" id="1_p0ybc"]
 [ext_resource type="Script" uid="uid://4d2d2uwlm08j" path="res://Scripts/Outline.gd" id="2_d7frl"]
@@ -52,9 +52,6 @@ billboard_keep_scale = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_r6t13"]
 size = Vector3(2, 3.3, 0.138)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_upw65"]
-viewport_path = NodePath("Card/3DControl/SubViewport")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d7frl"]
 resource_local_to_scene = true
 render_priority = 0
@@ -66,8 +63,8 @@ shader_parameter/fogColor = Color(0.3, 0.3, 0.3, 1)
 
 [node name="Board" type="Node3D"]
 script = ExtResource("1_p0ybc")
-grid_width = 64
-grid_height = 64
+grid_width = 16
+grid_height = 16
 
 [node name="Tiles" type="Node3D" parent="."]
 
@@ -115,6 +112,7 @@ mouse_filter = 2
 transparent_bg = true
 handle_input_locally = false
 canvas_cull_mask = 4294967289
+size = Vector2i(1152, 648)
 render_target_update_mode = 4
 script = ExtResource("10_upw65")
 
@@ -126,7 +124,6 @@ transform = Transform3D(1, 0, 0, 0, 0.010489228, 0.999945, 0, -0.999945, 0.01048
 layers = 3
 
 [node name="Actions" type="Node3D" parent="."]
-visible = false
 script = ExtResource("4_tngv2")
 
 [node name="3DControl" type="Node3D" parent="Actions"]
@@ -184,9 +181,13 @@ script = ExtResource("7_nk23n")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Card/3DControl/Quad/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0012080669, -0.00035095215, 0)
 shape = SubResource("BoxShape3D_r6t13")
+disabled = true
+debug_fill = false
 
 [node name="SubViewport" type="SubViewport" parent="Card/3DControl"]
+own_world_3d = true
 transparent_bg = true
+handle_input_locally = false
 physics_object_picking = true
 size = Vector2i(200, 355)
 render_target_update_mode = 4
@@ -195,10 +196,12 @@ render_target_update_mode = 4
 visible = false
 offset_right = 280.475
 offset_bottom = 354.275
+mouse_filter = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="Card/3DControl/SubViewport"]
 offset_right = 200.2
 offset_bottom = 345.4
+mouse_filter = 2
 metadata/_edit_group_ = true
 
 [node name="Control" type="Control" parent="Card/3DControl/SubViewport/CenterContainer"]
@@ -254,12 +257,6 @@ current = true
 script = ExtResource("2_psm7c")
 keyboard_speed = 10.0
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 355.0
-offset_bottom = 355.0
-texture = SubResource("ViewportTexture_upw65")
-expand_mode = 1
-
 [node name="Fog" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 layers = 2
@@ -268,4 +265,6 @@ mesh = SubResource("QuadMesh_vjsom")
 script = ExtResource("3_d7frl")
 
 [node name="UpdateTimer" type="Timer" parent="Fog"]
-wait_time = 0.009999999999999998
+wait_time = 0.00999999999999999
+
+[editable path="Actions/3DControl/SubViewport/ScrollContainer"]

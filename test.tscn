@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://biyoebfq873oe"]
+[gd_scene load_steps=7 format=3 uid="uid://b4xtnr5dpvsmn"]
 
 [ext_resource type="Script" uid="uid://brbe0jrph2krb" path="res://Scripts/Managers/CardManager.gd" id="1_37kl0"]
 [ext_resource type="Script" uid="uid://baatn6443ogbc" path="res://Scripts/Resources/SymbolColorPair.gd" id="2_ppyta"]
