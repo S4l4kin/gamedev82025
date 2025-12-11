@@ -1,15 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4gwpskpu4isl"]
+[gd_scene load_steps=4 format=3 uid="uid://d4gwpskpu4isl"]
 
 [ext_resource type="Script" uid="uid://dcmjxuaevcgkk" path="res://Scripts/Managers/DeckManager.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dcv52k3r5ntqw" path="res://Scripts/Player.gd" id="1_6t5aa"]
-[ext_resource type="Script" uid="uid://dk61f267qiwks" path="res://Scripts/Resources/Deck.gd" id="2_6t5aa"]
-
-[sub_resource type="Resource" id="Resource_vgqql"]
-script = ExtResource("2_6t5aa")
-hq = "test_headquarter"
-card_list = Array[String](["dragon2", "dragon1", "dragon3", "watch_tower", "scout1", "scout2", "troll1", "warrior1", "warrior1", "warrior1", "troll1", "troll1", "dragon3", "dragon1", "dragon2", "spawner"])
-deck_name = "Test Deck"
-metadata/_custom_type_script = "uid://dk61f267qiwks"
+[ext_resource type="Resource" uid="uid://dpjlqcgwhaqo0" path="res://Deck.tres" id="3_6t5aa"]
 
 [node name="Player" type="Control"]
 layout_mode = 3
@@ -30,15 +23,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_4flbx")
-deck_resource = SubResource("Resource_vgqql")
+deck_resource = ExtResource("3_6t5aa")
 
 [node name="Hand" type="CenterContainer" parent="Deck"]
 custom_minimum_size = Vector2(1020, 0)
 layout_mode = 0
-offset_left = 3.0
-offset_top = 471.0
-offset_right = 1023.0
-offset_bottom = 785.0
+offset_left = 1.9999981
+offset_top = 462.99994
+offset_right = 1022.0
+offset_bottom = 776.99994
+scale = Vector2(0.85, 0.85)
 metadata/_edit_group_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Deck/Hand"]
@@ -76,4 +70,41 @@ offset_bottom = -108.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="pressed" from="EndTurn" to="." method="_on_end_turn_pressed"]
+[node name="ResourceLists" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ResourceLists"]
+layout_mode = 0
+offset_left = 839.0
+offset_top = 482.0
+offset_right = 1024.0
+offset_bottom = 641.0
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Etheral" type="ScrollContainer" parent="ResourceLists/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.78431374)
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+tooltip_text = "Etheral"
+
+[node name="List" type="VBoxContainer" parent="ResourceLists/HBoxContainer/Etheral"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ResourceLists/HBoxContainer"]
+custom_minimum_size = Vector2(7.445, 0)
+layout_mode = 2
+
+[node name="Persisten" type="ScrollContainer" parent="ResourceLists/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+tooltip_text = "Persistent"
+
+[node name="List" type="VBoxContainer" parent="ResourceLists/HBoxContainer/Persisten"]
+layout_mode = 2

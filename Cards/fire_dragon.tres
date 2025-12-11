@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://j0yk3xirj8bi"]
+
+[ext_resource type="Script" uid="uid://c2qb451u1idf" path="res://Scripts/Actor_scripts/Units/fire_dragon.gd" id="1_538e4"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_ktepm"]
+
+[resource]
+script = ExtResource("1_ktepm")
+name = "Fire Dragon"
+id = "fire_dragon"
+type = 1
+cost = {}
+description = "When attacking inflict Burn, dealing 1 damage at the start of owner turn"
+unit_type = 1
+health = 2
+speed = 2
+custom_script = ExtResource("1_538e4")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

@@ -5,8 +5,9 @@ class_name Unit
 @onready var speed :int = max_speed 
 
 
-func _ready(): 
-	GameManager.connect("turn_start", func(): speed = max_speed)
+func _ready():
+
+	super._ready()
 
 #Returns true if the unit survived the attack
 func attack(enemy:Actor) -> bool:
@@ -17,11 +18,12 @@ func attack(enemy:Actor) -> bool:
 	enemy.on_pre_defend(self)
 
 	#Deal damage to both attacker and defender
-	on_deal_damage(enemy)
+	var current_attack = get_attack_damage()
+	damage(enemy.get_attack_damage())
+	enemy.damage(current_attack)
 
 
 	#If either attacker or defender survived actiave post attack and defend abilities
-	print(player + str(get_health()))
 	if health > 0:
 		on_post_attack(enemy)
 	print(enemy.player + str(enemy.get_health()))
@@ -30,10 +32,6 @@ func attack(enemy:Actor) -> bool:
 	emit_signal("done_attacking")
 	return health > 0
 
-func on_deal_damage(enemy: Actor):
-	var current_attack = get_attack_damage()
-	set_health(health - (enemy.get_attack_damage()+damage_modifier))
-	enemy.set_health(enemy.health - (current_attack+enemy.damage_modifier))
 
 func on_pre_attack(_enemy: Actor):
 	#print(player)
@@ -54,21 +52,24 @@ func on_post_move():
 func get_actions() -> Dictionary[String, Dictionary]:
 	return {"Move" = {"callable" = get_move_range, "active" = (speed > 0)}}
 
+func on_turn_start():
+	speed = max_speed
+
 
 func get_move_range():
-	$"/root/Board".add_hex_selector(PathHexSelect.new(x,y, speed, move))
-
-func change_speed(speed_change: int):
-	#Apply change to both max_speed and current speed
-	max_speed += speed_change
-	speed = clamp(speed + speed_change, 0, max_speed)
-
-	#print("%s speed changed" % player)
-	#print("max_speed: %d, current speed: %d" % [max_speed, speed])
-	#max_speed = 0 
-	#max_speed + speed_change
-	#print(player + "speed")
-	#print(self.max_speed)
+	var press_check = (func(_x: int, _y:int):
+		return x ==_x and y == _y
+		)
+	var path_check = (func(path: Array[Vector2i]):
+		if len(path) == 0:
+			return true
+		var coord = path[-1]
+		var hex = GameManager.board_manager.get_hex(coord.x, coord.y)
+		if hex.unit:
+			return hex.unit.player != player or hex.unit.actor_id == actor_id
+		return true
+		)
+	GameManager.board_manager.add_hex_selector(PathHexSelect.new(speed, move, press_check, path_check))
 	
 
 func get_speed():
@@ -76,12 +77,12 @@ func get_speed():
 
 func move(path : Array):
 	if len(path) > 1:
-		var from = path.pop_front()
+		path.pop_front()
 		var move_path = []
 		for next_hex in path:
 			move_path.append({"x": next_hex.x, "y": next_hex.y})
 		GameManager.network.send_messages({
 			"type":"move_unit",
-			"from": {"x": from.x, "y": from.y},
+			"unit": actor_id,
 			"path": move_path
 		})

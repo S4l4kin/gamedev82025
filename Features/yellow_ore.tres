@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="OreFeature" load_steps=3 format=3 uid="uid://cm2d1wme6frmr"]
+
+[ext_resource type="PackedScene" uid="uid://btwqxn54ps0ie" path="res://Scenes/Models/TestModel.tscn" id="1_py7vm"]
+[ext_resource type="Script" uid="uid://cuyjw4ua8xvqt" path="res://Scripts/Resources/Features/Ore.gd" id="2_71dcw"]
+
+[resource]
+script = ExtResource("2_71dcw")
+color = 1
+display_card = "yellow_ore"
+model = ExtResource("1_py7vm")
+metadata/_custom_type_script = "uid://3vx3gf6esjan"

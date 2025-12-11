@@ -2,7 +2,7 @@
 extends Resource
 class_name Card
 
-enum CARD_TYPE {HQ, Unit, Structure, Spell, Equipment}
+enum CARD_TYPE {HQ, Unit, Structure, Spell, Equipment, Effect, Feature}
 
 #Variables for all card types
 var name : String = "New Card":
@@ -90,12 +90,12 @@ func set_defaults():
 		CARD_TYPE.Structure:
 			if not custom_script:
 				custom_script = preload("res://Scripts/Actor_scripts/Structure.gd")
-			if not play_predicate:
-				play_predicate = preload("res://Scripts/Predicates/StructurePredicate.gd")
 			elif not is_instance_of(custom_script.new(), Structure):
 				custom_script = preload("res://Scripts/Actor_scripts/Structure.gd")
 				push_error("Card " + id + " custom script does not extend Structure as it should")
 				print("Card " + id + " custom script does not extend Structure as it should, changed it base Structure")
+			if not play_predicate:
+					play_predicate = preload("res://Scripts/Predicates/StructurePredicate.gd")
 			if not model:
 				model = preload("res://Scenes/Models/Generic/Structure.tscn")
 				push_error("Card " + id + " should have a model attached to it as a Structure")

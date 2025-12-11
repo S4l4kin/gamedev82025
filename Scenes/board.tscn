@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://cnpv1eihk3jgb" path="res://Scripts/ActorActions.gd" id="4_tngv2"]
 [ext_resource type="Script" uid="uid://bo8smjjmvvgim" path="res://Scripts/gui_3d.gd" id="5_c4ttu"]
 [ext_resource type="PackedScene" uid="uid://i10utqmhvwrj" path="res://Scenes/action_menu.tscn" id="5_tngv2"]
-[ext_resource type="Script" uid="uid://b5v2rlnouxmgi" path="res://Scripts/ActorCardDisplay.gd" id="6_xhrpu"]
+[ext_resource type="Script" uid="uid://b5v2rlnouxmgi" path="res://Scripts/CardDisplay.gd" id="6_xhrpu"]
 [ext_resource type="Script" uid="uid://ce7fgb7slwf3v" path="res://Scripts/billboard_area_3d.gd" id="7_nk23n"]
 [ext_resource type="PackedScene" uid="uid://5fo83kxhoywh" path="res://Scenes/Bases/CardBase.tscn" id="8_5qf1t"]
 [ext_resource type="Script" uid="uid://dk6drtfmanu8f" path="res://Scripts/ViewpoertSyncer.gd" id="10_upw65"]
@@ -83,6 +83,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("2_d7frl")
 
 [node name="OutlineViewport" type="SubViewport" parent="Shaders/Outline"]
@@ -99,7 +100,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("ViewportTexture_vjsom")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Shaders"]
+[node name="Units" type="SubViewportContainer" parent="Shaders"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -108,7 +109,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="SubViewport" type="SubViewport" parent="Shaders/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Shaders/Units"]
 transparent_bg = true
 handle_input_locally = false
 canvas_cull_mask = 4294967289
@@ -116,8 +117,28 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 script = ExtResource("10_upw65")
 
-[node name="Camera" type="Camera3D" parent="Shaders/SubViewportContainer/SubViewport"]
-cull_mask = 1048573
+[node name="Camera" type="Camera3D" parent="Shaders/Units/SubViewport"]
+cull_mask = 1048572
+
+[node name="3D UI" type="SubViewportContainer" parent="Shaders"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="Shaders/3D UI"]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4294967289
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+script = ExtResource("10_upw65")
+
+[node name="Camera" type="Camera3D" parent="Shaders/3D UI/SubViewport"]
+cull_mask = 1048570
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.010489228, 0.999945, 0, -0.999945, 0.010489228, 0, 24.08657, 0)
@@ -139,6 +160,7 @@ render_target_update_mode = 4
 
 [node name="Quad" type="MeshInstance3D" parent="Actions/3DControl"]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 1.3555541, 0, 0)
+layers = 2
 mesh = SubResource("QuadMesh_1rang")
 skeleton = NodePath("../SubViewport")
 surface_material_override/0 = SubResource("StandardMaterial3D_o821d")
@@ -169,6 +191,7 @@ script = ExtResource("5_c4ttu")
 
 [node name="Quad" type="MeshInstance3D" parent="Card/3DControl"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -2.0269687, 0.61818624, 0)
+layers = 2
 mesh = SubResource("QuadMesh_7plpp")
 surface_material_override/0 = SubResource("StandardMaterial3D_lxheh")
 
@@ -252,19 +275,21 @@ one_shot = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 7, 0)
-cull_mask = 2
+cull_mask = 1
 current = true
 script = ExtResource("2_psm7c")
 keyboard_speed = 10.0
 
 [node name="Fog" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-layers = 2
+visible = false
 material_override = SubResource("ShaderMaterial_d7frl")
 mesh = SubResource("QuadMesh_vjsom")
 script = ExtResource("3_d7frl")
+fog_speed = 0.99
 
 [node name="UpdateTimer" type="Timer" parent="Fog"]
 wait_time = 0.00999999999999999
+ignore_time_scale = true
 
 [editable path="Actions/3DControl/SubViewport/ScrollContainer"]

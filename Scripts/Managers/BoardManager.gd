@@ -58,7 +58,7 @@ func _ready():
 	connect("hex_pressed", select_hex)
 
 	outline.add_layer("conqured_hexes", 2)
-	outline.add_layer("ui",1.25)
+	outline.add_layer("ui", 1.25)
 
 	var padding :float = 2
 	
@@ -70,7 +70,31 @@ func _ready():
 	var camera = get_viewport().get_camera_3d()
 	camera.global_position = Vector3(start_hex.tile.global_position.x, camera.global_position.y,start_hex.tile.global_position.z)
 	fog.start_updating()
+	call_deferred("test_ore")
+	
 
+func test_ore():
+	var rng = RandomNumberGenerator.new()
+	rng.seed = 137
+	var red_ore = ResourceLoader.load("res://Features/red_ore.tres", "Feature")
+	var yellow_ore = ResourceLoader.load("res://Features/yellow_ore.tres", "Feature")
+	var orange_ore = ResourceLoader.load("res://Features/orange_ore.tres", "Feature")
+	for i in 3:
+		var hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+		print(hex)
+		while hex.feature:
+			hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+		hex.feature = red_ore
+	for i in 3:
+		var hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+		while hex.feature:
+			hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+		hex.feature = yellow_ore
+	for i in 6:
+		var hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+		while hex.feature:
+			hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+		hex.feature = orange_ore
 
 func handle_network(data):
 	if (data.type == "create_actor"):
@@ -85,24 +109,36 @@ func handle_network(data):
 		actor.on_play()
 
 	if (data.type == "move_unit"):
-		var from := Vector2i(data.from.x, data.from.y)
+		var unit := get_actor(data.unit)
 		var path : Array[Vector2i] = []
 		for coord in data.path:
 			path.append(Vector2i(coord.x, coord.y))
 			
-		move_unit(from, path)
+		move_unit(unit, path)
+	
+	if (data.type == "actor_ability"):
+		var actor = get_actor(data.id)
+		if actor.has_method(data.method):
+			actor.callv(data.method, data.args)
+		else:
+			push_error("Tried to call an undefined method on actor %s"%actor.card_id)
 
 
 func inspect_hex(x:int, y:int):
+	var hex = get_hex(x,y)
 	if get_actors(x, y) != {}:
 		inspect_card.show_card("unit_hovered", Vector2i(x,y))
+	if hex:
+		if hex.feature:
+			inspect_card.show_card("unit_hovered", Vector2i(x,y))
+
 
 func select_hex(x:int ,y:int):
 	if hex_selector != null:
 		return
 	print("Clicked Hex %s, %s"%[x,y])
 	var actors = get_actors(x, y)
-	if  actors != {}:
+	if  actors != {} or get_hex(x,y).feature:
 		inspect_card.show_card("unit_selected", Vector2i(x,y))
 	else:
 		inspect_card.change_lock("unit_selected", false)
@@ -179,11 +215,7 @@ func attack_structures(player_turn : String):
 				unit.attack(structure)	
 
 
-func move_unit(from :Vector2i, path: Array[Vector2i]) -> void:
-	print(get_hex(from.x, from.y).unit)
-	print(path)
-	var from_hex = get_hex(from.x, from.y)
-	var unit = from_hex.unit
+func move_unit(unit : Actor, path: Array[Vector2i]) -> void:
 	var moving_speed = 1
 	if unit == null:
 		push_warning("tried to move a non-existant unit")
@@ -220,11 +252,13 @@ func move_unit(from :Vector2i, path: Array[Vector2i]) -> void:
 				
 		)
 
-
+var next_id = "start_id".sha256_text()
 func create_actor(coord: Vector2i, actor:Card) -> Actor:
 	var actor_node : Actor = GameManager.card_manager.get_card_actor(actor)
 	actor_node.x = coord.x
 	actor_node.y = coord.y
+	actor_node.actor_id = next_id
+	next_id = next_id.sha256_text()
 	add_child(actor_node)
 	var hex = get_hex(coord.x, coord.y)
 	if actor_node is Unit:
@@ -247,6 +281,17 @@ func get_hex_from_tile(tile: Object) -> Hex:
 		if hexes[coord].tile == tile:
 			return hexes[coord]
 	return null
+
+func get_actor(actor_id: String) -> Actor:
+	for hex in hexes.values():
+		if hex.unit:
+			if hex.unit.actor_id == actor_id:
+				return hex.unit
+		if hex.structure:
+			if hex.structure.actor_id == actor_id:
+				return hex.structure
+	return null
+			
 func get_actors(x:int, y:int) -> Dictionary[String, Actor]:
 	var actors : Dictionary[String, Actor] = {}
 	var hex = get_hex(x,y)
@@ -257,7 +302,6 @@ func get_actors(x:int, y:int) -> Dictionary[String, Actor]:
 		unit = hex.unit
 		var structure : Structure = null
 		structure = hex.structure
-		
 		if unit != null:
 			actors["unit"] = unit
 		if structure != null:

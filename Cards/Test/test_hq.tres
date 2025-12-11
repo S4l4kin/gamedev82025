@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://bh01807tvrg0n"]
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://bh01807tvrg0n"]
 
+[ext_resource type="Script" uid="uid://c5oqenw1k15y8" path="res://Scripts/Actor_scripts/Headquarter.gd" id="1_m8dy2"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_qv3df"]
+[ext_resource type="Script" uid="uid://bjglrwoj5v07k" path="res://Scripts/Predicates/HQPredicate.gd" id="2_8m0vi"]
 
 [resource]
 script = ExtResource("1_qv3df")
@@ -9,4 +11,6 @@ id = "test_headquarter"
 type = 0
 description = "This is a test headquarter, the first card you must play when starting a game"
 health = 30
+custom_script = ExtResource("1_m8dy2")
+play_predicate = ExtResource("2_8m0vi")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

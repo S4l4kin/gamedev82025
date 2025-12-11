@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://c2yy3qc0wx8kl"]
+
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_cuyrp"]
+
+[resource]
+script = ExtResource("2_cuyrp")
+name = "Big Dragon"
+id = "big_dragon"
+type = 1
+cost = {}
+description = "Big Bad Dragon. 
+Hey why are you launging!"
+unit_type = 1
+health = 10
+speed = 1
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

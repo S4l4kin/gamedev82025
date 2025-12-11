@@ -1,18 +1,18 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://duq8jtyfwq458"]
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://duq8jtyfwq458"]
 
 [ext_resource type="Texture2D" uid="uid://chy536ltbw7mp" path="res://icon.svg" id="1_nt00g"]
+[ext_resource type="Script" uid="uid://bj28tm4il5hw6" path="res://Scripts/Predicates/BasePredicate.gd" id="2_o8ri6"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="4_1iy4l"]
 
 [resource]
 script = ExtResource("4_1iy4l")
-color = Color(0.8345023, 0.6401329, 0.5803724, 1)
 name = "Placeholder 1"
 id = "placeholder_1"
 type = 3
 cost = {
-0: 2,
-1: 1
+0: 1
 }
 card_image = ExtResource("1_nt00g")
 description = "Placeholder card 1"
+play_predicate = ExtResource("2_o8ri6")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"
