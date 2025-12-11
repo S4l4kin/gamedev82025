@@ -17,15 +17,15 @@ _data = {
 &"test": SubResource("Animation_kerfn")
 }
 
-[node name="TestModel" type="Node2D"]
+[node name="Dragon" type="Node2D"]
 script = ExtResource("1_c4bv7")
 max_model = 3
 
-[node name="Leg2" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_5484s")
 
-[node name="Mask" type="Sprite2D" parent="Leg2"]
+[node name="Mask" type="Sprite2D" parent="Sprite2D"]
 visible = false
 light_mask = 5
 texture = ExtResource("2_35qmp")

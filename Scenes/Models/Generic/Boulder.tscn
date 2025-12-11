@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1kbflhrtd1xg"]
+[gd_scene load_steps=4 format=3 uid="uid://c1kbflhrtd1xg"]
 
 [ext_resource type="Texture2D" uid="uid://dfirnnja07cx2" path="res://Assets/Structures/Mask/BoulderMASK.svg" id="1_d6d7m"]
+[ext_resource type="Script" uid="uid://bujesqlx6hrhx" path="res://Scripts/Renderer/RendererData.gd" id="1_lp2xk"]
 [ext_resource type="Texture2D" uid="uid://dhscxjv1dpi7o" path="res://Assets/Structures/Mask/BoulderGSN.svg" id="1_ph4c0"]
 
 [node name="Boulder" type="Node2D"]
+script = ExtResource("1_lp2xk")
+max_model = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ph4c0")

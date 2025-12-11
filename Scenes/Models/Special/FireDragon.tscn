@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl3f6w02iv5r6"]
+[gd_scene load_steps=4 format=3 uid="uid://cl3f6w02iv5r6"]
 
+[ext_resource type="Script" uid="uid://bujesqlx6hrhx" path="res://Scripts/Renderer/RendererData.gd" id="1_chktp"]
 [ext_resource type="Texture2D" uid="uid://yfbvej1nf0py" path="res://Assets/Mobs/FireDragonGSN.svg" id="1_gslyj"]
 [ext_resource type="Texture2D" uid="uid://boadtsietfdti" path="res://Assets/Mobs/Mask/DragonMask.svg" id="2_chktp"]
 
 [node name="FireDragon" type="Node2D"]
+script = ExtResource("1_chktp")
+max_model = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("1_gslyj")
 
 [node name="Mask" type="Sprite2D" parent="Sprite2D"]

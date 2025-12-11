@@ -22,6 +22,7 @@ script = ExtResource("1_c4bv7")
 max_model = 3
 
 [node name="Leg2" type="Sprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_sw2n3")
 
 [node name="Mask" type="Sprite2D" parent="Leg2"]

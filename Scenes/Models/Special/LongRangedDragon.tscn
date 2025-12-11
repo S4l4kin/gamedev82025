@@ -6,8 +6,10 @@
 
 [node name="LongRangedDragon" type="Node2D"]
 script = ExtResource("1_ylmaj")
+max_model = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_3yqap")
 
 [node name="Mask" type="Sprite2D" parent="Sprite2D"]
