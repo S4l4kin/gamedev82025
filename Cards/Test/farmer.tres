@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://qt0ns2qijhbu"]
+
+[ext_resource type="Texture2D" uid="uid://bobg1i7pwc0iv" path="res://Assets/Icons/Resources/warrior.png" id="1_84bdq"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_qi20q"]
+
+[sub_resource type="GDScript" id="GDScript_p4m22"]
+script/source = "extends Unit
+class_name farmer
+"
+
+[resource]
+script = ExtResource("2_qi20q")
+name = "Farmer"
+id = "farmer"
+type = 1
+cost = {}
+card_image = ExtResource("1_84bdq")
+description = "This is a human warrior it takes less damage"
+unit_type = 0
+health = 2
+speed = 2
+custom_script = SubResource("GDScript_p4m22")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"
