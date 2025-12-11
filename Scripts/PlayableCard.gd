@@ -32,6 +32,7 @@ func hover_start():
 	if not dragging and not reading:
 		var tween = create_tween()
 		tween.tween_property($Card, "position", Vector2.UP * 10, 0.2)
+		audiomanager.play_global_sfx("hover_card")
 
 func hover_stop():
 	if not dragging:

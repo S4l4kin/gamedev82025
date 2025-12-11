@@ -58,6 +58,8 @@ func remove_player(player):
 		network.send_messages({"type":"announce_victor","victor":turn_order[0]})
 
 func announce_victor(victor):
+	audiomanager.stop_music()
+	audiomanager.play_global_sfx("game_win")
 	var victor_label = Label.new()
 	victor_label.set_anchors_preset(Control.PRESET_FULL_RECT)
 	victor_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

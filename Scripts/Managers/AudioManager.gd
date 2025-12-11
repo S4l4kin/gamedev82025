@@ -26,6 +26,8 @@ func _ready():
 	#Preload audio files
 	_sfx["test_click"] = preload("res://Assets/Resources/Audio/SFX/TestAudioClick.wav")
 	_sfx["click"] = preload("res://Assets/Resources/Audio/SFX/Click.wav")
+	_sfx["hover_card"] = preload("res://Assets/Resources/Audio/SFX/HoverCard.wav")
+	_sfx["game_win"] = preload("res://Assets/Resources/Audio/SFX/GameWin.wav")
 
 #Play music
 func play_music(resourcePath: String, loop := true ):
