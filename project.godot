@@ -17,7 +17,13 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://Scripts/Managers/GameManager.gd"
+GameManager="*res://Scenes/GameManager.tscn"
+Audiomanager="*res://Scenes/AudioManager.tscn"
+audiomanager="*res://Scripts/Managers/AudioManager.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
