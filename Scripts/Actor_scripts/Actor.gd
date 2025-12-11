@@ -22,12 +22,10 @@ var color : Color:
 var x : int
 var y : int
 
-<<<<<<< HEAD
+
 func _ready() -> void:
-	color = start_color
 	damage_modifier = 0
-=======
->>>>>>> main
+
 
 func get_actions() -> Dictionary[String, Dictionary]:
 
@@ -58,11 +56,11 @@ func get_health():
 
 func set_health(new_health: int):
 	health = new_health
-<<<<<<< HEAD
+
 	#print(health)
-=======
+
 	renderer.render_amount(new_health)
->>>>>>> main
+
 	if health <=0:
 		on_death()
 		print(player + " dödens dö")
