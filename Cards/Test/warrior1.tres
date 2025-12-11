@@ -7,10 +7,9 @@
 script/source = "extends Unit
 class_name Warrior1
 
-func _ready():
-	
-	GameManager.connect(\"turn_start\", func(): speed = max_speed)
-	set_damage_modifier(-2)
+func damage(amount):
+	amount *= 0.75
+	super.damage(amount)
 "
 
 [resource]

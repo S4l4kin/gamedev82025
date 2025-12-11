@@ -15,7 +15,7 @@ func on_play():
 	if hex.feature is OreFeature:
 		generating_resource = hex.feature.color
 		hex.feature = null
-	print("Mine Placed on X:%s, Y:%s"%[x, y])
+	super.on_play()
 
 func on_turn_start():
 	GameManager.player.add_resource(generating_resource, true, 1)
