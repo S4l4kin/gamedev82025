@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://u27klmo0su24"]
+
+[ext_resource type="Texture2D" uid="uid://cuuibxgaru2ri" path="res://Assets/Structures/SpawnerGSN.svg" id="1_ildvq"]
+[ext_resource type="Texture2D" uid="uid://bxk0yfnm8odyn" path="res://Assets/Structures/Mask/SpawnerMASK.svg" id="2_3o72q"]
+
+[node name="Spawner" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ildvq")
+
+[node name="Mask" type="Sprite2D" parent="Sprite2D"]
+visible = false
+texture = ExtResource("2_3o72q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

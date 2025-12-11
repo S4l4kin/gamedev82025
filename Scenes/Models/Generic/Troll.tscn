@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dec2i8wmuf6ur"]
 
 [ext_resource type="Script" uid="uid://bujesqlx6hrhx" path="res://Scripts/Renderer/RendererData.gd" id="1_c4bv7"]
-[ext_resource type="Texture2D" uid="uid://5vcqtak3qdc7" path="res://Assets/Icons/speed_icon.svg" id="1_kerfn"]
-[ext_resource type="Texture2D" uid="uid://dp56xpx6dodpm" path="res://Assets/Icons/speed_mask.svg" id="2_kerfn"]
+[ext_resource type="Texture2D" uid="uid://0kgwngbngwh" path="res://Assets/Mobs/TrollGSN.svg" id="2_6blq5"]
+[ext_resource type="Texture2D" uid="uid://08hee1hgy24t" path="res://Assets/Icons/speed_mask.svg" id="2_kerfn"]
 
 [sub_resource type="Animation" id="Animation_c4bv7"]
 length = 0.001
@@ -23,7 +23,8 @@ max_model = 3
 
 [node name="Leg2" type="Sprite2D" parent="."]
 position = Vector2(0, -73)
-texture = ExtResource("1_kerfn")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_6blq5")
 
 [node name="Mask" type="Sprite2D" parent="Leg2"]
 visible = false

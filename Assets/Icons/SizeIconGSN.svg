@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="647.99994"
+   height="1080"
+   viewBox="0 0 647.99994 1080"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="SizeIconGSN.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:vectornator="http://vectornator.io">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     inkscape:zoom="0.28622633"
+     inkscape:cx="239.3211"
+     inkscape:cy="1128.4776"
+     inkscape:window-width="958"
+     inkscape:window-height="1000"
+     inkscape:window-x="663"
+     inkscape:window-y="438"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1" />
+  <defs
+     id="defs1" />
+  <g
+     opacity="1"
+     vectornator:layerName="Group 2"
+     id="g2"
+     inkscape:label="SizeIcon"
+     style="clip-rule:evenodd;display:inline;fill:#829735;fill-opacity:1;fill-rule:nonzero;stroke:#6a884e;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+     transform="matrix(8.090945,0,0,8.0376943,-1023.8017,-2738.563)">
+    <path
+       d="m 144.932,365.21 c 0,-11.871 9.749,-21.495 21.775,-21.495 12.026,0 21.775,9.624 21.775,21.495 0,11.871 -9.749,21.494 -21.775,21.494 -12.026,0 -21.775,-9.623 -21.775,-21.494 z"
+       fill="#829735"
+       fill-rule="nonzero"
+       opacity="1"
+       stroke="#6a884e"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-width="6.0008"
+       vectornator:layerName="Oval 1"
+       id="path1"
+       style="fill:#f2f2f2;fill-opacity:1;stroke:#ffffff;stroke-width:6;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       d="m 166.498,396.203 c 83.268,0 0.326,75.879 0.326,75.879 0,0 -83.5948,-75.879 -0.326,-75.879 z"
+       fill="#829735"
+       fill-rule="nonzero"
+       opacity="1"
+       stroke="#6a884e"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-width="6.0008"
+       vectornator:layerName="Curve 2"
+       id="path2"
+       style="fill:#f2f2f2;fill-opacity:1;stroke:#ffffff;stroke-width:6;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40.2973px;line-height:0;font-family:'Alfa Slab One';-inkscape-font-specification:'Alfa Slab One';text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:start;clip-rule:evenodd;display:none;fill:#364629;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:5.73064;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:0"
+       x="153.54288"
+       y="443.0979"
+       id="text4"><tspan
+         id="tspan4"
+         x="0"
+         y="0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40.2973px;line-height:0;font-family:'Alfa Slab One';-inkscape-font-specification:'Alfa Slab One';letter-spacing:0px;fill:#364629;fill-opacity:1;stroke:#000000;stroke-width:5.73064;stroke-dasharray:none;stroke-opacity:0"
+         sodipodi:role="line">2</tspan></text>
+  </g>
+</svg>

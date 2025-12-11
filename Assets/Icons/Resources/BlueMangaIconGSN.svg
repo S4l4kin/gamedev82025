@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1080"
+   height="1080"
+   viewBox="0 0 1080 1080"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="BlueMangaIconGSN.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     inkscape:zoom="0.40478516"
+     inkscape:cx="-228.51628"
+     inkscape:cy="648.49216"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="430"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g20" />
+  <defs
+     id="defs1" />
+  <g
+     id="g20"
+     inkscape:label="BlueManaIcon"
+     transform="matrix(6.7894619,0,0,6.8404037,-1465.9658,-4458.1273)"
+     style="clip-rule:evenodd;display:inline;fill-rule:nonzero;stroke-linecap:round;stroke-linejoin:round">
+    <path
+       style="fill:#b5b5b5;fill-opacity:1;stroke:#f2f2f2;stroke-width:6;stroke-dasharray:none;stroke-opacity:1"
+       d="m 225.95433,745.80518 7.96436,-39.47551 14.19734,-20.08403 4.15531,-22.50797 11.7734,-9.00318 14.19733,6.23297 6.23298,15.92872 15.92871,-8.65691 14.19734,23.89307 13.85106,-33.24254 24.23935,25.27818 13.1585,42.59201 -4.15532,36.01274 -73.23746,-10.38829 z"
+       id="path30"
+       sodipodi:nodetypes="ccccccccccccccc" />
+    <path
+       style="clip-rule:evenodd;display:inline;fill:#a3a3a3;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:6.2102;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 272.0122,804.05699 -38.5905,-18.8307 -14.39883,-28.95316 14.48674,-25.33543 16.39932,-9.46649 c 14.15558,11.30508 10.75682,10.29119 24.98958,19.90793 0,0 6.14756,-4.26891 18.65697,-14.62921 10.93224,-2.31332 20.51547,-3.86634 20.51547,-3.86634 l 15.57326,10.829 18.44885,-9.44394 12.30179,11.22338 11.48792,14.6901 -3.92002,24.08163 -20.28138,18.53894 -26.19896,13.71216 z"
+       id="path29"
+       sodipodi:nodetypes="cccccccccccccccc"
+       inkscape:label="RedManaIcon" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#f2f2f2;stroke-width:6;stroke-dasharray:none;stroke-opacity:1"
+       d="m 275.05138,717.13909 c -3.53891,-11.19142 -7.20989,-23.499 -7.20989,-23.499 l 18.68871,-18.02036"
+       id="path33"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#f2f2f2;stroke-width:6;stroke-dasharray:none;stroke-opacity:1"
+       d="m 320.54401,716.86429 14.76776,-27.72207 -20.72265,3.03386"
+       id="path20"
+       sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56.967px;line-height:0;font-family:'Alfa Slab One';-inkscape-font-specification:'Alfa Slab One';text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:start;clip-rule:evenodd;display:none;fill:#0f2b97;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:8.10122;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:0"
+       x="281.30069"
+       y="789.78833"
+       id="text1"><tspan
+         id="tspan1"
+         x="0"
+         y="0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:56.967px;line-height:0;font-family:'Alfa Slab One';-inkscape-font-specification:'Alfa Slab One';letter-spacing:0px;fill:#0f2b97;fill-opacity:1;stroke:#000000;stroke-width:8.10122;stroke-dasharray:none;stroke-opacity:0"
+         sodipodi:role="line">2</tspan></text>
+  </g>
+</svg>

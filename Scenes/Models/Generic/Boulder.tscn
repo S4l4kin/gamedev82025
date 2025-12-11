@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1kbflhrtd1xg"]
+
+[ext_resource type="Texture2D" uid="uid://dfirnnja07cx2" path="res://Assets/Structures/Mask/BoulderMASK.svg" id="1_d6d7m"]
+[ext_resource type="Texture2D" uid="uid://dhscxjv1dpi7o" path="res://Assets/Structures/Mask/BoulderGSN.svg" id="1_ph4c0"]
+
+[node name="Boulder" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ph4c0")
+
+[node name="Mask" type="Sprite2D" parent="Sprite2D"]
+texture = ExtResource("1_d6d7m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

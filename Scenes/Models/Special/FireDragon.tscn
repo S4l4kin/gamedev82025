@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl3f6w02iv5r6"]
+
+[ext_resource type="Texture2D" uid="uid://yfbvej1nf0py" path="res://Assets/Mobs/FireDragonGSN.svg" id="1_gslyj"]
+[ext_resource type="Texture2D" uid="uid://boadtsietfdti" path="res://Assets/Mobs/Mask/DragonMask.svg" id="2_chktp"]
+
+[node name="FireDragon" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gslyj")
+
+[node name="Mask" type="Sprite2D" parent="Sprite2D"]
+visible = false
+texture = ExtResource("2_chktp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

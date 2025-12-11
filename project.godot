@@ -17,19 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://Scenes/GameManager.tscn"
-
-[display]
-
-window/stretch/mode="canvas_items"
+GameManager="*res://Scripts/Managers/GameManager.gd"
 
 [dotnet]
 
 project/assembly_name="4xCardGame"
-
-[editor]
-
-export/convert_text_resources_to_binary=false
 
 [filesystem]
 

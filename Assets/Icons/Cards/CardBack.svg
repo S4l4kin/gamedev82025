@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="559.87531"
+   height="1080"
+   viewBox="0 0 559.87531 1080"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="CardBack.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:vectornator="http://vectornator.io">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     inkscape:zoom="0.57245266"
+     inkscape:cx="-34.063952"
+     inkscape:cy="420.12208"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="430"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <defs
+     id="defs1" />
+  <path
+     d="M 115.3639,8.2252515 C 149.95186,11.861552 443.37643,6.8332953 443.37643,6.8332953 L 552.76042,116.17028 c 0,0 0.11749,186.71329 0.23912,410.64218 0.12023,223.92753 -0.0532,436.40999 -0.0532,436.40999 l -81.9929,109.49605 -355.66325,0.4482 L 6.8613736,963.65971 c 0,0 -0.326574,-158.92459 1.2475421,-396.90021 C 9.6829285,328.78253 7.2794011,117.89741 7.2794011,117.89741 c 0,0 97.1723689,-110.8192499 108.0845289,-109.6721585 z"
+     fill="#c9b09a"
+     fill-rule="nonzero"
+     opacity="1"
+     stroke="#b1935d"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     stroke-width="10"
+     vectornator:layerName="Curve 5"
+     id="path12"
+     style="clip-rule:evenodd;display:inline;fill:#70543c;fill-opacity:1;fill-rule:nonzero;stroke-width:13.6666;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none" />
+  <path
+     d="m 198.67898,277.43522 c 17.07786,1.79542 161.95679,-0.68728 161.95679,-0.68728 l 54.00857,53.98536 c 0,0 0.058,92.19002 0.11812,202.75534 0.0593,110.56466 -0.0262,215.47828 -0.0262,215.47828 l -40.48416,54.06387 -175.60939,0.22127 -53.53699,-54.06927 c 0,0 -0.16116,-78.46929 0.61598,-195.97021 0.77716,-117.50159 -0.40958,-221.62652 -0.40958,-221.62652 0,0 47.97904,-54.71723 53.36694,-54.15084 z"
+     fill="#c9b09a"
+     fill-rule="nonzero"
+     opacity="1"
+     stroke="#b1935d"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     stroke-width="10"
+     vectornator:layerName="Curve 5"
+     id="path8"
+     style="clip-rule:evenodd;display:inline;fill:#56493b;fill-opacity:1;fill-rule:nonzero;stroke:#927b4e;stroke-width:13.4959;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" />
+</svg>
