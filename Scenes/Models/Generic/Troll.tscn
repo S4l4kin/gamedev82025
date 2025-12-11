@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dec2i8wmuf6ur"]
 
 [ext_resource type="Script" uid="uid://bujesqlx6hrhx" path="res://Scripts/Renderer/RendererData.gd" id="1_c4bv7"]
-[ext_resource type="Texture2D" uid="uid://5vcqtak3qdc7" path="res://Assets/Icons/speed_icon.svg" id="1_kerfn"]
-[ext_resource type="Texture2D" uid="uid://dp56xpx6dodpm" path="res://Assets/Icons/speed_mask.svg" id="2_kerfn"]
+[ext_resource type="Texture2D" uid="uid://0kgwngbngwh" path="res://Assets/Mobs/TrollGSN.svg" id="2_6blq5"]
+[ext_resource type="Texture2D" uid="uid://cksf67tojah05" path="res://Assets/Mobs/Mask/TrollMASK.svg" id="3_6blq5"]
 
 [sub_resource type="Animation" id="Animation_c4bv7"]
 length = 0.001
@@ -21,13 +21,13 @@ _data = {
 script = ExtResource("1_c4bv7")
 max_model = 3
 
-[node name="Leg2" type="Sprite2D" parent="."]
-position = Vector2(0, -73)
-texture = ExtResource("1_kerfn")
-
-[node name="Mask" type="Sprite2D" parent="Leg2"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("2_kerfn")
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("2_6blq5")
+
+[node name="Mask" type="Sprite2D" parent="Sprite2D"]
+texture = ExtResource("3_6blq5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

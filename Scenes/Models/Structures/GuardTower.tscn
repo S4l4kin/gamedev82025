@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://blgk1h7jh4ykl"]
+
+[ext_resource type="Texture2D" uid="uid://c3wmawn52vnjv" path="res://Assets/Structures/GuardTowerGSN.svg" id="1_3sbc8"]
+[ext_resource type="Script" uid="uid://bujesqlx6hrhx" path="res://Scripts/Renderer/RendererData.gd" id="1_84lpm"]
+[ext_resource type="Texture2D" uid="uid://bl03s5j8dxw2f" path="res://Assets/Structures/Mask/GuardTowerMASK.svg" id="2_84lpm"]
+
+[node name="GuardTower" type="Node2D"]
+script = ExtResource("1_84lpm")
+max_model = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("1_3sbc8")
+
+[node name="Mask" type="Sprite2D" parent="Sprite2D"]
+visible = false
+texture = ExtResource("2_84lpm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
