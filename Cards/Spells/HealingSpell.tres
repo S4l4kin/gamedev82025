@@ -10,7 +10,9 @@ script = ExtResource("1_qjidc")
 name = "Healing Potion"
 id = "healing_potion"
 type = 3
-cost = {}
+cost = {
+1: 3
+}
 card_image = ExtResource("1_n12q1")
 description = "Heal a Friendly unit by 3"
 custom_script = ExtResource("1_mitk7")

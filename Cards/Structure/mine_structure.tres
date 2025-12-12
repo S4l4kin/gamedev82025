@@ -1,19 +1,23 @@
-[gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://b0mtyu1uevpe2"]
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://b0mtyu1uevpe2"]
 
-[ext_resource type="Script" uid="uid://c072usuv46hoq" path="res://Scripts/Predicates/MinePredicate.gd" id="1_elgtc"]
-[ext_resource type="Script" uid="uid://dygrngbop0vgn" path="res://Scripts/Actor_scripts/Structures/Mine.gd" id="1_nyohu"]
-[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_vrj3r"]
-[ext_resource type="PackedScene" uid="uid://dev3k7oyopby" path="res://Scenes/Models/Structures/Mine.tscn" id="2_vmd35"]
+[ext_resource type="Texture2D" uid="uid://dik4b2h1xgm51" path="res://Assets/Structures/CardPics/MinePic.svg" id="1_45cbs"]
+[ext_resource type="Script" uid="uid://dygrngbop0vgn" path="res://Scripts/Actor_scripts/Structures/Mine.gd" id="2_voecc"]
+[ext_resource type="PackedScene" uid="uid://dev3k7oyopby" path="res://Scenes/Models/Structures/Mine.tscn" id="3_66uow"]
+[ext_resource type="Script" uid="uid://c072usuv46hoq" path="res://Scripts/Predicates/MinePredicate.gd" id="4_2bigr"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="5_335g2"]
 
 [resource]
-script = ExtResource("1_vrj3r")
+script = ExtResource("5_335g2")
 name = "Mine"
 id = "mine_structure"
 type = 2
-cost = {}
+cost = {
+0: 1
+}
+card_image = ExtResource("1_45cbs")
 description = "Placing this on an ore hex will generate the corresponding colored resource at the start of each turn"
 health = 3
-model = ExtResource("2_vmd35")
-custom_script = ExtResource("1_nyohu")
-play_predicate = ExtResource("1_elgtc")
+model = ExtResource("3_66uow")
+custom_script = ExtResource("2_voecc")
+play_predicate = ExtResource("4_2bigr")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

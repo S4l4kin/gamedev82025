@@ -10,7 +10,10 @@ script = ExtResource("4_8snpj")
 name = "Mind Control Potion"
 id = "mind_control_potion"
 type = 3
-cost = {}
+cost = {
+0: 5,
+3: 1
+}
 card_image = ExtResource("1_5i0nk")
 description = "Take control of an enemy unit"
 custom_script = ExtResource("2_q7u5o")

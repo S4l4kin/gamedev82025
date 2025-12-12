@@ -1,17 +1,23 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://j0yk3xirj8bi"]
+[gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://j0yk3xirj8bi"]
 
-[ext_resource type="Script" uid="uid://c2qb451u1idf" path="res://Scripts/Actor_scripts/Units/fire_dragon.gd" id="1_538e4"]
-[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_ktepm"]
+[ext_resource type="Texture2D" uid="uid://yfbvej1nf0py" path="res://Assets/Mobs/FireDragonGSN.svg" id="1_q62fh"]
+[ext_resource type="Script" uid="uid://c2qb451u1idf" path="res://Scripts/Actor_scripts/Units/fire_dragon.gd" id="2_agyqk"]
+[ext_resource type="PackedScene" uid="uid://cl3f6w02iv5r6" path="res://Scenes/Models/Special/FireDragon.tscn" id="3_d205c"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="4_ggbf3"]
 
 [resource]
-script = ExtResource("1_ktepm")
+script = ExtResource("4_ggbf3")
 name = "Fire Dragon"
 id = "fire_dragon"
 type = 1
-cost = {}
+cost = {
+0: 3
+}
+card_image = ExtResource("1_q62fh")
 description = "When attacking inflict Burn, dealing 1 damage at the start of owner turn"
 unit_type = 1
-health = 2
+health = 3
 speed = 2
-custom_script = ExtResource("1_538e4")
+model = ExtResource("3_d205c")
+custom_script = ExtResource("2_agyqk")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

@@ -1,17 +1,24 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://86yah3hcmlwj"]
+[gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://86yah3hcmlwj"]
 
-[ext_resource type="Script" uid="uid://cwwv5r41ae1xj" path="res://Scripts/Actor_scripts/Units/ranged_dragon.gd" id="1_rls8v"]
-[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_ke7ij"]
+[ext_resource type="Texture2D" uid="uid://brnn2wvsldxfy" path="res://Assets/Mobs/LongRangedDragonGSN.svg" id="1_kx34i"]
+[ext_resource type="Script" uid="uid://cwwv5r41ae1xj" path="res://Scripts/Actor_scripts/Units/ranged_dragon.gd" id="2_lt5ar"]
+[ext_resource type="PackedScene" uid="uid://xj5dlhagsfdb" path="res://Scenes/Models/Special/LongRangedDragon.tscn" id="3_6phtc"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="4_1a1vn"]
 
 [resource]
-script = ExtResource("2_ke7ij")
+script = ExtResource("4_1a1vn")
 name = "Ranged Dragon"
 id = "ranged_dragon"
 type = 1
-cost = {}
+cost = {
+0: 3,
+1: 1
+}
+card_image = ExtResource("1_kx34i")
 description = "Once per turn this Unit can deal damage to another unit in range of 3"
 unit_type = 1
-health = 60
+health = 4
 speed = 2
-custom_script = ExtResource("1_rls8v")
+model = ExtResource("3_6phtc")
+custom_script = ExtResource("2_lt5ar")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

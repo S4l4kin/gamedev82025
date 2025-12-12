@@ -1,13 +1,17 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://c2yy3qc0wx8kl"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://c2yy3qc0wx8kl"]
 
-[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_cuyrp"]
+[ext_resource type="Texture2D" uid="uid://myt4t4gafujp" path="res://Assets/Mobs/DragonGSN.svg" id="1_2insx"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_3l4wi"]
 
 [resource]
-script = ExtResource("2_cuyrp")
+script = ExtResource("2_3l4wi")
 name = "Big Dragon"
 id = "big_dragon"
 type = 1
-cost = {}
+cost = {
+2: 4
+}
+card_image = ExtResource("1_2insx")
 description = "Big Bad Dragon. 
 Hey why are you launging!"
 unit_type = 1

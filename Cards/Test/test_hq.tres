@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://bh01807tvrg0n"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://bh01807tvrg0n"]
 
+[ext_resource type="Texture2D" uid="uid://d4k6n8j0ns4s1" path="res://Assets/Structures/CardPics/HqPic.svg" id="1_b3e7d"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_qv3df"]
 
 [resource]
 script = ExtResource("1_qv3df")
-name = "Test Headquarter"
+name = "Headquarters"
 id = "test_headquarter"
 type = 0
-description = "This is a test headquarter, the first card you must play when starting a game"
+card_image = ExtResource("1_b3e7d")
+description = "You need to place this first"
 health = 30
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

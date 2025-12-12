@@ -10,6 +10,14 @@ func on_play():
 		conquring_hexes.append(neighbour.coord)
 	conqure_hexes()
 
+func on_death():
+	var board = GameManager.board_manager
+	for coord : Vector2i in conquring_hexes:
+		print(coord)
+		if not board.conqured_hexes.has(coord):
+			board.conqured_hexes.erase(coord)
+			board.outline.set_hex_coord_outline("conqured_hexes", coord, Color.TRANSPARENT)
+
 func conqure_hexes():
 	var board = GameManager.board_manager
 	for coord : Vector2i in conquring_hexes:

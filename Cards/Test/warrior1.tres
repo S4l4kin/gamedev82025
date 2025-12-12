@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://c86q8ee6ym5ao"]
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://c86q8ee6ym5ao"]
 
-[ext_resource type="Texture2D" uid="uid://bobg1i7pwc0iv" path="res://Assets/Icons/Resources/warrior.png" id="1_p4m22"]
+[ext_resource type="Texture2D" uid="uid://cnclonbbdjnc3" path="res://Assets/Mobs/CardPics/WarriorPic.svg" id="1_p4m22"]
+[ext_resource type="PackedScene" uid="uid://div3rb2t5g3l0" path="res://Scenes/Models/Generic/Warrior.tscn" id="2_81gpb"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_likdm"]
+[ext_resource type="Script" uid="uid://4mfc0j1jlnuy" path="res://Scripts/Predicates/UnitPredicate.gd" id="3_lyp1d"]
 
 [sub_resource type="GDScript" id="GDScript_p4m22"]
 script/source = "extends Unit
@@ -25,5 +27,7 @@ description = "This is a human warrior it takes less damage than other creatures
 unit_type = 0
 health = 8
 speed = 6
+model = ExtResource("2_81gpb")
 custom_script = SubResource("GDScript_p4m22")
+play_predicate = ExtResource("3_lyp1d")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

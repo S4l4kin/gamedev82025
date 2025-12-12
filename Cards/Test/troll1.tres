@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://ck0x1atbog4pd"]
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://ck0x1atbog4pd"]
 
-[ext_resource type="Texture2D" uid="uid://dyybborpsght3" path="res://Assets/Icons/Resources/troll.jpg" id="1_mqx64"]
+[ext_resource type="Texture2D" uid="uid://0kgwngbngwh" path="res://Assets/Mobs/TrollGSN.svg" id="1_mqx64"]
+[ext_resource type="PackedScene" uid="uid://dec2i8wmuf6ur" path="res://Scenes/Models/Generic/Troll.tscn" id="2_6eb1c"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_7augl"]
+[ext_resource type="Script" uid="uid://4mfc0j1jlnuy" path="res://Scripts/Predicates/UnitPredicate.gd" id="3_nkayo"]
 
 [sub_resource type="GDScript" id="GDScript_mqx64"]
 script/source = "extends Unit
@@ -32,12 +34,15 @@ name = "Troll1"
 id = "troll1"
 type = 1
 cost = {
-0: 2
+0: 2,
+3: 1
 }
 card_image = ExtResource("1_mqx64")
 description = "This is a troll that slows enemies"
-unit_type = 2
+unit_type = 3
 health = 3
-speed = 8
+speed = 2
+model = ExtResource("2_6eb1c")
 custom_script = SubResource("GDScript_mqx64")
+play_predicate = ExtResource("3_nkayo")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

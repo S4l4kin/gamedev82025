@@ -28,7 +28,7 @@ func generate_card(data:Card) -> PackedScene:
 		card.get_node("UnitType").text = GlobalEnums.UNIT_TYPES.keys()[data.unit_type]
 
 	#Only show cost in cards that actually use it 
-	if data.type != Card.CARD_TYPE.HQ:
+	if data.type != Card.CARD_TYPE.HQ or data.type != Card.CARD_TYPE.Feature:
 		var cost_node = card.get_node("Cost/Base")
 		card.get_node("Cost").show()
 		

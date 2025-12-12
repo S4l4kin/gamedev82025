@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dj13ebf5u2tmt"]
+[gd_scene load_steps=4 format=3 uid="uid://dt57t0sbcgwp0"]
 
 [ext_resource type="Script" uid="uid://bujesqlx6hrhx" path="res://Scripts/Renderer/RendererData.gd" id="1_hvegy"]
 [ext_resource type="Texture2D" uid="uid://q2eb8so3e75g" path="res://Assets/Mobs/FarmerGSN.svg" id="1_st5en"]

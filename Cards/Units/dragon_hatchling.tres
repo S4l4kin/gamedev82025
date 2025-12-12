@@ -1,14 +1,18 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://ddqitmmxx0il0"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://ddqitmmxx0il0"]
 
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_471vf"]
+[ext_resource type="Texture2D" uid="uid://myt4t4gafujp" path="res://Assets/Mobs/DragonGSN.svg" id="1_uwu51"]
 
 [resource]
 script = ExtResource("1_471vf")
 name = "Dragon Hatchling"
 id = "dragon_hatchling"
 type = 1
-cost = {}
-description = ""
+cost = {
+0: 1
+}
+card_image = ExtResource("1_uwu51")
+description = "Baby! Look how cute!"
 unit_type = 1
 health = 1
 speed = 1

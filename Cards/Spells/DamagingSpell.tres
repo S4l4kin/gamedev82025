@@ -10,7 +10,9 @@ script = ExtResource("4_yn6fl")
 name = "Damaging Potion"
 id = "damaging_potion"
 type = 3
-cost = {}
+cost = {
+2: 2
+}
 card_image = ExtResource("1_r3q13")
 description = "Deal 3 damage to a enemy unit"
 custom_script = ExtResource("2_ahj2w")
