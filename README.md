@@ -1,2 +1,25 @@
-# Game Dev 2025
+# Game Dev 2025 // Project Course in Game Development 2026
+## Ideas and topics discussed during meetings:
+Factions:  
+<br/>Vegetable people (The aggro-deck)
+
+- Plant people.
+- Easily repopulates. Come from seeds. Home-soil is less potent so want to expand to more potent grounds.
+
+Medieval people/Crusaders (armour/weapon deck)
+
+- Want to spread their religion.
+- Equipment heavy (weak to begin with but uses armour/weapons).
+
+Feyfolk (status effect deck)
+
+- Faires, trolls, goblins, whisps.
+- Status effect heavy (sleep, stun, burn, poison, freeze, confusion).
+
+Neutral (not tied to any faction)
+
+- Domesticated animals/beasts (i.e. boards).
+- Dragons.
+
 # gamedev82025
+
