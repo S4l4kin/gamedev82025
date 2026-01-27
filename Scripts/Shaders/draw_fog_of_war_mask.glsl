@@ -13,14 +13,20 @@ layout(set = 0, binding = 1, std430) readonly buffer DataBuffer {
     bool seed;
 } draw_data;
 
+
+float easing(float dist){
+    return (draw_data.radius-dist) / 20;
+}
+
 // The code we want to execute in each invocation
 void main() {
     ivec2 uv = ivec2(gl_GlobalInvocationID.xy);
     float dist = distance(uv, vec2(draw_data.x, draw_data.y));
     vec4 color = imageLoad(target_mask, uv);
-    if (dist < draw_data.radius){
-        if(color.a == 0.0)
-            imageStore(target_mask, uv, vec4(1));
+    float alpha = min(easing(dist), 1);
+    if (dist <= draw_data.radius){
+        if (alpha > color.a)
+            imageStore(target_mask, uv, vec4(1,1,1,alpha));
     if (dist < 1 && draw_data.seed)
         imageStore(target_mask, uv, vec4(0,0,0,1));
 

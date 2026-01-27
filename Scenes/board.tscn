@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dkngb58gnxqv6"]
+[gd_scene load_steps=31 format=3 uid="uid://dkngb58gnxqv6"]
 
 [ext_resource type="Script" uid="uid://cd31ytfr0anly" path="res://Scripts/Managers/BoardManager.gd" id="1_p0ybc"]
 [ext_resource type="Script" uid="uid://4d2d2uwlm08j" path="res://Scripts/Outline.gd" id="2_d7frl"]
@@ -12,6 +12,9 @@
 [ext_resource type="Script" uid="uid://ce7fgb7slwf3v" path="res://Scripts/billboard_area_3d.gd" id="7_nk23n"]
 [ext_resource type="PackedScene" uid="uid://5fo83kxhoywh" path="res://Scenes/Bases/CardBase.tscn" id="8_5qf1t"]
 [ext_resource type="Script" uid="uid://dk6drtfmanu8f" path="res://Scripts/ViewpoertSyncer.gd" id="10_upw65"]
+[ext_resource type="Script" uid="uid://yg08mfwbbb3c" path="res://Scripts/FogOfWarVisualizer.gd" id="12_vjyv8"]
+[ext_resource type="Texture2D" uid="uid://dpw2lg3yq4xhd" path="res://Assets/test_clouds.svg" id="13_iehwj"]
+[ext_resource type="Shader" uid="uid://b2tnv8lqsfxpk" path="res://Scripts/Shaders/fog_of_war_clouds.gdshader" id="14_hm3vq"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_vjsom"]
 viewport_path = NodePath("Shaders/Outline/OutlineViewport")
@@ -57,9 +60,33 @@ resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_upw65")
 shader_parameter/smoothing = 0.0
-shader_parameter/fogColor = Color(0.3, 0.3, 0.3, 1)
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/cell_amount = 20
+shader_parameter/period = Vector2(5, 10)
+shader_parameter/wind_dir1 = Vector2(1, 0.5)
+shader_parameter/wind_dir2 = Vector2(-1, 0)
+shader_parameter/wind_strength = 500.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_vjsom"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hm3vq"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("14_hm3vq")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/sprite_amount = 0
+shader_parameter/transparency = 0.5
+
+[sub_resource type="MultiMesh" id="MultiMesh_vjyv8"]
+transform_format = 1
+use_colors = true
+use_custom_data = true
+
+[sub_resource type="Gradient" id="Gradient_iehwj"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7iy1p"]
+gradient = SubResource("Gradient_iehwj")
 
 [node name="Board" type="Node3D"]
 script = ExtResource("1_p0ybc")
@@ -280,16 +307,42 @@ current = true
 script = ExtResource("2_psm7c")
 keyboard_speed = 10.0
 
-[node name="Fog" type="MeshInstance3D" parent="."]
+[node name="FogOfWar" type="Node" parent="."]
+script = ExtResource("3_d7frl")
+pixel_resolution = 1440000
+fog_speed = 0.9
+
+[node name="Visualizer" type="Node" parent="FogOfWar"]
+script = ExtResource("12_vjyv8")
+fog_color = Color(0.81, 0.81, 0.81, 1)
+density = 0.5
+clouds_texture = ExtResource("13_iehwj")
+texure_height = 38
+cloud_size = Vector2(3, 1.5)
+cloud_speed = 0.2
+
+[node name="Quad" type="MeshInstance3D" parent="FogOfWar/Visualizer"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 layers = 7
 material_override = SubResource("ShaderMaterial_d7frl")
 mesh = SubResource("QuadMesh_vjsom")
-script = ExtResource("3_d7frl")
-pixel_resolution = 1440000
-fog_speed = 0.99
+skeleton = NodePath("../../..")
 
-[node name="UpdateTimer" type="Timer" parent="Fog"]
+[node name="Clouds" type="MultiMeshInstance3D" parent="FogOfWar/Visualizer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+layers = 7
+sorting_offset = 1.0
+material_override = SubResource("ShaderMaterial_hm3vq")
+multimesh = SubResource("MultiMesh_vjyv8")
+
+[node name="TextureRect" type="TextureRect" parent="FogOfWar/Visualizer"]
+visible = false
+offset_right = 420.0
+offset_bottom = 286.0
+texture = SubResource("GradientTexture1D_7iy1p")
+expand_mode = 5
+
+[node name="UpdateTimer" type="Timer" parent="FogOfWar"]
 wait_time = 0.00999999999999999
 ignore_time_scale = true
 

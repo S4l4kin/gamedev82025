@@ -1,6 +1,9 @@
 @tool
-extends MeshInstance3D
+extends Node
 class_name FogOfWar
+
+
+var fow_texture : Texture
 
 @onready var board: BoardManager = GameManager.board_manager
 
@@ -16,6 +19,8 @@ var current_texture : ImageTexture
 
 var target_mask : Image
 
+@onready var visualizer = $Visualizer
+
 var circles : Array[Dictionary]
 @onready var timer : Timer = $UpdateTimer
 #Configures so that the cameras bounding box is point a and point b
@@ -23,7 +28,6 @@ func set_bounding_box(a: Vector3, b: Vector3):
 
 	var dx : float = abs(b.x-a.x)
 	var dz : float = abs(b.z-a.z)
-	print(b)
 	bounding_box.position = Vector2(a.x, a.z)
 	bounding_box.end = Vector2(b.x, b.z)
 
@@ -32,19 +36,13 @@ func set_bounding_box(a: Vector3, b: Vector3):
 	
 	resolution = Vector2i(resolution_x, resolution_y)
 	pixel_density = resolution_x / dx	
-	mesh = QuadMesh.new()
 	
-	mesh.size.x = dx
-	mesh.size.y = dz
-	mesh.center_offset.x = mesh.size.x/2
-	mesh.center_offset.y = -mesh.size.y/2
-
-	global_position = a
 	
 	current_mask = Image.create_empty(resolution_x,resolution_y, false, Image.FORMAT_RGBAF)
 	target_mask = Image.create_empty(resolution_x,resolution_y, false, Image.FORMAT_RGBAF)
 
 	set_rendering_device()
+	visualizer.set_size(bounding_box)
 	
 
 var update_fog_mask_shader := RID()
@@ -98,7 +96,12 @@ func set_rendering_device():
 
 	var texture_rd = Texture2DRD.new()
 	texture_rd.texture_rd_rid = current_mask_texture
-	self.material_override.set_shader_parameter("mask", texture_rd)
+	fow_texture = texture_rd
+
+
+	#var rdt = Texture2DRD.new()
+	#rdt.texture_rd_rid = target_mask_texture
+	#$Visualizer/TextureRect.texture = rdt
 	
 func start_updating():
 

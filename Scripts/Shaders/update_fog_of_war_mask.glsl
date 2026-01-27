@@ -8,6 +8,8 @@ layout(local_size_x = 32, local_size_y = 32, local_size_z = 1) in;
 layout(set = 0, binding = 0, rgba32f) readonly uniform image2D target_mask;
 layout(set = 0, binding = 1, rgba32f) uniform image2D current_mask;
 
+
+
 // The code we want to execute in each invocation
 void main() {
     ivec2 uv = ivec2(gl_GlobalInvocationID.xy);
@@ -25,11 +27,11 @@ void main() {
             if (neighbour_color.a >= 0.01)
                 flag = true;
         }
-        if (flag || (target_color.r == 0 && target_color.a != 0.0 && current_color.a == 0)) {
-            imageStore(current_mask, uv, vec4(1,1,1,1));
+        if (flag || (target_color.r == 0 && target_color.a != current_color.a)) {
+            imageStore(current_mask, uv, vec4(1,1,1,min(target_color.a, 0.1)));
         }
    }
-   if (current_color.a > 0 && current_color.a < 1)
-    imageStore(current_mask, uv, vec4(1,1,1,current_color.a+0.005));
+   if (current_color.a > 0 && current_color.a < target_color.a)
+    imageStore(current_mask, uv, vec4(1,1,1, min(target_color.a, current_color.a+0.1)));
     //imageStore(current_mask, uv, target_color);
 }

@@ -21,7 +21,7 @@ var current_hovered_hex : Vector2i
 @onready var actor_actions: ActorActions = $Actions
 
 @onready var outline : Outline = $"Shaders/Outline"
-@onready var fog : FogOfWar = $"Fog"
+@onready var fog : FogOfWar = $"FogOfWar"
 
 var hex_selector : HexSelect
 
