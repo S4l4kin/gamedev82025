@@ -212,7 +212,7 @@ func draw_onto_fog_mask(pos: Vector2, radius: float, seed: bool):
 
 func reveal_hex(x: int, y:int):
 	var hex = board.get_hex(x, y)
-	var hex_position = hex.tile.global_position
+	var hex_position = hex.position
 
 	
 	var uv = world_space_to_pixel_space(Vector2(hex_position.x, hex_position.z))

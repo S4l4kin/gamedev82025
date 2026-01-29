@@ -7,19 +7,28 @@ var layers : Dictionary[String, Dictionary] = {}
 
 var empty_multi_mesh : MultiMesh
 var mesh_material : Material
+
+var grid_height : int
+var grid_width : int
+
 func generate_empty_mulit_mesh():
 
 	empty_multi_mesh = MultiMesh.new()
 	empty_multi_mesh.mesh = preload("res://Assets/Models/Hex/HexTile.res")
 	empty_multi_mesh.use_colors = true
 	empty_multi_mesh.transform_format = MultiMesh.TRANSFORM_3D
-	empty_multi_mesh.instance_count = board.grid_width * board.grid_height
+	grid_width = board.grid_end.x - board.grid_start.x
+	grid_height = board.grid_end.y - board.grid_start.y
+	empty_multi_mesh.instance_count = grid_height * grid_width
 	print("Generating multimesh")
-	for coord in board.hexes.keys():
-		var mesh_index = coord.y*board.grid_width + coord.x
-		var tile = board.hexes[coord].tile
-		empty_multi_mesh.set_instance_transform(mesh_index, tile.global_transform)
-		empty_multi_mesh.set_instance_color(mesh_index, Color.TRANSPARENT)
+	for x in grid_width:
+		for y in grid_height:
+			var coord = board.grid_start + Vector2i(x,y)
+			var tile_pos = board.tile_generator.get_tile_pos(coord.x, coord.y)
+			
+			var mesh_index = (coord.y-board.grid_start.y)*grid_width + (coord.x-board.grid_start.x)
+			empty_multi_mesh.set_instance_transform(mesh_index, Transform3D(HexGridUtil.get_tile_basis(board.orientation), tile_pos))
+			empty_multi_mesh.set_instance_color(mesh_index, Color.TRANSPARENT)
 	
 	mesh_material = StandardMaterial3D.new()
 	mesh_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
@@ -104,7 +113,8 @@ func set_hex_outline(layer_name:String, hex:Hex, color:Color):
 func set_hex_coord_outline(layer_name:String, coord:Vector2i, color:Color):
 	if not layers.keys().has(layer_name):
 		add_layer(layer_name)
-	var mesh_index = coord.y*board.grid_width + coord.x
+	
+	var mesh_index = (coord.y-board.grid_start.y)*grid_width + (coord.x-board.grid_start.x)
 	var layer = layers[layer_name]
 	layer.multi_mesh.set_instance_color(mesh_index, color)
 

@@ -27,8 +27,8 @@ func _ready():
 	for hex in neighbours:
 		var origin_cube = board.coord_to_cube(origin.x, origin.y)
 		var hex_cube = board.coord_to_cube(hex.coord.x, hex.coord.y)
-		if cube_distance(origin_cube, hex_cube) <= max_range and cube_distance(origin_cube, hex_cube) >= min_range:
-			accepted_distance.append(hex.coord)
+		if HexGridUtil.cube_distance(origin_cube, hex_cube) <= max_range and HexGridUtil.cube_distance(origin_cube, hex_cube) >= min_range:
+			accepted_distance.append(hex.coord) 
 	
 	set_accepted_distance_color(Color.BLUE)
 
@@ -69,10 +69,3 @@ func get_distant_neighbours(check_neihbours: Array[Hex], distance: int, all_neig
 func set_accepted_distance_color(color: Color):
 	for coord in accepted_distance:
 		outline.set_hex_coord_outline("ui", coord, color)
-
-func cube_subtract(a, b):
-	return {"q": a.q - b.q, "r": a.r - b.r, "s": a.s - b.s}
-
-func cube_distance(a, b):
-	var vec = cube_subtract(a, b)
-	return (abs(vec.q) + abs(vec.r) + abs(vec.s)) / 2

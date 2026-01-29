@@ -6,14 +6,17 @@ class_name BoardManager
 var hexes : Dictionary[Vector2i, Hex] = {}
 
 @export var conqured_hexes : Dictionary[Vector2i, String]
+@export var world_seed : String
 var player_colors : Dictionary[String, Color]
 
-@export var orientation : BoardGenerator.HEX_ROTATION
-@export var grid_width : int = 8
-@export var grid_height : int = 8
+@export var orientation : TileGenerator.HEX_ROTATION
+@export var land_amount : int = 400
+var grid_start : Vector2i
+var grid_end : Vector2i
 @export var grid_scale : float = 1
 
-@onready var board_generator : BoardGenerator = BoardGenerator.new(self, orientation, grid_scale)
+var tile_generator : TileGenerator
+var world_gen : WorldGen
 @onready var hover_timer : Timer = $HoverTimer
 @onready var tiles = $Tiles
 var current_hovered_hex : Vector2i
@@ -30,26 +33,33 @@ signal hex_hovered (x:int, y:int)
 signal mouse_entered_hex (x:int, y:int)
 signal mouse_exited_hex (x:int, y:int)
 
-func init_tiles():
-	for x in grid_width:
-		for y in grid_height:
-			var hex_instance = board_generator.create_hex_tile(x,y)
-			tiles.add_child(hex_instance)
-			var hex = Hex.new()
-			var coord = Vector2i(x,y)
-			hex.passable = true
-			hex.coord = coord
-			hex.tile = hex_instance
+			
 
-			hexes[coord] = hex
 
 func set_conqured_hex_colors(players):
 	for player in players:
 		player_colors[player.name] = Color(player.color.r, player.color.g, player.color.b)
 
+func generate_world():
+	world_gen = WorldGen.new(hash(world_seed), BigLandmassGenerator.new(land_amount), [])
+	var world_data = world_gen.generate_world()
+	var hex_data = world_data.hex_data
+	tile_generator = TileGenerator.new(self, tiles ,orientation, grid_scale, hex_data)
+
+	grid_start = world_data.grid_start
+	grid_end = world_data.grid_end
+
+	#init_tiles()
+
+	for coord in hex_data:
+		hexes[coord] = tile_generator.create_hex_tile(coord.x, coord.y)
 
 func _ready():
-	init_tiles()
+	if world_seed.is_empty():
+		randomize()
+		world_seed = str(randi())
+	
+	generate_world()
 	GameManager.network.connect("recieved_message", handle_network)
 	GameManager.connect("turn_end", attack_structures)
 	connect("mouse_exited_hex", (func (_x, _y): current_hovered_hex = Vector2i(-1,-1)))
@@ -61,40 +71,34 @@ func _ready():
 	outline.add_layer("ui", 1.25)
 
 	var padding :float = 2
-	
-	fog.set_bounding_box(-Vector3(1,0,1)*padding, get_hex(grid_width-1,grid_height-1).tile.position+Vector3(1,0,1)*padding)
-	
-	
-	var start_hex = get_hex(randi_range(0, grid_width-1), randi_range(0, grid_height-1))
-	fog.reveal_coord(start_hex.tile.global_position, 6)
-	var camera = get_viewport().get_camera_3d()
-	camera.global_position = Vector3(start_hex.tile.global_position.x, camera.global_position.y,start_hex.tile.global_position.z)
+	var top_left_pos = get_hex(grid_start.x, grid_start.y).position-Vector3(1,0,1)*padding
+	var bottom_right_pos = get_hex(grid_end.x, grid_end.y).position+Vector3(1,0,1)*padding
+	fog.set_bounding_box(top_left_pos, bottom_right_pos)
 	fog.start_updating()
-	call_deferred("test_ore")
 	
 
-func test_ore():
-	var rng = RandomNumberGenerator.new()
-	rng.seed = 137
-	var red_ore = ResourceLoader.load("res://Features/red_ore.tres", "Feature")
-	var yellow_ore = ResourceLoader.load("res://Features/yellow_ore.tres", "Feature")
-	var orange_ore = ResourceLoader.load("res://Features/orange_ore.tres", "Feature")
-	for i in 3:
-		var hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
-		print(hex)
-		while hex.feature:
-			hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
-		hex.feature = red_ore
-	for i in 3:
-		var hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
-		while hex.feature:
-			hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
-		hex.feature = yellow_ore
-	for i in 6:
-		var hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
-		while hex.feature:
-			hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
-		hex.feature = orange_ore
+#func test_ore():
+#	var rng = RandomNumberGenerator.new()
+#	rng.seed = 137
+#	var red_ore = ResourceLoader.load("res://Features/red_ore.tres", "Feature")
+#	var yellow_ore = ResourceLoader.load("res://Features/yellow_ore.tres", "Feature")
+#	var orange_ore = ResourceLoader.load("res://Features/orange_ore.tres", "Feature")
+#	for i in 3:
+#		var hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+#		print(hex)
+#		while hex.feature:
+#			hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+#		hex.feature = red_ore
+#	for i in 3:
+#		var hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+#		while hex.feature:
+#			hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+#		hex.feature = yellow_ore
+#	for i in 6:
+#		var hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+#		while hex.feature:
+#			hex = get_hex(rng.randi_range(1, grid_width-1),rng.randi_range(1, grid_height-1))
+#		hex.feature = orange_ore
 
 func handle_network(data):
 	if (data.type == "create_actor"):
@@ -153,8 +157,7 @@ func select_hex(x:int ,y:int):
 
 func get_hex(x:int, y:int) -> Hex:
 	var hex : Hex = null
-	if x >= 0 and x < grid_width and y >= 0 and y < grid_height:
-
+	if hexes.has(Vector2i(x,y)):
 		hex = hexes[Vector2i(x,y)]
 	return hex
 
@@ -165,42 +168,14 @@ func add_hex_selector(selector: HexSelect):
 	inspect_card.get_node("3DControl").active = false
 	actor_actions.get_node("3DControl").active = false
 
-func cube_to_coord(q:int,r:int) -> Vector2i:
-	var parity : int
-	var col :int
-	var row : int
-	if orientation == BoardGenerator.HEX_ROTATION.Pointy_Top:
-		parity = r&1
-		col = q + (r + parity) / 2
-		row = r
-	else:
-		parity = q&1
-		col = q
-		row = r + (q + parity) / 2
-	return Vector2i(col, row)
 
-func coord_to_cube(x:int,y:int):
-	var parity : int
-	var q :int
-	var r : int
-	if orientation == BoardGenerator.HEX_ROTATION.Pointy_Top:
-		parity = y&1
-		q = x - (y + parity) / 2
-		r = y
-	else:
-		parity = x&1
-		q = x	
-		r = y - (x + parity) / 2
-	return {"q":q, "r":r, "s":-q-r}
 
 
 func get_neighbours(x:int, y:int) -> Array[Hex]:
 	var neighbours : Array[Hex] = []
-	var cube = coord_to_cube(x,y)
-	var cube_neighbours = [{"q":cube.q+1,"r":cube.r},{"q":cube.q+1,"r":cube.r-1},{"q":cube.q,"r":cube.r-1},{"q":cube.q-1,"r":cube.r},{"q":cube.q-1,"r":cube.r+1},{"q":cube.q,"r":cube.r+1}]
+	var neighbour_coords = HexGridUtil.get_neighbours_coord(x, y, orientation)
 
-	for neighbour in cube_neighbours:
-		var coord = cube_to_coord(neighbour.q,neighbour.r)
+	for coord in neighbour_coords:
 		var hex = get_hex(coord.x,coord.y)
 		if hex != null:
 			neighbours.append(hex)
@@ -270,7 +245,7 @@ func create_actor(coord: Vector2i, actor:Card) -> Actor:
 		hex.unit = actor_node
 	if actor_node is Structure:
 		hex.structure = actor_node
-	actor_node.global_position = hex.tile.global_position
+	actor_node.global_position = hex.position
 	return actor_node
 
 func remove_actor(actor: Actor):

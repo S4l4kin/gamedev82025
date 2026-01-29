@@ -7,7 +7,8 @@ func on_play():
 	var neighbours = GameManager.board_manager.get_neighbours(x,y)
 	conquring_hexes.append(Vector2i(x,y))
 	for neighbour : Hex in neighbours:
-		conquring_hexes.append(neighbour.coord)
+		if neighbour.tile:
+			conquring_hexes.append(neighbour.coord)
 	conqure_hexes()
 
 func on_death():

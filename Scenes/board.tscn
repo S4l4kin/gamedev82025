@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dkngb58gnxqv6"]
+[gd_scene load_steps=32 format=3 uid="uid://dkngb58gnxqv6"]
 
 [ext_resource type="Script" uid="uid://cd31ytfr0anly" path="res://Scripts/Managers/BoardManager.gd" id="1_p0ybc"]
 [ext_resource type="Script" uid="uid://4d2d2uwlm08j" path="res://Scripts/Outline.gd" id="2_d7frl"]
@@ -55,6 +55,10 @@ billboard_keep_scale = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_r6t13"]
 size = Vector3(2, 3.3, 0.138)
 
+[sub_resource type="Environment" id="Environment_iehwj"]
+background_mode = 1
+background_color = Color(0, 0.58459604, 0.9081324, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d7frl"]
 resource_local_to_scene = true
 render_priority = 0
@@ -90,8 +94,7 @@ gradient = SubResource("Gradient_iehwj")
 
 [node name="Board" type="Node3D"]
 script = ExtResource("1_p0ybc")
-grid_width = 32
-grid_height = 32
+land_amount = 1200
 
 [node name="Tiles" type="Node3D" parent="."]
 
@@ -303,6 +306,7 @@ one_shot = true
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 7, 0)
 cull_mask = 1
+environment = SubResource("Environment_iehwj")
 current = true
 script = ExtResource("2_psm7c")
 keyboard_speed = 10.0
@@ -312,7 +316,8 @@ script = ExtResource("3_d7frl")
 pixel_resolution = 1440000
 fog_speed = 0.9
 
-[node name="Visualizer" type="Node" parent="FogOfWar"]
+[node name="Visualizer" type="Node3D" parent="FogOfWar"]
+visible = false
 script = ExtResource("12_vjyv8")
 fog_color = Color(0.81, 0.81, 0.81, 1)
 density = 0.5
