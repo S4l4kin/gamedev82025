@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://p7gb7lmqorgi"]
 
 [ext_resource type="Texture2D" uid="uid://cyulrp2pu1k2a" path="res://Assets/Mobs/CardPics/GoblinPic.svg" id="1_qi20q"]
-[ext_resource type="PackedScene" uid="uid://dt57t0sbcgwp0" path="res://Scenes/Models/Generic/Farmer.tscn" id="2_ge1an"]
+[ext_resource type="PackedScene" uid="uid://dj13ebf5u2tmt" path="res://Scenes/Models/Generic/Farmer.tscn" id="2_ge1an"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_qi20q"]
 [ext_resource type="Script" uid="uid://4mfc0j1jlnuy" path="res://Scripts/Predicates/UnitPredicate.gd" id="3_ge1an"]
 
