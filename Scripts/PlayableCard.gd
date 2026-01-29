@@ -33,7 +33,7 @@ func hover_start():
 	if not dragging and not reading:
 		var tween = create_tween()
 		tween.tween_property($Card, "position", Vector2.UP * 10, 0.2)
-		audiomanager.play_global_sfx("hover_card")
+		AudioManager.play_global_sfx("hover_card")
 
 func hover_stop():
 	if not dragging:
@@ -119,13 +119,13 @@ func play_card ():
 
 	match card.type:
 		Card.CARD_TYPE.HQ:
-			audiomanager.play_3d_sfx_for_all("play_HQ", Vector3(0,0,0))
+			AudioManager.play_3d_sfx_for_all("play_HQ", Vector3(0,0,0))
 		Card.CARD_TYPE.Spell:
-			audiomanager.play_3d_sfx_for_all("play_spell", Vector3(0,0,0))
+			AudioManager.play_3d_sfx_for_all("play_spell", Vector3(0,0,0))
 		Card.CARD_TYPE.Structure:
-			audiomanager.play_3d_sfx_for_all("play_structure", Vector3(0,0,0))
+			AudioManager.play_3d_sfx_for_all("play_structure", Vector3(0,0,0))
 		Card.CARD_TYPE.Unit:
-			audiomanager.play_3d_sfx_for_all("play_unit", Vector3(0,0,0))
+			AudioManager.play_3d_sfx_for_all("play_unit", Vector3(0,0,0))
 		Card.CARD_TYPE.Equipment:
 			pass
 

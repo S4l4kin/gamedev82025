@@ -40,7 +40,7 @@ func start_game():
 			turn_order.append(player.name)
 		turn_order.shuffle()
 		network.call_deferred("send_messages", {"type":"next_turn"})
-	Audiomanager.play_music("res://Assets/Resources/Audio/Music/4x Card Game Theme.ogg")
+	AudioManager.play_music("res://Assets/Resources/Audio/Music/4x Card Game Theme.ogg")
 
 func update_players(updated_players):
 	players = updated_players
@@ -58,8 +58,8 @@ func remove_player(player):
 		network.send_messages({"type":"announce_victor","victor":turn_order[0]})
 
 func announce_victor(victor):
-	audiomanager.stop_music()
-	audiomanager.play_global_sfx("game_win")
+	AudioManager.stop_music()
+	AudioManager.play_global_sfx("game_win")
 	var victor_label = Label.new()
 	victor_label.set_anchors_preset(Control.PRESET_FULL_RECT)
 	victor_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -109,7 +109,7 @@ func handle_network(data):
 		
 	if data.type == "play_3d_sfx":
 		var pos = Vector3(data.pos.x, data.pos.y, data.pos.z)
-		audiomanager.play_3d_sfx(data.key, pos, data.vol)
+		AudioManager.play_3d_sfx(data.key, pos, data.vol)
 	
 func get_players():
 	return players

@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8ihcs1i62c0n"]
+[gd_scene load_steps=7 format=3 uid="uid://c8ihcs1i62c0n"]
 
-[ext_resource type="Script" uid="uid://dejcugbgxrgm2" path="res://Scripts/UI/MainUITest.gd" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://45jltglhyn6r" path="res://Scripts/UI/MainMenu.gd" id="1_feb5d"]
 [ext_resource type="Texture2D" uid="uid://cfdoc3whl4xot" path="res://Assets/MainMenuBackground.png" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://cy7qn8dd8se4l" path="res://Scripts/UI/StartGameMenu.gd" id="2_fc0e3"]
+[ext_resource type="Script" uid="uid://ch18yy68tfr78" path="res://Scripts/UI/LobbyMenu.gd" id="3_7jktm"]
 [ext_resource type="Texture2D" uid="uid://uml7w7yt1hhs" path="res://Assets/button.png" id="3_feb5d"]
+[ext_resource type="Script" uid="uid://b1ddqxxgvwj2b" path="res://Scripts/UI/Menu.gd" id="6_ryrav"]
 
-[node name="Start UI" type="Control"]
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_80nbo")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -16,35 +18,116 @@ offset_bottom = 648.0
 texture = ExtResource("2_e2o6t")
 expand_mode = 2
 
-[node name="Join Menu" type="Control" parent="."]
+[node name="Main menu" type="Control" parent="." node_paths=PackedStringArray("menu_transitions")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_feb5d")
+menu_transitions = {
+NodePath("VBoxContainer/Start Game"): NodePath("../Join Menu"),
+NodePath("VBoxContainer/Options"): NodePath("../Options"),
+NodePath("VBoxContainer/Credits"): NodePath("../Credits")
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 465.0
+offset_top = 189.0
+offset_right = 1420.0
+offset_bottom = 1035.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Start Game" type="TextureButton" parent="Main menu/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_feb5d")
+
+[node name="CenterContainer" type="CenterContainer" parent="Main menu/VBoxContainer/Start Game"]
+layout_mode = 0
+offset_right = 963.3334
+offset_bottom = 186.66669
+
+[node name="Start Game text" type="Label" parent="Main menu/VBoxContainer/Start Game/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Start Game"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Options" type="TextureButton" parent="Main menu/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_feb5d")
+
+[node name="CenterContainer" type="CenterContainer" parent="Main menu/VBoxContainer/Options"]
+layout_mode = 0
+offset_right = 963.3334
+offset_bottom = 186.66669
+
+[node name="Options text" type="Label" parent="Main menu/VBoxContainer/Options/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Credits" type="TextureButton" parent="Main menu/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_feb5d")
+
+[node name="CenterContainer" type="CenterContainer" parent="Main menu/VBoxContainer/Credits"]
+layout_mode = 0
+offset_right = 963.3334
+offset_bottom = 186.66669
+
+[node name="Credits text" type="Label" parent="Main menu/VBoxContainer/Credits/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Quit" type="TextureButton" parent="Main menu/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_feb5d")
+
+[node name="CenterContainer" type="CenterContainer" parent="Main menu/VBoxContainer/Quit"]
+layout_mode = 0
+offset_right = 963.3334
+offset_bottom = 186.66669
+
+[node name="Quit text" type="Label" parent="Main menu/VBoxContainer/Quit/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Join Menu" type="Control" parent="." node_paths=PackedStringArray("lobby_menu", "menu_transitions")]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="HostButton" type="Button" parent="Join Menu"]
-layout_mode = 0
-offset_left = 704.0
-offset_top = 254.0
-offset_right = 798.0
-offset_bottom = 285.0
-text = "Host Game"
-
-[node name="JoinButton" type="Button" parent="Join Menu"]
-layout_mode = 0
-offset_left = 708.0
-offset_top = 291.0
-offset_right = 795.0
-offset_bottom = 322.0
-text = "Join Game"
+script = ExtResource("2_fc0e3")
+lobby_menu = NodePath("../Lobby")
+menu_transitions = {
+NodePath("Buttons2/Back"): NodePath("../Main menu")
+}
 
 [node name="Options" type="VBoxContainer" parent="Join Menu"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 0
-offset_left = 427.0
-offset_top = 227.0
-offset_right = 677.0
-offset_bottom = 363.0
+offset_left = 473.0
+offset_top = 240.0
+offset_right = 723.0
+offset_bottom = 376.0
 metadata/_edit_group_ = true
 
 [node name="Name" type="LineEdit" parent="Join Menu/Options"]
@@ -75,18 +158,103 @@ layout_mode = 2
 text = "4444"
 placeholder_text = "Port"
 
+[node name="Buttons" type="VBoxContainer" parent="Join Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 433.0
+offset_top = 364.0
+offset_right = 1388.0
+offset_bottom = 772.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 30
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Host" type="TextureButton" parent="Join Menu/Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("3_feb5d")
+
+[node name="CenterContainer" type="CenterContainer" parent="Join Menu/Buttons/Host"]
+layout_mode = 0
+offset_right = 963.3334
+offset_bottom = 186.66669
+
+[node name="Label" type="Label" parent="Join Menu/Buttons/Host/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Host Game"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Join" type="TextureButton" parent="Join Menu/Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("3_feb5d")
+
+[node name="CenterContainer" type="CenterContainer" parent="Join Menu/Buttons/Join"]
+layout_mode = 0
+offset_right = 963.3334
+offset_bottom = 186.66669
+
+[node name="Label" type="Label" parent="Join Menu/Buttons/Join/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Join Game"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Buttons2" type="VBoxContainer" parent="Join Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 235.0
+offset_top = 561.0
+offset_right = 1190.0
+offset_bottom = 750.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 30
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Back" type="TextureButton" parent="Join Menu/Buttons2"]
+layout_mode = 2
+texture_normal = ExtResource("3_feb5d")
+
+[node name="CenterContainer" type="CenterContainer" parent="Join Menu/Buttons2/Back"]
+layout_mode = 0
+offset_right = 963.3334
+offset_bottom = 186.66669
+
+[node name="Label" type="Label" parent="Join Menu/Buttons2/Back/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 3
+
 [node name="Lobby" type="Control" parent="."]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("3_7jktm")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Lobby"]
 layout_mode = 0
-offset_left = 147.0
-offset_top = 65.0
-offset_right = 392.0
-offset_bottom = 566.0
+offset_left = 460.0
+offset_top = 74.0
+offset_right = 705.0
+offset_bottom = 575.0
 horizontal_scroll_mode = 3
 metadata/_edit_group_ = true
 
@@ -106,50 +274,159 @@ offset_right = 690.0
 offset_bottom = 227.0
 text = "Start Game"
 
-[node name="Main menu" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Main menu"]
+[node name="Buttons2" type="VBoxContainer" parent="Lobby"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 465.0
-offset_top = 189.0
-offset_right = 1420.0
-offset_bottom = 1035.0
+offset_left = 235.0
+offset_top = 561.0
+offset_right = 1190.0
+offset_bottom = 750.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.3, 0.3)
 theme_override_constants/separation = 30
 alignment = 1
+metadata/_edit_group_ = true
 
-[node name="Start Game" type="TextureButton" parent="Main menu/VBoxContainer"]
+[node name="Back" type="TextureButton" parent="Lobby/Buttons2"]
 layout_mode = 2
 texture_normal = ExtResource("3_feb5d")
 
-[node name="Start Game text" type="Label" parent="Main menu/VBoxContainer/Start Game"]
+[node name="CenterContainer" type="CenterContainer" parent="Lobby/Buttons2/Back"]
 layout_mode = 0
-offset_left = 260.0
-offset_top = 43.333336
-offset_right = 696.0
-offset_bottom = 266.33334
+offset_right = 963.3334
+offset_bottom = 186.66669
+
+[node name="Label" type="Label" parent="Lobby/Buttons2/Back/CenterContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 80
-text = "Start Game
-"
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 3
 
-[node name="Options" type="TextureButton" parent="Main menu/VBoxContainer"]
+[node name="Buttons" type="VBoxContainer" parent="Lobby"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 592.0
+offset_top = 562.0
+offset_right = 1547.0
+offset_bottom = 751.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 30
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Start" type="TextureButton" parent="Lobby/Buttons"]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("3_feb5d")
 
-[node name="Credits" type="TextureButton" parent="Main menu/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Lobby/Buttons/Start"]
+layout_mode = 0
+offset_right = 963.3334
+offset_bottom = 186.66669
+
+[node name="Label" type="Label" parent="Lobby/Buttons/Start/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Options" type="Control" parent="." node_paths=PackedStringArray("menu_transitions")]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_ryrav")
+menu_transitions = {
+NodePath("Buttons2/Back"): NodePath("../Main menu")
+}
+
+[node name="Buttons2" type="VBoxContainer" parent="Options"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 235.0
+offset_top = 561.0
+offset_right = 1190.0
+offset_bottom = 750.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 30
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Back" type="TextureButton" parent="Options/Buttons2"]
 layout_mode = 2
 texture_normal = ExtResource("3_feb5d")
 
-[node name="Quit game" type="TextureButton" parent="Main menu/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Options/Buttons2/Back"]
+layout_mode = 0
+offset_right = 963.3334
+offset_bottom = 186.66669
+
+[node name="Label" type="Label" parent="Options/Buttons2/Back/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Credits" type="Control" parent="." node_paths=PackedStringArray("menu_transitions")]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_ryrav")
+menu_transitions = {
+NodePath("Buttons2/Back"): NodePath("../Main menu")
+}
+
+[node name="Buttons2" type="VBoxContainer" parent="Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 235.0
+offset_top = 561.0
+offset_right = 1190.0
+offset_bottom = 750.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 30
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Back" type="TextureButton" parent="Credits/Buttons2"]
 layout_mode = 2
 texture_normal = ExtResource("3_feb5d")
+
+[node name="CenterContainer" type="CenterContainer" parent="Credits/Buttons2/Back"]
+layout_mode = 0
+offset_right = 963.3334
+offset_bottom = 186.66669
+
+[node name="Label" type="Label" parent="Credits/Buttons2/Back/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 3

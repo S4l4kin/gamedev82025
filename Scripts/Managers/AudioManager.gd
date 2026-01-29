@@ -1,7 +1,4 @@
 extends Node
-class_name AudioManager
-
-var instance: AudioManager
 
 @export var MusicPlayer: AudioStreamPlayer
 @export var GlobalSFXPlayer: AudioStreamPlayer
@@ -9,11 +6,6 @@ var instance: AudioManager
 
 var _sfx := {}
 
-func _enter_tree():	
-	if instance and instance != self:
-		queue_free()
-		return
-	instance = self
 
 func _ready():
 	if not MusicPlayer:
