@@ -271,11 +271,6 @@ func reveal_coastline(coastline: Array[Vector2i]):
 
 		uv_coastline_points.append(world_space_to_pixel_space(Vector2(pos.x, pos.z)))
 
-		var marker = MeshInstance3D.new()
-		add_child(marker)
-		marker.global_position = pos
-		marker.mesh = BoxMesh.new()
-
 
 	var start_fog_mask_shader_file := load("res://Scripts/Shaders/fog_of_war_draw_start_mask.glsl")
 	var start_fog_mask_shader_spirv: RDShaderSPIRV = start_fog_mask_shader_file.get_spirv()

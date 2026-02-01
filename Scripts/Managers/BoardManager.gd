@@ -55,17 +55,6 @@ func generate_world():
 	for coord in hex_data:
 		hexes[coord] = tile_generator.create_hex_tile(coord.x, coord.y)
 	
-	var color_step = 1. / len(world_data.coastline)
-	var weight : float = 0
-	var color1 : Color = Color.RED
-	var color2 : Color = Color.GREEN
-	for h in world_data.coastline:
-		var material := StandardMaterial3D.new()
-		material.albedo_color = color1.lerp(color2, weight)
-		var mesh = hexes[h].tile.mesh.duplicate()
-		mesh.surface_set_material(0, material)
-		hexes[h].tile.mesh = mesh
-		weight += color_step
 
 func _ready():
 	if world_seed.is_empty():
