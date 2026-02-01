@@ -51,6 +51,7 @@ func create_hex_tile(x:int, y:int) -> Hex:
 	#Create Tile object
 	if map_data[coord].biome != "sea":
 		var tile : Node3D = hex_tile.instantiate()
+		parent.add_child(tile)
 
 		tile.name = str(x) + " , " + str(y)
 
@@ -66,7 +67,6 @@ func create_hex_tile(x:int, y:int) -> Hex:
 		#	tile.rotation_degrees = Vector3(-90,90,0)
 			
 		tile.position = hex_position
-		parent.add_child(tile)
 		hex.tile = tile
 	
 	#Set Hex Data

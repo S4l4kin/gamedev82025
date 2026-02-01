@@ -1,11 +1,11 @@
 shader_type spatial;
 render_mode unshaded;
 
-uniform sampler2D mask : source_color, filter_nearest;
+uniform sampler2D mask : source_color;
 uniform float smoothing;
 uniform vec3 base_color : source_color;
 uniform vec3 color : source_color;
-
+uniform int bands;
 
 uniform int cell_amount = 2;
 uniform vec2 period = vec2(5., 1.);
@@ -51,9 +51,9 @@ float seamless_noise(vec2 uv, vec2 _period) {
 }
 
 float fbm(vec2 uv) {
-    int octaves = 6;
+    int octaves = 30;
     float amplitude = 0.5;
-    float frequency = 1.0;
+    float frequency = 0.75;
 	float value = 0.0;
 
     for(int i = 0; i < octaves; i++) {
@@ -64,9 +64,9 @@ float fbm(vec2 uv) {
     return value;
 }
 
-
-
-
+float quantize(float value){
+	return round(value * float(bands)) / float(bands);
+}
 
 void fragment() {
 	float alpha = texture(mask, UV).a;
@@ -76,6 +76,8 @@ void fragment() {
 		ALPHA = 0.;
 	else if(alpha > 0. && alpha > noise)
 		ALPHA = 1.- alpha;
-
-	ALBEDO = base_color.rgb * color.rgb * vec3(noise);
+	
+	vec3 fog_color = color.rgb * base_color.rgb;
+	
+	ALBEDO = mix(fog_color, quantize(noise) * fog_color, 0.55);
 }

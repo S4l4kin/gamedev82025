@@ -64,8 +64,9 @@ resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_upw65")
 shader_parameter/smoothing = 0.0
-shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/base_color = Color(0.99, 0.99, 0.99, 1)
 shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/bands = 15
 shader_parameter/cell_amount = 20
 shader_parameter/period = Vector2(5, 10)
 shader_parameter/wind_dir1 = Vector2(1, 0.5)
@@ -80,7 +81,7 @@ render_priority = 0
 shader = ExtResource("14_hm3vq")
 shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/sprite_amount = 0
-shader_parameter/transparency = 0.5
+shader_parameter/transparency = 0.9
 
 [sub_resource type="MultiMesh" id="MultiMesh_vjyv8"]
 transform_format = 1
@@ -317,10 +318,10 @@ pixel_resolution = 1440000
 fog_speed = 0.9
 
 [node name="Visualizer" type="Node3D" parent="FogOfWar"]
-visible = false
 script = ExtResource("12_vjyv8")
 fog_color = Color(0.81, 0.81, 0.81, 1)
 density = 0.5
+fog_height = 0.1
 clouds_texture = ExtResource("13_iehwj")
 texure_height = 38
 cloud_size = Vector2(3, 1.5)
@@ -342,10 +343,11 @@ multimesh = SubResource("MultiMesh_vjyv8")
 
 [node name="TextureRect" type="TextureRect" parent="FogOfWar/Visualizer"]
 visible = false
-offset_right = 420.0
-offset_bottom = 286.0
+offset_right = 1140.0
+offset_bottom = 640.0
 texture = SubResource("GradientTexture1D_7iy1p")
-expand_mode = 5
+expand_mode = 2
+stretch_mode = 4
 
 [node name="UpdateTimer" type="Timer" parent="FogOfWar"]
 wait_time = 0.00999999999999999

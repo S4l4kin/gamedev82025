@@ -44,6 +44,7 @@ func generate_world():
 	world_gen = WorldGen.new(hash(world_seed), BigLandmassGenerator.new(land_amount), [])
 	var world_data = world_gen.generate_world()
 	var hex_data = world_data.hex_data
+	
 	tile_generator = TileGenerator.new(self, tiles ,orientation, grid_scale, hex_data)
 
 	grid_start = world_data.grid_start
@@ -53,6 +54,18 @@ func generate_world():
 
 	for coord in hex_data:
 		hexes[coord] = tile_generator.create_hex_tile(coord.x, coord.y)
+	
+	var color_step = 1. / len(world_data.coastline)
+	var weight : float = 0
+	var color1 : Color = Color.RED
+	var color2 : Color = Color.GREEN
+	for h in world_data.coastline:
+		var material := StandardMaterial3D.new()
+		material.albedo_color = color1.lerp(color2, weight)
+		var mesh = hexes[h].tile.mesh.duplicate()
+		mesh.surface_set_material(0, material)
+		hexes[h].tile.mesh = mesh
+		weight += color_step
 
 func _ready():
 	if world_seed.is_empty():
@@ -70,10 +83,11 @@ func _ready():
 	outline.add_layer("conqured_hexes", 2)
 	outline.add_layer("ui", 1.25)
 
-	var padding :float = 2
-	var top_left_pos = get_hex(grid_start.x, grid_start.y).position-Vector3(1,0,1)*padding
-	var bottom_right_pos = get_hex(grid_end.x, grid_end.y).position+Vector3(1,0,1)*padding
+	var padding :float = 3
+	var top_left_pos = tile_generator.get_tile_pos(grid_start.x, grid_start.y)-Vector3(1,0,1)*padding
+	var bottom_right_pos = tile_generator.get_tile_pos(grid_end.x, grid_end.y)+Vector3(1,0,1)*padding
 	fog.set_bounding_box(top_left_pos, bottom_right_pos)
+	fog.reveal_coastline(world_gen.world_data.coastline)
 	fog.start_updating()
 	
 
