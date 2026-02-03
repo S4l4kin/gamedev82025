@@ -57,12 +57,15 @@ func generate_world():
 	
 
 func _ready():
-	if world_seed.is_empty():
-		randomize()
-		world_seed = str(randi())
 	
-	generate_world()
 	GameManager.network.connect("recieved_message", handle_network)
+	
+	if GameManager.network.is_host():
+		if world_seed.is_empty():
+			randomize()
+			world_seed = str(randi())
+		GameManager.network.send_messages({"type":"generate_world", "seed":world_seed})
+	
 	GameManager.connect("turn_end", attack_structures)
 	connect("mouse_exited_hex", (func (_x, _y): current_hovered_hex = Vector2i(-1,-1)))
 	connect("mouse_entered_hex", (func (x, y): current_hovered_hex = Vector2i(x, y); hover_timer.start()))
@@ -72,12 +75,7 @@ func _ready():
 	outline.add_layer("conqured_hexes", 2)
 	outline.add_layer("ui", 1.25)
 
-	var padding :float = 3
-	var top_left_pos = tile_generator.get_tile_pos(grid_start.x, grid_start.y)-Vector3(1,0,1)*padding
-	var bottom_right_pos = tile_generator.get_tile_pos(grid_end.x, grid_end.y)+Vector3(1,0,1)*padding
-	fog.set_bounding_box(top_left_pos, bottom_right_pos)
-	fog.reveal_coastline(world_gen.world_data.coastline)
-	fog.start_updating()
+	
 	
 
 #func test_ore():
@@ -104,6 +102,18 @@ func _ready():
 #		hex.feature = orange_ore
 
 func handle_network(data):
+	if (data.type == "generate_world"):
+		world_seed = data.seed
+		generate_world()
+
+		#Setup FOW
+		var padding :float = 3
+		var top_left_pos = tile_generator.get_tile_pos(grid_start.x, grid_start.y)-Vector3(1,0,1)*padding
+		var bottom_right_pos = tile_generator.get_tile_pos(grid_end.x, grid_end.y)+Vector3(1,0,1)*padding
+		fog.set_bounding_box(top_left_pos, bottom_right_pos)
+		fog.reveal_coastline(world_gen.world_data.coastline)
+		fog.start_updating()
+
 	if (data.type == "create_actor"):
 		var coord = data.coord
 		var unit = data.unit
