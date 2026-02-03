@@ -25,8 +25,8 @@ func _ready():
 
 	var neighbours = get_distant_neighbours([board.get_hex(origin.x, origin.y)], max_range)
 	for hex in neighbours:
-		var origin_cube = board.coord_to_cube(origin.x, origin.y)
-		var hex_cube = board.coord_to_cube(hex.coord.x, hex.coord.y)
+		var origin_cube = HexGridUtil.coord_to_cube(origin.x, origin.y, board.orientation)
+		var hex_cube = HexGridUtil.coord_to_cube(hex.coord.x, hex.coord.y,  board.orientation)
 		if HexGridUtil.cube_distance(origin_cube, hex_cube) <= max_range and HexGridUtil.cube_distance(origin_cube, hex_cube) >= min_range:
 			accepted_distance.append(hex.coord) 
 	
