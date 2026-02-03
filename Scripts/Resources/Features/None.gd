@@ -1,0 +1,2 @@
+extends Feature
+class_name NoneFeature

@@ -22,5 +22,5 @@ func played_on_conqured_hex(coord: Vector2i) -> bool:
 func played_on_feature(coord: Vector2i) -> bool:
 	var board : BoardManager = GameManager.board_manager
 	var hex = board.get_hex(coord.x, coord.y)
-	return hex.feature != null
+	return not is_instance_of(hex.feature, NoneFeature)
 	

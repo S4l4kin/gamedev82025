@@ -73,7 +73,7 @@ func show_card(lock: String, hex: Vector2i) -> void:
 	for child in card_stack.get_children():
 		child.call_deferred("free")
 	var hex_data = board.hexes[Vector2i(hex.x, hex.y)]
-	if hex_data.feature != null:
+	if not is_instance_of(hex_data.feature, NoneFeature):
 		print(hex_data.feature.display_card)
 		var feature_card_node = GameManager.card_manager.get_card_scene(hex_data.feature.display_card).instantiate()
 		card_stack.add_child(feature_card_node)

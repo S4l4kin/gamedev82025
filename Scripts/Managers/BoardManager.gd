@@ -41,7 +41,11 @@ func set_conqured_hex_colors(players):
 		player_colors[player.name] = Color(player.color.r, player.color.g, player.color.b)
 
 func generate_world():
-	world_gen = WorldGen.new(hash(world_seed), BigLandmassGenerator.new(land_amount), [])
+	var ore_features : Array[FeatureGenerator] = [
+		RandomPositionFeatureGenerator.new(ResourceLoader.load("res://Features/red_ore.tres", "Feature"), 3*4), 
+		RandomPositionFeatureGenerator.new(ResourceLoader.load("res://Features/yellow_ore.tres", "Feature"), 3*4),
+		RandomPositionFeatureGenerator.new(ResourceLoader.load("res://Features/orange_ore.tres", "Feature"), 6*4)]
+	world_gen = WorldGen.new(hash(world_seed), BigLandmassGenerator.new(land_amount), ore_features)
 	var world_data = world_gen.generate_world()
 	var hex_data = world_data.hex_data
 	
@@ -54,8 +58,12 @@ func generate_world():
 
 	for coord in hex_data:
 		hexes[coord] = tile_generator.create_hex_tile(coord.x, coord.y)
-	
-
+		#if coord == Vector2i.ZERO:
+		#	var mesh : Mesh = hexes[coord].tile.mesh.duplicate() 
+		#	var material = StandardMaterial3D.new()
+		#	material.albedo_color = Color.RED
+		#	mesh.surface_set_material(0, material)
+		#	hexes[coord].tile.mesh = mesh
 func _ready():
 	
 	GameManager.network.connect("recieved_message", handle_network)

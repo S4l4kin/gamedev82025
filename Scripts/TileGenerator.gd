@@ -9,7 +9,7 @@ var horiz_spacing : float
 var vert_spacing : float
 var orientation : HEX_ROTATION
 var board_manager : BoardManager
-var map_data : Dictionary[Vector2i, Dictionary]
+var map_data : Dictionary[Vector2i, Hex]
 
 var parent : Node
 var tile_basis : Basis
@@ -43,13 +43,13 @@ func get_tile_pos(x:int, y:int) -> Vector3:
 
 func create_hex_tile(x:int, y:int) -> Hex:
 	var coord = Vector2i(x,y)
-	var hex = Hex.new()
+	var hex = map_data[coord]
 
 	var hex_position : Vector3 = get_tile_pos(x,y)
 	
 
 	#Create Tile object
-	if map_data[coord].biome != "sea":
+	if map_data[coord].biome != Hex.Biome.SEA:
 		var tile : Node3D = hex_tile.instantiate()
 		parent.add_child(tile)
 
@@ -70,8 +70,13 @@ func create_hex_tile(x:int, y:int) -> Hex:
 		hex.tile = tile
 	
 	#Set Hex Data
-	hex.position = hex_position
-	hex.passable = true if map_data[coord].biome != "sea" else false
+	hex.passable = true if hex.biome != Hex.Biome.SEA else false
 	hex.coord = coord
-	
+	hex.position = hex_position
+	#Create Hex feature
+	if not is_instance_of(hex.feature, NoneFeature):
+		var feature_model = hex.feature.create_model()
+		parent.add_child(feature_model)
+		feature_model.global_position= hex_position
+		hex.feature_model = feature_model
 	return hex

@@ -40,29 +40,30 @@ func add_resource(resource: GlobalEnums.COST_COLORS, persistent : bool = false, 
 	update_resource_list()
 
 func can_afford(cost: Dictionary) -> bool:
-	for symbol in cost.keys():
-		var total = 0
-		if temporary_resource.has(symbol):
-			total += temporary_resource[symbol]
-		if persistent_resource.has(symbol):
-			total += persistent_resource[symbol]
-		if cost[symbol] > total:
-			return false
+	#for symbol in cost.keys():
+	#	var total = 0
+	#	if temporary_resource.has(symbol):
+	#		total += temporary_resource[symbol]
+	#	if persistent_resource.has(symbol):
+	#		total += persistent_resource[symbol]
+	#	if cost[symbol] > total:
+	#		return false
 	return true
 
 func pay_cost(cost: Dictionary):
-	for symbol in cost.keys():
-		var to_pay = cost[symbol]
-		print("COST TO PAY%s"%to_pay)
-		if temporary_resource.has(symbol):
-			var has_resource = temporary_resource[symbol]
-			temporary_resource[symbol] = max(temporary_resource[symbol]-to_pay, 0)
-			to_pay = max(to_pay-has_resource, 0)
-		if persistent_resource.has(symbol):
-				var has_resource = persistent_resource[symbol]
-				persistent_resource[symbol] = max(persistent_resource[symbol]-to_pay, 0)
-				to_pay = max(to_pay-has_resource, 0)
-	update_resource_list()
+	#for symbol in cost.keys():
+	#	var to_pay = cost[symbol]
+	#	print("COST TO PAY%s"%to_pay)
+	#	if temporary_resource.has(symbol):
+	#		var has_resource = temporary_resource[symbol]
+	#		temporary_resource[symbol] = max(temporary_resource[symbol]-to_pay, 0)
+	#		to_pay = max(to_pay-has_resource, 0)
+	#	if persistent_resource.has(symbol):
+	#			var has_resource = persistent_resource[symbol]
+	#			persistent_resource[symbol] = max(persistent_resource[symbol]-to_pay, 0)
+	#			to_pay = max(to_pay-has_resource, 0)
+	#update_resource_list()
+	pass
 
 func update_resource_list():
 	for symbol in temporary_resource:
