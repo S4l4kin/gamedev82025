@@ -171,7 +171,7 @@ func inspect_hex(x:int, y:int):
 	if get_actors(x, y) != {}:
 		inspect_card.show_card("unit_hovered", Vector2i(x,y))
 	if hex:
-		if hex.feature:
+		if not is_instance_of(hex.feature, NoneFeature):
 			inspect_card.show_card("unit_hovered", Vector2i(x,y))
 
 
@@ -180,7 +180,7 @@ func select_hex(x:int ,y:int):
 		return
 	print("Clicked Hex %s, %s"%[x,y])
 	var actors = get_actors(x, y)
-	if  actors != {} or get_hex(x,y).feature:
+	if  actors != {} or not is_instance_of(get_hex(x,y).feature, NoneFeature):
 		inspect_card.show_card("unit_selected", Vector2i(x,y))
 	else:
 		inspect_card.change_lock("unit_selected", false)
