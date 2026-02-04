@@ -64,6 +64,7 @@ func generate_world():
 		#	material.albedo_color = Color.RED
 		#	mesh.surface_set_material(0, material)
 		#	hexes[coord].tile.mesh = mesh
+	outline.generate_empty_mulit_mesh()
 func _ready():
 	
 	GameManager.network.connect("recieved_message", handle_network)
