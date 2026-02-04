@@ -93,7 +93,6 @@ func _get_weighted_card() -> String:
 		cumulative += weights[card_id]
 		if random_pick <= cumulative:
 			weights[card_id] = 1
-			print("ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ %s"%card_id)
 			return card_id
 	
 	# Fallback (This shoudln't happen if "weights" aren't empty.
@@ -107,10 +106,13 @@ func _input(event):
 
 func draw_card() -> Card:
 	var card = card_manager.get_card_data(_get_weighted_card())
-	hand.append(card)
-	add_card_node(card)
+	add_card_to_hand(card)
 	
 	return card
+
+func add_card_to_hand(card: Card):
+	hand.append(card)
+	add_card_node(card)
 
 func add_card_node(card: Card):
 	var playable_card = card_manager.get_playable_card_scene(card)

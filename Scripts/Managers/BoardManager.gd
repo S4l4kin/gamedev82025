@@ -33,7 +33,7 @@ signal hex_hovered (x:int, y:int)
 signal mouse_entered_hex (x:int, y:int)
 signal mouse_exited_hex (x:int, y:int)
 
-			
+var active_spells : Array[Spell]
 
 
 func set_conqured_hex_colors(players):
@@ -151,8 +151,20 @@ func handle_network(data):
 		var card = GameManager.card_manager.get_card_data(data.id)
 		var spell = card.custom_script.new()
 		spell.player = data.player
+		spell.spell_id = next_id
+		spell.card = card
+		next_id = next_id.sha256_text()
 		spell.coord = Vector2i(data.coord.x, data.coord.y)
+		active_spells.append(spell)
+
 		spell.play()
+	if (data.type == "spell_function"):
+		var spell = get_active_spell(data.id)
+		if spell.has_method(data.method):
+			spell.callv(data.method, data.args)
+		else:
+			push_error("Tried to call an undefined method on actor %s"%spell.card_id)
+	
 
 func inspect_hex(x:int, y:int):
 	var hex = get_hex(x,y)
@@ -292,7 +304,13 @@ func get_actor(actor_id: String) -> Actor:
 			if hex.structure.actor_id == actor_id:
 				return hex.structure
 	return null
-			
+
+func get_active_spell(spell_id: String) -> Spell:
+	for spell in active_spells:
+		if spell.spell_id == spell_id:
+			return spell
+	return null
+
 func get_actors(x:int, y:int) -> Dictionary[String, Actor]:
 	var actors : Dictionary[String, Actor] = {}
 	var hex = get_hex(x,y)

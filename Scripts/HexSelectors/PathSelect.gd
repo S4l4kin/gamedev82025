@@ -9,9 +9,11 @@ var press_check : Callable
 var default_press_check = ( func(_x: int, _y:int) -> bool: return true )
 var path_check : Callable
 var default_path_check = ( func(_path: Array[Vector2i]) -> bool: return true )
-func _init(_range:int, _callable: Callable, _press_check: Callable = default_press_check, _path_check: Callable = default_path_check) -> void:
+
+func _init(_range:int, _callable: Callable, _press_check: Callable = default_press_check, _path_check: Callable = default_path_check, _cancel_callable: Callable = empty_callable) -> void:
 	path_length = _range
 	callable = _callable
+	cancel_callable = _cancel_callable
 	press_check = _press_check
 	path_check = _path_check
 
@@ -74,4 +76,6 @@ func _input(event):
 			set_path_color(Color.TRANSPARENT)
 			if path_check.call(path):
 				callable.call(path)
+			else:
+				cancel_callable.call()
 			done_selecting()

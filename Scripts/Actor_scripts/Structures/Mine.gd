@@ -14,7 +14,7 @@ func on_play():
 	var hex = GameManager.board_manager.get_hex(x, y)
 	if hex.feature is OreFeature:
 		generating_resource = hex.feature.color
-		hex.feature = null
+		hex.feature = NoneFeature.new()
 	super.on_play()
 
 func on_turn_start():

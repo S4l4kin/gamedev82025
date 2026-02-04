@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://bgqhekbcqrjay"]
+
+[ext_resource type="Script" uid="uid://cd2tapuene2ya" path="res://Scripts/Spells/fey/MushroomTeleport.gd" id="1_xy1yt"]
+[ext_resource type="Script" uid="uid://htv51ag5bil1" path="res://Scripts/Predicates/Spells/Fey/MushroomTeleportPredicate.gd" id="2_ov07a"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="3_qkwco"]
+
+[resource]
+script = ExtResource("3_qkwco")
+name = "Mushroom Teleport"
+id = "mushroom_teleport"
+type = 3
+cost = {}
+description = "Teleport a unit to a Mushroom Circle.
+Teleporting enemy unit costs extra"
+custom_script = ExtResource("1_xy1yt")
+play_predicate = ExtResource("2_ov07a")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"
