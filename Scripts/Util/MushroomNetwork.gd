@@ -20,3 +20,5 @@ func teleport(unit: Unit, from_hex: Hex, to_hex: Hex):
 	to_hex.unit = unit
 	from_hex.unit = null
 	unit.global_position = to_hex.position
+	unit.x = to_hex.coord.x
+	unit.y = to_hex.coord.y

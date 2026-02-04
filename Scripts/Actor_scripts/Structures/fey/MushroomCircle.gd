@@ -4,11 +4,10 @@ extends Structure
 
 
 func on_play():
-	if GameManager.is_mine(self):
-		if not MushroomNetworkUtil.instance:
+	if not MushroomNetworkUtil.instance:
 			var mushroom_network = MushroomNetworkUtil.new()
 			GameManager.board_manager.add_child(mushroom_network)
-
+	if GameManager.is_mine(self):
 		var mushroom_network = MushroomNetworkUtil.instance
 		mushroom_network.add_teleport_location(Vector2i(x, y))
 	super.on_play()
