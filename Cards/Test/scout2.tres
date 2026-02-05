@@ -30,12 +30,12 @@ name = "Scout2"
 id = "scout2"
 type = 1
 cost = {
-0: 1
+0: 2
 }
 card_image = ExtResource("1_wptvm")
 description = "This is a scout that can see further than other creatures"
 unit_type = 3
-health = 3
+health = 1
 speed = 2
 model = ExtResource("2_4lwym")
 custom_script = SubResource("GDScript_wptvm")
