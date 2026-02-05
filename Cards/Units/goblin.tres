@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://dqcepmgpuv4gu"]
+
+[ext_resource type="Texture2D" uid="uid://dvjwmw2c7413t" path="res://Assets/Mobs/Goblin/GoblinGSN.svg" id="1_3280l"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_ecfd5"]
+[ext_resource type="Texture2D" uid="uid://dbr80y6r6q67w" path="res://Assets/Mobs/Goblin/GoblinGSN1.svg" id="2_r2kv1"]
+[ext_resource type="Texture2D" uid="uid://cokhq1soxu3w0" path="res://Assets/Mobs/Goblin/GoblinGSN2.svg" id="3_ehm54"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ncdih"]
+frames = 3
+frame_0/texture = ExtResource("1_3280l")
+frame_1/texture = ExtResource("2_r2kv1")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_ehm54")
+frame_2/duration = 1.0
+
+[resource]
+script = ExtResource("1_ecfd5")
+name = "Goblin"
+id = "goblin"
+type = 1
+cost = {}
+card_image = SubResource("AnimatedTexture_ncdih")
+description = "This is a GOBLIN"
+unit_type = 0
+health = 1
+speed = 1
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

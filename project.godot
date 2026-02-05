@@ -32,6 +32,10 @@ project/assembly_name="4xCardGame"
 
 export/convert_text_resources_to_binary=false
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/auto_polygon2d_triangulation/plugin.cfg")
+
 [filesystem]
 
 import/blender/enabled=false

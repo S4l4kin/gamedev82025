@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://j0yk3xirj8bi"]
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://j0yk3xirj8bi"]
 
 [ext_resource type="Texture2D" uid="uid://yfbvej1nf0py" path="res://Assets/Mobs/FireDragonGSN.svg" id="1_q62fh"]
 [ext_resource type="Script" uid="uid://c2qb451u1idf" path="res://Scripts/Actor_scripts/Units/fire_dragon.gd" id="2_agyqk"]
 [ext_resource type="PackedScene" uid="uid://cl3f6w02iv5r6" path="res://Scenes/Models/Special/FireDragon.tscn" id="3_d205c"]
+[ext_resource type="Script" uid="uid://4mfc0j1jlnuy" path="res://Scripts/Predicates/UnitPredicate.gd" id="4_agyqk"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="4_ggbf3"]
 
 [resource]
@@ -20,4 +21,5 @@ health = 3
 speed = 2
 model = ExtResource("3_d205c")
 custom_script = ExtResource("2_agyqk")
+play_predicate = ExtResource("4_agyqk")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

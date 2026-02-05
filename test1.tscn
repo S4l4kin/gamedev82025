@@ -20,6 +20,7 @@ viewport_path = NodePath("SubViewport")
 resource_local_to_scene = true
 shader = ExtResource("2_k1aq6")
 shader_parameter/lineThickness = 1.499999966472
+shader_parameter/centerAlpha = 0.0
 shader_parameter/stencilMask = SubResource("ViewportTexture_2rvgm")
 shader_parameter/checkAmount = 53
 

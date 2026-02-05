@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvjwmw2c7413t"
-path="res://.godot/imported/GoblinGSN.svg-b671ea5a0d0931b7d0799b4a67d943de.ctex"
+uid="uid://brai85vxxp1vj"
+path="res://.godot/imported/GoblinCut.svg-3e071494608517d127f23c3cc02f1359.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Mobs/GoblinGSN.svg"
-dest_files=["res://.godot/imported/GoblinGSN.svg-b671ea5a0d0931b7d0799b4a67d943de.ctex"]
+source_file="res://Assets/Mobs/Goblin/GoblinCut.svg"
+dest_files=["res://.godot/imported/GoblinCut.svg-3e071494608517d127f23c3cc02f1359.ctex"]
 
 [params]
 
