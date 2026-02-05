@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://t1rn060e605r"]
+
+[ext_resource type="Script" uid="uid://4mfc0j1jlnuy" path="res://Scripts/Predicates/UnitPredicate.gd" id="1_a6x71"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_t4xgi"]
+
+[resource]
+script = ExtResource("2_t4xgi")
+name = "Bear"
+id = "bear"
+type = 1
+cost = {
+0: 2
+}
+description = "This is a bear"
+unit_type = 0
+health = 3
+speed = 2
+play_predicate = ExtResource("1_a6x71")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"
