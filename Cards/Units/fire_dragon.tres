@@ -12,7 +12,7 @@ name = "Fire Dragon"
 id = "fire_dragon"
 type = 1
 cost = {
-0: 3
+0: 4
 }
 card_image = ExtResource("1_q62fh")
 description = "When attacking inflict Burn, dealing 1 damage at the start of owner turn"

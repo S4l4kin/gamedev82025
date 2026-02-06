@@ -22,7 +22,7 @@ func get_fire_range():
 				flag = true
 		return flag
 		)
-	board.add_hex_selector(RangeHexSelect.new(x, y, shot_range, 0, get_target, press_check))
+	board.add_hex_selector(RangeHexSelect.new([Vector2i(x, y)], shot_range, 0, get_target, press_check))
 
 func get_target(target_x: int, target_y: int):
 	#shot_fire = false

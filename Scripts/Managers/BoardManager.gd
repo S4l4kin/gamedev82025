@@ -33,7 +33,7 @@ signal hex_hovered (x:int, y:int)
 signal mouse_entered_hex (x:int, y:int)
 signal mouse_exited_hex (x:int, y:int)
 
-			
+var active_spells : Array[Spell]
 
 
 func set_conqured_hex_colors(players):
@@ -64,6 +64,7 @@ func generate_world():
 		#	material.albedo_color = Color.RED
 		#	mesh.surface_set_material(0, material)
 		#	hexes[coord].tile.mesh = mesh
+	outline.generate_empty_mulit_mesh()
 func _ready():
 	
 	GameManager.network.connect("recieved_message", handle_network)
@@ -151,15 +152,27 @@ func handle_network(data):
 		var card = GameManager.card_manager.get_card_data(data.id)
 		var spell = card.custom_script.new()
 		spell.player = data.player
+		spell.spell_id = next_id
+		spell.card = card
+		next_id = next_id.sha256_text()
 		spell.coord = Vector2i(data.coord.x, data.coord.y)
+		active_spells.append(spell)
+
 		spell.play()
+	if (data.type == "spell_function"):
+		var spell = get_active_spell(data.id)
+		if spell.has_method(data.method):
+			spell.callv(data.method, data.args)
+		else:
+			push_error("Tried to call an undefined method on actor %s"%spell.card_id)
+	
 
 func inspect_hex(x:int, y:int):
 	var hex = get_hex(x,y)
 	if get_actors(x, y) != {}:
 		inspect_card.show_card("unit_hovered", Vector2i(x,y))
 	if hex:
-		if hex.feature:
+		if not is_instance_of(hex.feature, NoneFeature):
 			inspect_card.show_card("unit_hovered", Vector2i(x,y))
 
 
@@ -168,7 +181,7 @@ func select_hex(x:int ,y:int):
 		return
 	print("Clicked Hex %s, %s"%[x,y])
 	var actors = get_actors(x, y)
-	if  actors != {} or get_hex(x,y).feature:
+	if  actors != {} or not is_instance_of(get_hex(x,y).feature, NoneFeature):
 		inspect_card.show_card("unit_selected", Vector2i(x,y))
 	else:
 		inspect_card.change_lock("unit_selected", false)
@@ -292,7 +305,13 @@ func get_actor(actor_id: String) -> Actor:
 			if hex.structure.actor_id == actor_id:
 				return hex.structure
 	return null
-			
+
+func get_active_spell(spell_id: String) -> Spell:
+	for spell in active_spells:
+		if spell.spell_id == spell_id:
+			return spell
+	return null
+
 func get_actors(x:int, y:int) -> Dictionary[String, Actor]:
 	var actors : Dictionary[String, Actor] = {}
 	var hex = get_hex(x,y)

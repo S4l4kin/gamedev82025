@@ -36,6 +36,10 @@ func generate_empty_mulit_mesh():
 	mesh_material.vertex_color_is_srgb = true
 	mesh_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 
+	for layer in layers.values():
+		layer.multi_mesh = empty_multi_mesh.duplicate()
+		layer.instance.multimesh = layer.multi_mesh
+
 func add_layer(layer_name:String, outline_thickness : float = 2):
 	var layer_viewport = SubViewport.new()
 	layer_viewport.name = layer_name +"Viewport"
@@ -67,7 +71,7 @@ func add_layer(layer_name:String, outline_thickness : float = 2):
 	
 
 
-	layers[layer_name] = {"viewport":layer_viewport, "multi_mesh":multi_mesh}
+	layers[layer_name] = {"viewport":layer_viewport, "multi_mesh":multi_mesh, "instance":multi_mesh_instance}
 
 	add_child(layer_viewport)
 

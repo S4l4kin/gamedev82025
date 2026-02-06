@@ -8,3 +8,4 @@ func play():
     unit.color = board.player_colors[player]
     unit.renderer.add_mask(Color.WHITE, unit.color)
     unit.renderer.set_numeric_label_color(unit.color)
+    call_deferred("spell_finished")

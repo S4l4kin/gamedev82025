@@ -3,18 +3,18 @@ class_name RangeHexSelect
 
 var max_range : int
 var min_range : int
-var origin : Vector2i
+var start_hexes : Array[Vector2i]
 var accepted_distance : Array[Vector2i]
 
 var press_check : Callable
 var default_press_check : Callable = (func (_x: int, _y: int) -> bool: return true )
 
-func _init(_x:int, _y:int, _max_range:int, _min_range:int, _callable: Callable, _press_check: Callable = default_press_check) -> void:
-	origin.x = _x
-	origin.y = _y
+func _init(_start_hexes : Array[Vector2i], _max_range:int, _min_range:int, _callable: Callable, _press_check: Callable = default_press_check, _cancel_callable: Callable = empty_callable) -> void:
+	start_hexes = _start_hexes
 	max_range = _max_range
 	min_range = _min_range
 	callable = _callable
+	cancel_callable = _cancel_callable
 	press_check = _press_check
 
 func _ready():
@@ -22,13 +22,13 @@ func _ready():
 	board.connect("mouse_entered_hex", hex_entered)
 	board.connect("mouse_exited_hex", hex_exited)
 	outline.add_layer("range_select", 1.25)
-
-	var neighbours = get_distant_neighbours([board.get_hex(origin.x, origin.y)], max_range)
-	for hex in neighbours:
-		var origin_cube = HexGridUtil.coord_to_cube(origin.x, origin.y, board.orientation)
-		var hex_cube = HexGridUtil.coord_to_cube(hex.coord.x, hex.coord.y,  board.orientation)
-		if HexGridUtil.cube_distance(origin_cube, hex_cube) <= max_range and HexGridUtil.cube_distance(origin_cube, hex_cube) >= min_range:
-			accepted_distance.append(hex.coord) 
+	for origin in start_hexes:
+		var neighbours = get_distant_neighbours([board.get_hex(origin.x, origin.y)], max_range)
+		for hex in neighbours:
+			var origin_cube = HexGridUtil.coord_to_cube(origin.x, origin.y, board.orientation)
+			var hex_cube = HexGridUtil.coord_to_cube(hex.coord.x, hex.coord.y,  board.orientation)
+			if HexGridUtil.cube_distance(origin_cube, hex_cube) <= max_range and HexGridUtil.cube_distance(origin_cube, hex_cube) >= min_range:
+				accepted_distance.append(hex.coord) 
 	
 	set_accepted_distance_color(Color.BLUE)
 
@@ -48,6 +48,8 @@ func pressed(pressed_x: int, pressed_y:int):
 	set_accepted_distance_color(Color.TRANSPARENT)
 	if accepted_distance.has(Vector2i(pressed_x, pressed_y)) and press_check.call(pressed_x, pressed_y):
 		callable.call(pressed_x, pressed_y)
+	else:
+		cancel_callable.call()
 
 
 func get_distant_neighbours(check_neihbours: Array[Hex], distance: int, all_neighbours: Array[Hex] = check_neihbours.duplicate()) -> Array[Hex]:

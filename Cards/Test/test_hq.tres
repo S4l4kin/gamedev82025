@@ -1,7 +1,10 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://bh01807tvrg0n"]
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://bh01807tvrg0n"]
 
 [ext_resource type="Texture2D" uid="uid://d4k6n8j0ns4s1" path="res://Assets/Structures/CardPics/HqPic.svg" id="1_b3e7d"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_qv3df"]
+[ext_resource type="Script" uid="uid://c5oqenw1k15y8" path="res://Scripts/Actor_scripts/Headquarter.gd" id="2_j0y7e"]
+[ext_resource type="PackedScene" uid="uid://dtuean06q2x5j" path="res://Scenes/Models/Generic/Structure.tscn" id="3_c4ppm"]
+[ext_resource type="Script" uid="uid://bjglrwoj5v07k" path="res://Scripts/Predicates/HQPredicate.gd" id="4_bt24n"]
 
 [resource]
 script = ExtResource("1_qv3df")
@@ -11,4 +14,7 @@ type = 0
 card_image = ExtResource("1_b3e7d")
 description = "You need to place this first"
 health = 30
+model = ExtResource("3_c4ppm")
+custom_script = ExtResource("2_j0y7e")
+play_predicate = ExtResource("4_bt24n")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

@@ -38,6 +38,7 @@ func join_server(ip, port):
 
 #Debug function to send debug messages
 func process_messages(data):
+	print(data)
 	if data.type == "message":
 		print(data.data)
  
