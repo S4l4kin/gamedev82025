@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://bgqhekbcqrjay"]
+[gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://bgqhekbcqrjay"]
 
-[ext_resource type="Script" uid="uid://cd2tapuene2ya" path="res://Scripts/Spells/fey/MushroomTeleport.gd" id="1_xy1yt"]
+[ext_resource type="Texture2D" uid="uid://c18agook20ya4" path="res://Assets/Potions/MushroomPotion.svg" id="1_ov07a"]
+[ext_resource type="Script" uid="uid://cd2tapuene2ya" path="res://Scripts/Spells/Fey/MushroomTeleport.gd" id="1_xy1yt"]
 [ext_resource type="Script" uid="uid://htv51ag5bil1" path="res://Scripts/Predicates/Spells/Fey/MushroomTeleportPredicate.gd" id="2_ov07a"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="3_qkwco"]
 
@@ -9,7 +10,10 @@ script = ExtResource("3_qkwco")
 name = "Mushroom Teleport"
 id = "mushroom_teleport"
 type = 3
-cost = {}
+cost = {
+0: 0
+}
+card_image = ExtResource("1_ov07a")
 description = "Teleport a unit to a Mushroom Circle.
 Teleporting enemy unit costs extra"
 custom_script = ExtResource("1_xy1yt")
