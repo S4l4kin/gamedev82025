@@ -1,5 +1,7 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://dv5uxpokrsadr"]
+[gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://dv5uxpokrsadr"]
 
+[ext_resource type="PackedScene" uid="uid://bif3e14eojd8n" path="res://Scenes/Models/Generic/Wolf.tscn" id="1_6cmba"]
+[ext_resource type="Texture2D" uid="uid://bjym7wclergs6" path="res://Assets/Mobs/WolfGSN.svg" id="1_n34r6"]
 [ext_resource type="Script" uid="uid://4mfc0j1jlnuy" path="res://Scripts/Predicates/UnitPredicate.gd" id="1_nkgh5"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_6cmba"]
 
@@ -11,9 +13,11 @@ type = 1
 cost = {
 0: 2
 }
+card_image = ExtResource("1_n34r6")
 description = "This is a wolf"
 unit_type = 0
 health = 2
 speed = 3
+model = ExtResource("1_6cmba")
 play_predicate = ExtResource("1_nkgh5")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"
