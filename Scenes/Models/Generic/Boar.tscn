@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds4o0y8he8mv4"]
+
+[ext_resource type="Script" uid="uid://bujesqlx6hrhx" path="res://Scripts/Renderer/RendererData.gd" id="1_jxii3"]
+[ext_resource type="Texture2D" uid="uid://d04y2ckc5ahwt" path="res://Assets/Mobs/BoarGSN.svg" id="2_fd2nw"]
+[ext_resource type="Texture2D" uid="uid://b1nfxatst5xny" path="res://Assets/Mobs/Mask/BoarMASK.svg" id="3_84tl3"]
+
+[node name="Boar" type="Node2D"]
+script = ExtResource("1_jxii3")
+max_model = 3
+pixel_density = 500
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fd2nw")
+
+[node name="Mask" type="Sprite2D" parent="Sprite2D"]
+visible = false
+texture = ExtResource("3_84tl3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
