@@ -26,15 +26,15 @@ func extended_sight():
 
 [resource]
 script = ExtResource("2_qw78y")
-name = "Scout1"
-id = "scout1"
+name = "Scout"
+id = "scout"
 type = 1
 cost = {
 0: 2
 }
 card_image = ExtResource("1_qxlsc")
 description = "This is a scout that can see further than creatures"
-unit_type = 3
+unit_type = 2
 health = 2
 speed = 3
 model = ExtResource("2_ksrkk")

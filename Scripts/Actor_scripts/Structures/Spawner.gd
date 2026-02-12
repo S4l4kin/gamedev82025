@@ -1,7 +1,7 @@
 extends Structure
 
 var spawned_unit = preload("res://Cards/Test/farmer.tres")
-var spawned_per_turn : int = 2
+var spawned_per_turn : int = 1
 func on_turn_start():
 	var board = GameManager.board_manager
 	var neighbours = board.get_neighbours(x, y)

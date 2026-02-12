@@ -15,7 +15,7 @@ cost = {
 }
 card_image = ExtResource("1_axupe")
 description = "This is a boar"
-unit_type = 0
+unit_type = 4
 health = 1
 speed = 2
 model = ExtResource("2_p8ksm")
