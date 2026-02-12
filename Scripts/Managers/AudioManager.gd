@@ -23,6 +23,9 @@ func _ready():
 	_sfx["play_structure"] = preload("res://Assets/Resources/Audio/SFX/PlayStructure.wav")
 	_sfx["play_spell"] = preload("res://Assets/Resources/Audio/SFX/PlaySpell.wav")
 	_sfx["play_unit"] = preload("res://Assets/Resources/Audio/SFX/PlayUnit.wav")
+	
+	#start menu music at game start
+	play_music("res://Assets/Resources/Audio/Music/TerraIncognitaMenu.ogg")
 
 #Play music
 func play_music(resourcePath: String, loop := true ):
