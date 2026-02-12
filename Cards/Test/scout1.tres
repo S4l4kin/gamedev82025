@@ -30,13 +30,13 @@ name = "Scout"
 id = "scout"
 type = 1
 cost = {
-0: 2
+0: 1
 }
 card_image = ExtResource("1_qxlsc")
 description = "This is a scout that can see further than creatures"
 unit_type = 2
-health = 2
-speed = 3
+health = 1
+speed = 5
 model = ExtResource("2_ksrkk")
 custom_script = SubResource("GDScript_qxlsc")
 play_predicate = ExtResource("3_xwr36")

@@ -11,13 +11,13 @@ name = "Bear"
 id = "bear"
 type = 1
 cost = {
-0: 2
+0: 3
 }
 card_image = ExtResource("1_t4xgi")
 description = "This is a bear"
 unit_type = 4
 health = 3
-speed = 2
+speed = 3
 model = ExtResource("2_fr145")
 play_predicate = ExtResource("1_a6x71")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

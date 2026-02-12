@@ -16,5 +16,5 @@ description = "Big Bad Dragon.
 Hey why are you launging!"
 unit_type = 1
 health = 10
-speed = 1
+speed = 5
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

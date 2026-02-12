@@ -11,13 +11,14 @@ name = "Fire Dragon"
 id = "fire_dragon"
 type = 1
 cost = {
-0: 4
+0: 3,
+2: 2
 }
 card_image = ExtResource("1_q62fh")
 description = "When attacking inflict Burn, dealing 1 damage at the start of owner turn"
 unit_type = 1
 health = 3
-speed = 2
+speed = 4
 model = ExtResource("3_d205c")
 custom_script = ExtResource("2_agyqk")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

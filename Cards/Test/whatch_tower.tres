@@ -39,7 +39,7 @@ name = "Watch Tower"
 id = "watch_tower"
 type = 2
 cost = {
-0: 3
+0: 2
 }
 card_image = ExtResource("1_ttf5k")
 description = "This is a structure that can see farther than other structures"

@@ -12,7 +12,8 @@ name = "Mushroom Circle"
 id = "mushroom_circle"
 type = 2
 cost = {
-0: 0
+0: 2,
+1: 1
 }
 card_image = ExtResource("1_3gbld")
 description = "Teleport unit on top to another Mushroom Cirle"

@@ -11,7 +11,8 @@ name = "Damaging Potion"
 id = "damaging_potion"
 type = 3
 cost = {
-2: 2
+0: 2,
+3: 1
 }
 card_image = ExtResource("1_r3q13")
 description = "Deal 3 damage to a enemy unit"
