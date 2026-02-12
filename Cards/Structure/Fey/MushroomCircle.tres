@@ -1,19 +1,23 @@
-[gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://dbftcpfhlopnp"]
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://dbftcpfhlopnp"]
 
 [ext_resource type="Script" uid="uid://27y3axxji36d" path="res://Scripts/Actor_scripts/Structures/fey/MushroomCircle.gd" id="1_0oaso"]
+[ext_resource type="Texture2D" uid="uid://dclepy7m171y8" path="res://Assets/Structures/MushroomCircleGSN.svg" id="1_3gbld"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_ipvwx"]
-[ext_resource type="PackedScene" uid="uid://dtuean06q2x5j" path="res://Scenes/Models/Generic/Structure.tscn" id="2_0oaso"]
 [ext_resource type="Script" uid="uid://d3h8qkdu4r1na" path="res://Scripts/Predicates/StructurePredicate.gd" id="3_3gbld"]
+[ext_resource type="PackedScene" uid="uid://c8bqjpgagns7o" path="res://Scenes/Models/Structures/MushroomCricle.tscn" id="3_lawlv"]
 
 [resource]
 script = ExtResource("1_ipvwx")
 name = "Mushroom Circle"
 id = "mushroom_circle"
 type = 2
-cost = {}
+cost = {
+0: 0
+}
+card_image = ExtResource("1_3gbld")
 description = "Teleport unit on top to another Mushroom Cirle"
 health = 4
-model = ExtResource("2_0oaso")
+model = ExtResource("3_lawlv")
 custom_script = ExtResource("1_0oaso")
 play_predicate = ExtResource("3_3gbld")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"
