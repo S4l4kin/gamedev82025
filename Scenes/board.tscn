@@ -95,7 +95,7 @@ gradient = SubResource("Gradient_iehwj")
 
 [node name="Board" type="Node3D"]
 script = ExtResource("1_p0ybc")
-land_amount = 1200
+land_amount = 800
 
 [node name="Tiles" type="Node3D" parent="."]
 
