@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://t1rn060e605r"]
+
+[ext_resource type="Script" uid="uid://4mfc0j1jlnuy" path="res://Scripts/Predicates/UnitPredicate.gd" id="1_a6x71"]
+[ext_resource type="Texture2D" uid="uid://cyv4uni05du82" path="res://Assets/Mobs/BearGSN.svg" id="1_t4xgi"]
+[ext_resource type="PackedScene" uid="uid://dlhow4mibjio7" path="res://Scenes/Models/Generic/Bear.tscn" id="2_fr145"]
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_t4xgi"]
+
+[resource]
+script = ExtResource("2_t4xgi")
+name = "Bear"
+id = "bear"
+type = 1
+cost = {
+0: 3
+}
+card_image = ExtResource("1_t4xgi")
+description = "This is a bear"
+unit_type = 4
+health = 3
+speed = 3
+model = ExtResource("2_fr145")
+play_predicate = ExtResource("1_a6x71")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"

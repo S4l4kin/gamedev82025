@@ -11,8 +11,8 @@ name = "Spawner"
 id = "spawner"
 type = 2
 cost = {
-0: 3,
-2: 2
+0: 1,
+1: 2
 }
 card_image = ExtResource("1_qf06v")
 description = "This is a spawner that spawns farmers at the start of your turn."

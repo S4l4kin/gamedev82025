@@ -34,8 +34,8 @@ name = "Troll1"
 id = "troll1"
 type = 1
 cost = {
-0: 2,
-3: 1
+0: 1,
+2: 1
 }
 card_image = ExtResource("1_mqx64")
 description = "This is a troll that slows enemies"

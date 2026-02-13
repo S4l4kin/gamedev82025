@@ -12,7 +12,7 @@ name = "Mine"
 id = "mine_structure"
 type = 2
 cost = {
-0: 1
+0: 3
 }
 card_image = ExtResource("1_45cbs")
 description = "Placing this on an ore hex will generate the corresponding colored resource at the start of each turn"

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlhow4mibjio7"]
+
+[ext_resource type="Script" uid="uid://bujesqlx6hrhx" path="res://Scripts/Renderer/RendererData.gd" id="1_r2pog"]
+[ext_resource type="Texture2D" uid="uid://cyv4uni05du82" path="res://Assets/Mobs/BearGSN.svg" id="2_pvm0c"]
+[ext_resource type="Texture2D" uid="uid://b8xe2vpbs8hw2" path="res://Assets/Mobs/Mask/BearMASK.svg" id="3_uwrs2"]
+
+[node name="Bear" type="Node2D"]
+script = ExtResource("1_r2pog")
+max_model = 3
+pixel_density = 300
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pvm0c")
+
+[node name="Mask" type="Sprite2D" parent="Sprite2D"]
+texture = ExtResource("3_uwrs2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

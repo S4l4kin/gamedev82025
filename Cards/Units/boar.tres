@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://e0iqe3jqwt27"]
+
+[ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="1_7lq4q"]
+[ext_resource type="Texture2D" uid="uid://d04y2ckc5ahwt" path="res://Assets/Mobs/BoarGSN.svg" id="1_axupe"]
+[ext_resource type="Script" uid="uid://4mfc0j1jlnuy" path="res://Scripts/Predicates/UnitPredicate.gd" id="1_yao8l"]
+[ext_resource type="PackedScene" uid="uid://ds4o0y8he8mv4" path="res://Scenes/Models/Generic/Boar.tscn" id="2_p8ksm"]
+
+[resource]
+script = ExtResource("1_7lq4q")
+name = "Boar"
+id = "boar"
+type = 1
+cost = {
+0: 2
+}
+card_image = ExtResource("1_axupe")
+description = "This is a boar"
+unit_type = 4
+health = 1
+speed = 4
+model = ExtResource("2_p8ksm")
+play_predicate = ExtResource("1_yao8l")
+metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"
