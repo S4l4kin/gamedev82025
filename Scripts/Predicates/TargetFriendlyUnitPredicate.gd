@@ -6,7 +6,7 @@ func can_play(coord) -> bool:
 		var hex = board.get_hex(coord.x, coord.y)
 		if hex.unit:
 			if hex.unit.player == GameManager.player_name:
-				return true
+				return can_afford()
 		return false
 	else:
-				return not is_setup_phase() and  can_afford()
+				return not is_setup_phase()

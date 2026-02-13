@@ -10,7 +10,7 @@ func can_play(coord) -> bool:
 			return false
 
 		if board.conqured_hexes.has(coord):
-			return board.conqured_hexes[coord] == GameManager.player_name
+			return board.conqured_hexes[coord] == GameManager.player_name and can_afford()
 		return false
 	else: 
-		return GameManager.game_state != GameManager.GAME_STATE.Setup and can_afford()
+		return GameManager.game_state != GameManager.GAME_STATE.Setup 

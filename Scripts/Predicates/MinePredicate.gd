@@ -8,7 +8,7 @@ func can_play(coord) -> bool:
 
 		if hex.feature:
 			if hex.feature is OreFeature:
-				return (played_on_conqured_hex(coord) or played_on_unit(coord))
+				return ((played_on_conqured_hex(coord) or played_on_unit(coord))) and can_afford()
 		return false
 	else: 
-		return GameManager.game_state != GameManager.GAME_STATE.Setup and can_afford()
+		return GameManager.game_state != GameManager.GAME_STATE.Setup

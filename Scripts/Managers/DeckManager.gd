@@ -11,7 +11,7 @@ class_name DeckManager
 # card shuffler: see https://stormbound-kitty.com/drawing-mechanics
 
 var hand : Array[Card] = []
-@onready var hand_node = $Hand/HBoxContainer
+@onready var hand_node = $Hand
 
 var weights : Dictionary[String, float] = {}
 const weight_multiplier : float = 1.6

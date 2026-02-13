@@ -2,9 +2,9 @@ extends Predicate
 class_name StructurePredicate
 func can_play(coord) -> bool:
 	if coord:
-		return (played_on_conqured_hex(coord) or played_on_unit(coord)) and not played_on_feature(coord)
+		return (played_on_conqured_hex(coord) or played_on_unit(coord)) and not played_on_feature(coord) and can_afford()
 	else: 
-		return GameManager.game_state != GameManager.GAME_STATE.Setup and can_afford()
+		return GameManager.game_state != GameManager.GAME_STATE.Setup
 
 func played_on_unit(coord : Vector2i) -> bool:
 	var board : BoardManager = GameManager.board_manager

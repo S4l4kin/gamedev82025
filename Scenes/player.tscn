@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4gwpskpu4isl"]
+[gd_scene load_steps=6 format=3 uid="uid://d4gwpskpu4isl"]
 
 [ext_resource type="Script" uid="uid://dcmjxuaevcgkk" path="res://Scripts/Managers/DeckManager.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dcv52k3r5ntqw" path="res://Scripts/Player.gd" id="1_6t5aa"]
 [ext_resource type="Resource" uid="uid://dpjlqcgwhaqo0" path="res://Deck.tres" id="3_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://dslgu4i7eabt5" path="res://Assets/Icons/Cards/CardBack.svg" id="4_vgqql"]
+[ext_resource type="Texture2D" uid="uid://umvisuk7ifv1" path="res://Assets/redraw symbol.png" id="5_fkybt"]
 
 [node name="Player" type="Control"]
 layout_mode = 3
@@ -25,18 +27,35 @@ mouse_filter = 1
 script = ExtResource("1_4flbx")
 deck_resource = ExtResource("3_6t5aa")
 
-[node name="Hand" type="CenterContainer" parent="Deck"]
-custom_minimum_size = Vector2(1020, 0)
+[node name="Redraw Card" type="TextureRect" parent="Deck"]
+modulate = Color(0.5, 0.5, 0.5, 1)
+z_index = 900
 layout_mode = 0
-offset_left = 1.9999981
-offset_top = 462.99994
-offset_right = 1022.0
-offset_bottom = 776.99994
-scale = Vector2(0.85, 0.85)
-metadata/_edit_group_ = true
+offset_left = 6.0
+offset_top = 480.0
+offset_right = 86.0
+offset_bottom = 634.28577
+texture = ExtResource("4_vgqql")
+expand_mode = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Deck/Hand"]
-layout_mode = 2
+[node name="TextureRect" type="TextureRect" parent="Deck/Redraw Card"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 30.999977
+offset_right = 78.0
+offset_bottom = 121.59601
+texture = ExtResource("5_fkybt")
+expand_mode = 1
+
+[node name="Hand" type="Control" parent="Deck"]
+custom_minimum_size = Vector2(1020, 0)
+anchors_preset = 0
+offset_left = 100.0
+offset_top = 463.0
+offset_right = 1120.0
+offset_bottom = 777.0
+scale = Vector2(0.75, 0.75)
+metadata/_edit_group_ = true
 
 [node name="EndTurn" type="Button" parent="."]
 custom_minimum_size = Vector2(78, 78)
