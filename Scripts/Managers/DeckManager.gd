@@ -119,6 +119,7 @@ func add_card_node(card: Card):
 	playable_card.deck_manager = self
 
 	hand_node.add_child(playable_card)
+	GameManager.player.reoder_cards()
 
 func draw_starting_hand(hand_size: int=5):
 	var hq_card = deck_resource.get_hq()

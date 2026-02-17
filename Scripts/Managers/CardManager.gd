@@ -63,11 +63,8 @@ func get_updated_card_scene(from) -> Node:
 
 func get_playable_card_scene(card: Card) -> Node:
 	var card_base = get_card_scene(card.id).instantiate()
-	var raycast = RayCast3D.new()
-	raycast.name = "Raycast"
-	card_base.add_child(raycast)
 	card_base.set_script(preload("res://Scripts/PlayableCard.gd"))
-	card_base.get_node("Card").position = Vector2.ZERO
+	#card_base.get_node("Card").position.y = -50
 	card_base.card = card
 	return card_base
 
