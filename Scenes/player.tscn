@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4gwpskpu4isl"]
+[gd_scene load_steps=8 format=3 uid="uid://d4gwpskpu4isl"]
 
 [ext_resource type="Script" uid="uid://dcmjxuaevcgkk" path="res://Scripts/Managers/DeckManager.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dcv52k3r5ntqw" path="res://Scripts/Player.gd" id="1_6t5aa"]
 [ext_resource type="Resource" uid="uid://dpjlqcgwhaqo0" path="res://Deck.tres" id="3_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://dslgu4i7eabt5" path="res://Assets/Icons/Cards/CardBack.svg" id="4_vgqql"]
 [ext_resource type="Texture2D" uid="uid://umvisuk7ifv1" path="res://Assets/redraw symbol.png" id="5_fkybt"]
+[ext_resource type="Script" uid="uid://bshc55ciljpdd" path="res://Scripts/UI/Elements/ParabolaLine.gd" id="6_3smsa"]
+[ext_resource type="Script" uid="uid://xttetatsu7m" path="res://Scripts/UI/Elements/ParabolaPoint.gd" id="7_8erm5"]
 
 [node name="Player" type="Control"]
 layout_mode = 3
@@ -31,12 +33,13 @@ deck_resource = ExtResource("3_6t5aa")
 modulate = Color(0.5, 0.5, 0.5, 1)
 z_index = 900
 layout_mode = 0
-offset_left = 6.0
-offset_top = 480.0
-offset_right = 86.0
-offset_bottom = 634.28577
+offset_left = 121.0
+offset_top = 478.0
+offset_right = 201.0
+offset_bottom = 632.28577
 texture = ExtResource("4_vgqql")
 expand_mode = 1
+metadata/_edit_group_ = true
 
 [node name="TextureRect" type="TextureRect" parent="Deck/Redraw Card"]
 layout_mode = 0
@@ -47,24 +50,18 @@ offset_bottom = 121.59601
 texture = ExtResource("5_fkybt")
 expand_mode = 1
 
-[node name="Hand" type="Control" parent="Deck"]
-custom_minimum_size = Vector2(1020, 0)
-anchors_preset = 0
-offset_left = 100.0
-offset_top = 463.0
-offset_right = 1120.0
-offset_bottom = 777.0
-scale = Vector2(0.75, 0.75)
-metadata/_edit_group_ = true
+[node name="Hand" type="Node2D" parent="Deck"]
+
+[node name="PlayedCard" type="Node" parent="Deck"]
 
 [node name="EndTurn" type="Button" parent="."]
-custom_minimum_size = Vector2(78, 78)
+custom_minimum_size = Vector2(78, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.8932292
-anchor_top = 0.79320985
-anchor_right = 0.9609375
-anchor_bottom = 0.91358024
+anchor_left = 0.9262153
+anchor_top = 0.49537036
+anchor_right = 0.9939236
+anchor_bottom = 0.5509259
 text = "End Turn"
 metadata/_edit_use_anchors_ = true
 
@@ -72,38 +69,31 @@ metadata/_edit_use_anchors_ = true
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = 15.0
-offset_top = 79.0
+offset_top = 39.0
 offset_right = 64.0
-offset_bottom = 102.0
+offset_bottom = 62.0
 text = "Player"
 
-[node name="ReadingCenter" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = -108.0
-offset_bottom = -108.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ReadingCenter" type="Marker2D" parent="."]
+position = Vector2(566, 365)
 
 [node name="ResourceLists" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ResourceLists"]
 layout_mode = 0
-offset_left = 839.0
-offset_top = 482.0
-offset_right = 1024.0
-offset_bottom = 641.0
+offset_left = 964.0
+offset_top = 487.0
+offset_right = 1149.0
+offset_bottom = 646.0
 alignment = 1
 metadata/_edit_group_ = true
 
@@ -127,3 +117,32 @@ tooltip_text = "Persistent"
 
 [node name="List" type="VBoxContainer" parent="ResourceLists/HBoxContainer/Persisten"]
 layout_mode = 2
+
+[node name="PlayThreshold" type="Marker2D" parent="."]
+position = Vector2(0, 374)
+
+[node name="ParabolaLine" type="Node2D" parent="."]
+script = ExtResource("6_3smsa")
+range_max = 918.0
+range_min = 209.0
+a = 0.0003305147272767251
+b = -0.37107966040532614
+c = 709.1184352225386
+render_ingame = true
+metadata/_custom_type_script = "uid://bshc55ciljpdd"
+
+[node name="PointA" type="Marker2D" parent="ParabolaLine"]
+position = Vector2(209, 646)
+script = ExtResource("7_8erm5")
+
+[node name="PointB" type="Marker2D" parent="ParabolaLine"]
+position = Vector2(572, 605)
+script = ExtResource("7_8erm5")
+
+[node name="PointC" type="Marker2D" parent="ParabolaLine"]
+position = Vector2(918, 647)
+script = ExtResource("7_8erm5")
+
+[node name="HexRaycast" type="RayCast3D" parent="."]
+collide_with_areas = true
+collide_with_bodies = false

@@ -107,6 +107,46 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Units" type="SubViewportContainer" parent="Shaders"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="Shaders/Units"]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4294967289
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+script = ExtResource("10_upw65")
+
+[node name="Camera" type="Camera3D" parent="Shaders/Units/SubViewport"]
+cull_mask = 1048564
+
+[node name="Fog Of War" type="SubViewportContainer" parent="Shaders"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="Shaders/Fog Of War"]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4294967289
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+script = ExtResource("10_upw65")
+
+[node name="Camera" type="Camera3D" parent="Shaders/Fog Of War/SubViewport"]
+cull_mask = 1048568
+
 [node name="Outline" type="Control" parent="Shaders"]
 layout_mode = 1
 anchors_preset = 15
@@ -131,26 +171,6 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("ViewportTexture_vjsom")
 
-[node name="Units" type="SubViewportContainer" parent="Shaders"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="SubViewport" type="SubViewport" parent="Shaders/Units"]
-transparent_bg = true
-handle_input_locally = false
-canvas_cull_mask = 4294967289
-size = Vector2i(1152, 648)
-render_target_update_mode = 4
-script = ExtResource("10_upw65")
-
-[node name="Camera" type="Camera3D" parent="Shaders/Units/SubViewport"]
-cull_mask = 1048572
-
 [node name="3D UI" type="SubViewportContainer" parent="Shaders"]
 layout_mode = 1
 anchors_preset = 15
@@ -169,7 +189,7 @@ render_target_update_mode = 4
 script = ExtResource("10_upw65")
 
 [node name="Camera" type="Camera3D" parent="Shaders/3D UI/SubViewport"]
-cull_mask = 1048570
+cull_mask = 1048562
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.010489228, 0.999945, 0, -0.999945, 0.010489228, 0, 24.08657, 0)
@@ -329,14 +349,14 @@ cloud_speed = 0.2
 
 [node name="Quad" type="MeshInstance3D" parent="FogOfWar/Visualizer"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-layers = 7
+layers = 8
 material_override = SubResource("ShaderMaterial_d7frl")
 mesh = SubResource("QuadMesh_vjsom")
 skeleton = NodePath("../../..")
 
 [node name="Clouds" type="MultiMeshInstance3D" parent="FogOfWar/Visualizer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-layers = 7
+layers = 8
 sorting_offset = 1.0
 material_override = SubResource("ShaderMaterial_hm3vq")
 multimesh = SubResource("MultiMesh_vjyv8")

@@ -14,7 +14,7 @@ var network : NetworkManager
 var player : Player
  
 var turn_count : int = -1
-
+var messanger : Messanger
 
 @export var player_name : String
 
@@ -31,8 +31,10 @@ func start_game():
 	board_manager.set_conqured_hex_colors(players)
 	player = player_scene.instantiate()
 	deck = player.get_node("Deck")
+	messanger = preload("res://Scenes/messager.tscn").instantiate()
 	get_tree().root.add_child.call_deferred(board_manager)
 	get_tree().root.add_child.call_deferred(player)
+	get_tree().root.add_child.call_deferred(messanger)
 	game_state = GAME_STATE.Setup
 	if network.is_host():
 		for player in players:
@@ -58,16 +60,20 @@ func remove_player(player):
 		network.send_messages({"type":"announce_victor","victor":turn_order[0]})
 
 func announce_victor(victor):
+	
+	var who_won = "You" if player_name == victor else "%s"%victor
+	var text_color = get_player_color(victor)
+
+	messanger.set_permament_title("%s Won!"%who_won, text_color, 3)
+
+
+	var tween = create_tween()
+	tween.tween_property(player, "modulate", Color.TRANSPARENT, 0.5)
+	tween.tween_callback(player.call_deferred.bind("free"))
+
 	AudioManager.stop_music()
 	AudioManager.play_global_sfx("game_win")
-	var victor_label = Label.new()
-	victor_label.set_anchors_preset(Control.PRESET_FULL_RECT)
-	victor_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	victor_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	victor_label.text = "%s won!"%victor
-	victor_label.self_modulate = board_manager.player_colors[victor]
-	victor_label.add_theme_font_size_override("font_size", 32)
-	get_tree().root.add_child(victor_label)
+	
 
 func handle_network(data):
 	if data.type == "join_server":
@@ -101,6 +107,13 @@ func handle_network(data):
 		current_turn = data.player
 		$"/root/Player/EndTurn".disabled = not my_turn() if game_state != GAME_STATE.Setup else true
 		$"/root/Player/EndTurn/CurrentTurn".text = current_turn
+		
+		var whos_turn = "Your" if my_turn() else "%s's"%current_turn
+		var text_color = get_player_color(current_turn)
+		
+		messanger.queue_title("%s Turn"%whos_turn, text_color, 2)
+		
+		
 		emit_signal("turn_start", current_turn)
 	if data.type == "change_state":
 		game_state = data.state
@@ -123,6 +136,12 @@ func _ready():
 	get_tree().root.add_child.call_deferred(card_manager)
 	get_tree().root.add_child.call_deferred(network)
 
+
+func get_player_color(who: String) -> Color:
+	for n in players:
+		if n.name == who:
+			return Color(n.color.r, n.color.g, n.color.b)
+	return Color.TRANSPARENT
 
 func is_mine(unit: Actor) -> bool:
 	return unit.player == player_name
