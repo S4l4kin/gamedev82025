@@ -125,10 +125,9 @@ position = Vector2(0, 374)
 script = ExtResource("6_3smsa")
 range_max = 918.0
 range_min = 209.0
-a = 0.0003305147272767251
+a = 0.00033051472727672
 b = -0.37107966040532614
 c = 709.1184352225386
-render_ingame = true
 metadata/_custom_type_script = "uid://bshc55ciljpdd"
 
 [node name="PointA" type="Marker2D" parent="ParabolaLine"]
@@ -141,6 +140,15 @@ script = ExtResource("7_8erm5")
 
 [node name="PointC" type="Marker2D" parent="ParabolaLine"]
 position = Vector2(918, 647)
+script = ExtResource("7_8erm5")
+
+[node name="PointA2" type="Marker2D" parent="ParabolaLine"]
+script = ExtResource("7_8erm5")
+
+[node name="PointB2" type="Marker2D" parent="ParabolaLine"]
+script = ExtResource("7_8erm5")
+
+[node name="PointC2" type="Marker2D" parent="ParabolaLine"]
 script = ExtResource("7_8erm5")
 
 [node name="HexRaycast" type="RayCast3D" parent="."]

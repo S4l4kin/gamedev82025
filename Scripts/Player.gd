@@ -178,7 +178,6 @@ func _ready():
 		GameManager.network.send_messages({"type":"next_turn"})
 	))
 	GameManager.connect("turn_start", turn_start)
-	add_resource(GlobalEnums.COST_COLORS.Generic, true, 50)
 
 var turn_number : int = -1
 
@@ -190,7 +189,7 @@ func turn_start(player_name):
 	turn_number += 1
 	has_redrawn = false
 	GameManager.deck.draw_hand(GameManager.player_name)
-	add_resource(GlobalEnums.COST_COLORS.Generic, false, min(turn_number, 8))
+	add_resource(GlobalEnums.COST_COLORS.Generic, false, min(turn_number, 10))
 
 func add_resource(resource: GlobalEnums.COST_COLORS, persistent : bool = false, amount = 1):
 	var resource_list : Dictionary[GlobalEnums.COST_COLORS, int]

@@ -54,6 +54,12 @@ func get_actions() -> Dictionary[String, Dictionary]:
 
 func on_turn_start():
 	speed = max_speed
+	
+	#If Unit is ontop of boulder feature on turn start give player temporary resources
+	var board = GameManager.board_manager
+	var hex = board.get_hex(x, y)
+	if hex.feature is OreFeature:
+		GameManager.player.add_resource(hex.feature.color)
 
 
 func get_move_range():
