@@ -16,7 +16,7 @@ cost = {
 }
 card_image = ExtResource("1_iya1i")
 description = "Once per turn can deal 1 damage to a enemy up to 2 hexes"
-health = 1
+health = 3
 model = ExtResource("2_vfjm0")
 custom_script = ExtResource("1_66d21")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"
