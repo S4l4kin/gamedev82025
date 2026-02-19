@@ -522,6 +522,7 @@ text = "Back"
 horizontal_alignment = 1
 vertical_alignment = 3
 
+[connection signal="button_up" from="Options/Buttons2/Back" to="Options" method="_on_back_button_up"]
 [connection signal="value_changed" from="Options/MasterHSlider" to="Options" method="_on_h_slider_value_changed" binds= ["Master"]]
 [connection signal="value_changed" from="Options/MusicHSlider" to="Options" method="_on_h_slider_value_changed" binds= ["Music"]]
 [connection signal="value_changed" from="Options/MenuHSlider" to="Options" method="_on_h_slider_value_changed" binds= ["Menu"]]
