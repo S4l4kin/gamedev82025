@@ -16,7 +16,7 @@ cost = {
 }
 card_image = ExtResource("1_45cbs")
 description = "Placing this on an ore hex will generate the corresponding colored resource at the start of each turn"
-health = 3
+health = 5
 model = ExtResource("3_66uow")
 custom_script = ExtResource("2_voecc")
 play_predicate = ExtResource("4_2bigr")

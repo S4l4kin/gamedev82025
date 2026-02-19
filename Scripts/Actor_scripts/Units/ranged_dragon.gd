@@ -1,8 +1,8 @@
 extends Unit
 
 var shot_fire : bool = true
-var shot_range : int = 3
-var shot_damage : int = 2
+var shot_range : int = 2
+var shot_damage : int = 1
 
 func on_turn_start():
 	shot_fire = true
