@@ -1,11 +1,12 @@
 [gd_scene load_steps=7 format=3 uid="uid://c8ihcs1i62c0n"]
 
-[ext_resource type="Script" uid="uid://45jltglhyn6r" path="res://Scripts/UI/MainMenu.gd" id="1_feb5d"]
+[ext_resource type="Script" uid="uid://cha7hjbdm6o0g" path="res://Scripts/UI/Menus/MainMenu.gd" id="1_feb5d"]
 [ext_resource type="Texture2D" uid="uid://cfdoc3whl4xot" path="res://Assets/MainMenuBackground.png" id="2_e2o6t"]
-[ext_resource type="Script" uid="uid://cy7qn8dd8se4l" path="res://Scripts/UI/StartGameMenu.gd" id="2_fc0e3"]
-[ext_resource type="Script" uid="uid://ch18yy68tfr78" path="res://Scripts/UI/LobbyMenu.gd" id="3_7jktm"]
+[ext_resource type="Script" uid="uid://bsyl5exuxei4n" path="res://Scripts/UI/Menus/StartGameMenu.gd" id="2_fc0e3"]
+[ext_resource type="Script" uid="uid://bkvuau6vptulm" path="res://Scripts/UI/Menus/LobbyMenu.gd" id="3_7jktm"]
 [ext_resource type="Texture2D" uid="uid://uml7w7yt1hhs" path="res://Assets/button.png" id="3_feb5d"]
-[ext_resource type="Script" uid="uid://b1ddqxxgvwj2b" path="res://Scripts/UI/Menu.gd" id="6_ryrav"]
+[ext_resource type="Script" uid="uid://2075n6fr702y" path="res://Scripts/UI/Menus/Menu.gd" id="6_ryrav"]
+
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
