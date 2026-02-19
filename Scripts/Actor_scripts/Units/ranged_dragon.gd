@@ -34,4 +34,4 @@ func shoot_ability(target_x: int, target_y: int):
 
 	for actor : Actor in actors.values():
 		if actor.player != player:
-			actor.damage(health)
+			actor.damage(shot_damage)
