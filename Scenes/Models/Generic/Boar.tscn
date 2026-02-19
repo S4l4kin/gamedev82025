@@ -1,8 +1,111 @@
-[gd_scene load_steps=4 format=3 uid="uid://ds4o0y8he8mv4"]
+[gd_scene load_steps=18 format=3 uid="uid://csf0gv6vs6stg"]
 
 [ext_resource type="Script" uid="uid://bujesqlx6hrhx" path="res://Scripts/Renderer/RendererData.gd" id="1_jxii3"]
 [ext_resource type="Texture2D" uid="uid://d04y2ckc5ahwt" path="res://Assets/Mobs/BoarGSN.svg" id="2_fd2nw"]
 [ext_resource type="Texture2D" uid="uid://b1nfxatst5xny" path="res://Assets/Mobs/Mask/BoarMASK.svg" id="3_84tl3"]
+[ext_resource type="Texture2D" uid="uid://cro3qplorbyje" path="res://Assets/BoarCUT.svg" id="4_fd2nw"]
+
+[sub_resource type="Animation" id="Animation_fd2nw"]
+resource_name = "BoarIdle"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(62, -6), Vector2(62, -6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.9666667, 3.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.21775486, 0.0, 0.1749474]
+}
+
+[sub_resource type="Animation" id="Animation_84tl3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(214, 77)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wafls"]
+_data = {
+&"BoarIdle": SubResource("Animation_fd2nw"),
+&"RESET": SubResource("Animation_84tl3")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71yit"]
+atlas = ExtResource("4_fd2nw")
+region = Rect2(142, 113, 36, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50w48"]
+atlas = ExtResource("4_fd2nw")
+region = Rect2(116, 186, 23, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fd2nw"]
+atlas = ExtResource("4_fd2nw")
+region = Rect2(274, 112, 27, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8di2"]
+atlas = ExtResource("4_fd2nw")
+region = Rect2(260, 180, 21, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84tl3"]
+atlas = ExtResource("4_fd2nw")
+region = Rect2(0, 0, 194, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wafls"]
+atlas = ExtResource("4_fd2nw")
+region = Rect2(206, 0, 106, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mljb"]
+atlas = ExtResource("4_fd2nw")
+region = Rect2(216, 111, 31, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pptl"]
+atlas = ExtResource("4_fd2nw")
+region = Rect2(186, 176, 24, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hllqb"]
+atlas = ExtResource("4_fd2nw")
+region = Rect2(67, 124, 40, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6tua"]
+atlas = ExtResource("4_fd2nw")
+region = Rect2(33, 181, 28, 47)
 
 [node name="Boar" type="Node2D"]
 script = ExtResource("1_jxii3")
@@ -10,6 +113,7 @@ max_model = 3
 pixel_density = 500
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_fd2nw")
 
 [node name="Mask" type="Sprite2D" parent="Sprite2D"]
@@ -17,3 +121,54 @@ visible = false
 texture = ExtResource("3_84tl3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wafls")
+}
+
+[node name="BackLegR" type="Sprite2D" parent="."]
+position = Vector2(-45, 21)
+texture = SubResource("AtlasTexture_71yit")
+offset = Vector2(3, 18)
+
+[node name="LowerBackLegR" type="Sprite2D" parent="BackLegR"]
+position = Vector2(-7, 37)
+texture = SubResource("AtlasTexture_50w48")
+offset = Vector2(4, 13)
+
+[node name="FrontLegR" type="Sprite2D" parent="."]
+position = Vector2(71, 34)
+texture = SubResource("AtlasTexture_fd2nw")
+offset = Vector2(1, 10)
+
+[node name="FrontLowerLegR" type="Sprite2D" parent="FrontLegR"]
+position = Vector2(-2, 24)
+texture = SubResource("AtlasTexture_y8di2")
+offset = Vector2(2, 14)
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_84tl3")
+
+[node name="Head" type="Sprite2D" parent="Body"]
+position = Vector2(214, 77)
+texture = SubResource("AtlasTexture_wafls")
+offset = Vector2(27, -19)
+
+[node name="FrontLegL" type="Sprite2D" parent="Body"]
+position = Vector2(52, 33)
+texture = SubResource("AtlasTexture_8mljb")
+offset = Vector2(2, 11)
+
+[node name="FrontLowerLegL" type="Sprite2D" parent="Body/FrontLegL"]
+position = Vector2(-3, 28)
+texture = SubResource("AtlasTexture_3pptl")
+offset = Vector2(3, 17)
+
+[node name="BackLegL" type="Sprite2D" parent="Body"]
+position = Vector2(-66, 30)
+texture = SubResource("AtlasTexture_hllqb")
+offset = Vector2(-2, 19)
+
+[node name="LowerBackLegL" type="Sprite2D" parent="Body/BackLegL"]
+position = Vector2(-11, 29)
+texture = SubResource("AtlasTexture_f6tua")
+offset = Vector2(4, 15)
