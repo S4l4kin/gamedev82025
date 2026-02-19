@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8ihcs1i62c0n"]
+[gd_scene load_steps=9 format=3 uid="uid://c8ihcs1i62c0n"]
 
 [ext_resource type="Script" uid="uid://cha7hjbdm6o0g" path="res://Scripts/UI/Menus/MainMenu.gd" id="1_feb5d"]
 [ext_resource type="Texture2D" uid="uid://cfdoc3whl4xot" path="res://Assets/MainMenuBackground.png" id="2_e2o6t"]
 [ext_resource type="Script" uid="uid://bsyl5exuxei4n" path="res://Scripts/UI/Menus/StartGameMenu.gd" id="2_fc0e3"]
 [ext_resource type="Script" uid="uid://bkvuau6vptulm" path="res://Scripts/UI/Menus/LobbyMenu.gd" id="3_7jktm"]
 [ext_resource type="Texture2D" uid="uid://uml7w7yt1hhs" path="res://Assets/button.png" id="3_feb5d"]
+[ext_resource type="Script" uid="uid://cbgndh8cfvmtk" path="res://options.gd" id="6_eow3j"]
 [ext_resource type="Script" uid="uid://2075n6fr702y" path="res://Scripts/UI/Menus/Menu.gd" id="6_ryrav"]
-
+[ext_resource type="Texture2D" uid="uid://l881e8lmp00c" path="res://Assets/redraw symbol.png" id="7_j5wjh"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -349,7 +350,7 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("6_ryrav")
+script = ExtResource("6_eow3j")
 menu_transitions = {
 NodePath("Buttons2/Back"): NodePath("../Main menu")
 }
@@ -387,6 +388,95 @@ theme_override_font_sizes/font_size = 80
 text = "Back"
 horizontal_alignment = 1
 vertical_alignment = 3
+
+[node name="MasterHSlider" type="HSlider" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 467.0
+offset_top = 200.0
+offset_right = 787.0
+offset_bottom = 216.0
+max_value = 1.0
+step = 0.01
+
+[node name="MasterLabel" type="Label" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 504.0
+offset_top = 174.0
+offset_right = 559.0
+offset_bottom = 197.0
+
+[node name="MusicHSlider" type="HSlider" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 467.0
+offset_top = 270.0
+offset_right = 787.0
+offset_bottom = 286.0
+max_value = 1.0
+step = 0.01
+
+[node name="MusicLabel" type="Label" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 497.0
+offset_top = 243.0
+offset_right = 537.0
+offset_bottom = 266.0
+
+[node name="MenuHSlider" type="HSlider" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 467.0
+offset_top = 340.0
+offset_right = 787.0
+offset_bottom = 356.0
+max_value = 1.0
+step = 0.01
+
+[node name="MenuLabel" type="Label" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 494.0
+offset_top = 311.0
+offset_right = 534.0
+offset_bottom = 334.0
+
+[node name="InGameHSlider" type="HSlider" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 467.0
+offset_top = 410.0
+offset_right = 787.0
+offset_bottom = 426.0
+max_value = 1.0
+step = 0.01
+
+[node name="InGameLabel" type="Label" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 491.0
+offset_top = 385.0
+offset_right = 531.0
+offset_bottom = 408.0
+
+[node name="ResetAudioButton" type="Button" parent="Options"]
+layout_mode = 0
+offset_left = 720.0
+offset_top = 442.0
+offset_right = 1030.0
+offset_bottom = 810.0
+scale = Vector2(0.11, 0.11)
+icon = ExtResource("7_j5wjh")
+
+[node name="ResetAudioLabel" type="Label" parent="Options"]
+layout_mode = 0
+offset_left = 505.0
+offset_top = 452.0
+offset_right = 697.0
+offset_bottom = 475.0
+text = "Restore Default Settings:"
 
 [node name="Credits" type="Control" parent="." node_paths=PackedStringArray("menu_transitions")]
 visible = false
@@ -431,3 +521,9 @@ theme_override_font_sizes/font_size = 80
 text = "Back"
 horizontal_alignment = 1
 vertical_alignment = 3
+
+[connection signal="value_changed" from="Options/MasterHSlider" to="Options" method="_on_h_slider_value_changed" binds= ["Master"]]
+[connection signal="value_changed" from="Options/MusicHSlider" to="Options" method="_on_h_slider_value_changed" binds= ["Music"]]
+[connection signal="value_changed" from="Options/MenuHSlider" to="Options" method="_on_h_slider_value_changed" binds= ["Menu"]]
+[connection signal="value_changed" from="Options/InGameHSlider" to="Options" method="_on_h_slider_value_changed" binds= ["InGame"]]
+[connection signal="button_down" from="Options/ResetAudioButton" to="Options" method="_on_reset_audio_button_down"]

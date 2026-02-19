@@ -1,6 +1,7 @@
 extends Node
 
 @export var MusicPlayer: AudioStreamPlayer
+@export var MenuSFXPlayer: AudioStreamPlayer
 @export var GlobalSFXPlayer: AudioStreamPlayer
 @export var ThreeDSFXPlayer: AudioStreamPlayer3D
 
@@ -10,6 +11,8 @@ var _sfx := {}
 func _ready():
 	if not MusicPlayer:
 		MusicPlayer = $MusicPlayer
+	if not MenuSFXPlayer:
+		MenuSFXPlayer = $MenuSFXPlayer
 	if not GlobalSFXPlayer:
 		GlobalSFXPlayer = $GlobalSFXPlayer
 	if not ThreeDSFXPlayer:
@@ -34,7 +37,8 @@ func play_music(resourcePath: String, loop := true ):
 	if not stream:
 		push_error("Music could not be found at %s" % resourcePath)
 		return
-
+	
+	MusicPlayer.bus = "Music"
 	MusicPlayer.stream = stream
 	MusicPlayer.stream.loop = loop
 	MusicPlayer.play()
