@@ -1,7 +1,7 @@
 extends Structure
 var shot_fire : bool = true
-var shot_range : int = 2
-var shot_damage : int = 1
+var shot_range : int = 3
+var shot_damage : int = 2
 
 func on_turn_start():
 	shot_fire = true
@@ -33,4 +33,4 @@ func shoot_ability(target_x: int, target_y: int):
 
 	for actor : Actor in actors.values():
 		if actor.player != player:
-			actor.damage(health)
+			actor.damage(shot_damage)
