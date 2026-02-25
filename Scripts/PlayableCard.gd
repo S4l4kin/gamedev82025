@@ -33,6 +33,8 @@ func set_start_pos():
 	global_position = player.card_line.get_point_weight(1.5)
 
 func hover_start():
+	AudioManager.play_global_sfx("hover_card")
+	
 	if player.mouse_state == Player.MouseState.NONE:
 		var tween = create_tween()
 		
