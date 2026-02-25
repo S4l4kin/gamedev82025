@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://c6owmllr2ghfe"]
+[gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://bu3i7co0jdn5v"]
 
 [ext_resource type="Texture2D" uid="uid://ch1si1ieh5bdk" path="res://Assets/Structures/CardPics/WatchTowerPic.svg" id="1_qmomh"]
 [ext_resource type="PackedScene" uid="uid://cdgq1olwif7k5" path="res://Scenes/Models/Structures/LookoutTower.tscn" id="2_6oaxe"]

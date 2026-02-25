@@ -72,7 +72,6 @@ func _on_h_slider_value_changed(value: float, extra_arg_0: String) -> void:
 		
 		_:
 			push_error("No valid hslider chosen: " + extra_arg_0)
-	#OptionsData.SaveAudioSettings()
 	
 func UpdateVolumesFromOptionsData() -> void:
 	AudioServer.set_bus_volume_db(
