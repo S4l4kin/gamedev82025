@@ -34,8 +34,8 @@ func _ready() -> void:
 	damage_modifier = 0
 
 	call_deferred("setup_renderer")
-	GameManager.connect("turn_start", func(player_turn): if player_turn == GameManager.player_name: on_turn_start())
-	GameManager.connect("turn_end",  func(player_turn): if player_turn == GameManager.player_name: on_turn_end())
+	GameManager.connect("turn_start", func(_player_turn): if player == _player_turn: on_turn_start())
+	GameManager.connect("turn_end",  func(_player_turn): if player == _player_turn: on_turn_end())
 
 func setup_renderer():
 	renderer.add_mask(Color.WHITE, color)
@@ -71,6 +71,6 @@ func get_attack_damage():
 
 func damage(amount: int):
 	health -= amount
-	
+
 func heal(amount: int):
 	health += amount
