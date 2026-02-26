@@ -259,8 +259,7 @@ func move_unit(unit : Actor, path: Array[Vector2i]) -> void:
 				unit.y = step.y
 				if current_hex.unit == unit:
 					current_hex.unit = null
-				if not defender:
-					next_hex.unit = unit
+				next_hex.unit = unit
 				
 				unit.on_post_move()
 				
