@@ -18,4 +18,5 @@ func on_play():
 	super.on_play()
 
 func on_turn_start():
-	GameManager.player.add_resource(generating_resource, true, 1)
+	if GameManager.is_mine(self):
+		GameManager.player.add_resource(generating_resource, true, 1)

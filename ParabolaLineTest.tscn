@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0noaia31d8co"]
+
+[ext_resource type="Script" uid="uid://dlnhntkchaidr" path="res://Scripts/UI/Elements/test.gd" id="1_30stm"]
+[ext_resource type="Script" uid="uid://bshc55ciljpdd" path="res://Scripts/UI/Elements/ParabolaLine.gd" id="1_simev"]
+[ext_resource type="Script" uid="uid://xttetatsu7m" path="res://Scripts/UI/Elements/ParabolaPoint.gd" id="2_3mlik"]
+[ext_resource type="Texture2D" uid="uid://chy536ltbw7mp" path="res://icon.svg" id="4_24ibn"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("slider", "texture", "line")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_30stm")
+slider = NodePath("HSlider")
+texture = NodePath("Control")
+line = NodePath("ParabolaLine")
+
+[node name="ParabolaLine" type="Node2D" parent="."]
+script = ExtResource("1_simev")
+range_max = 797.0
+range_min = 84.0
+a = 0.0006997377888895665
+b = -0.5154872248307824
+c = 398.36357704738094
+render_ingame = null
+metadata/_custom_type_script = "uid://bshc55ciljpdd"
+
+[node name="PointA" type="Marker2D" parent="ParabolaLine"]
+position = Vector2(84, 360)
+script = ExtResource("2_3mlik")
+
+[node name="PointB" type="Marker2D" parent="ParabolaLine"]
+position = Vector2(429, 306)
+script = ExtResource("2_3mlik")
+
+[node name="PointC" type="Marker2D" parent="ParabolaLine"]
+position = Vector2(797, 432)
+script = ExtResource("2_3mlik")
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 474.0
+offset_right = 615.0
+offset_bottom = 490.0
+max_value = 1.0
+step = 0.01
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("4_24ibn")

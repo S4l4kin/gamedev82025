@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Deck" load_steps=2 format=3 uid="uid://xcdnxu37q800"]
+
+[ext_resource type="Script" uid="uid://dk61f267qiwks" path="res://Scripts/Resources/Deck.gd" id="1_oa183"]
+
+[resource]
+script = ExtResource("1_oa183")
+hq = "test_headquarter"
+card_list = Array[String](["scout1", "mushroom_circle", "scout2", "mushroom_teleport"])
+metadata/_custom_type_script = "uid://dk61f267qiwks"

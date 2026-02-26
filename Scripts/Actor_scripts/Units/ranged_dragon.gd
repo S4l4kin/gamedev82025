@@ -5,7 +5,8 @@ var shot_range : int = 2
 var shot_damage : int = 1
 
 func on_turn_start():
-	shot_fire = true
+	if GameManager.is_mine(self):
+		shot_fire = true
 	super.on_turn_start()
 
 func get_actions() -> Dictionary[String, Dictionary]:
@@ -26,7 +27,7 @@ func get_fire_range():
 	board.add_hex_selector(RangeHexSelect.new([Vector2i(x, y)], shot_range, 0, get_target, press_check))
 
 func get_target(target_x: int, target_y: int):
-	#shot_fire = false
+	shot_fire = false
 	GameManager.network.send_messages({"type": "actor_ability", "id": actor_id, "method":"shoot_ability", "args":[target_x, target_y]})
 
 func shoot_ability(target_x: int, target_y: int):
