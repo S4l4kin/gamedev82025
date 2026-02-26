@@ -91,13 +91,13 @@ mouse_filter = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="ResourceLists"]
 layout_mode = 0
 offset_left = 964.0
-offset_top = 487.0
+offset_top = 424.0
 offset_right = 1149.0
 offset_bottom = 646.0
 alignment = 1
 metadata/_edit_group_ = true
 
-[node name="Etheral" type="ScrollContainer" parent="ResourceLists/HBoxContainer"]
+[node name="Etheral" type="CenterContainer" parent="ResourceLists/HBoxContainer"]
 modulate = Color(1, 1, 1, 0.78431374)
 custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
@@ -110,7 +110,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(7.445, 0)
 layout_mode = 2
 
-[node name="Persisten" type="ScrollContainer" parent="ResourceLists/HBoxContainer"]
+[node name="Persisten" type="CenterContainer" parent="ResourceLists/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 tooltip_text = "Persistent"
@@ -149,6 +149,15 @@ script = ExtResource("7_8erm5")
 script = ExtResource("7_8erm5")
 
 [node name="PointC2" type="Marker2D" parent="ParabolaLine"]
+script = ExtResource("7_8erm5")
+
+[node name="PointA3" type="Marker2D" parent="ParabolaLine"]
+script = ExtResource("7_8erm5")
+
+[node name="PointB3" type="Marker2D" parent="ParabolaLine"]
+script = ExtResource("7_8erm5")
+
+[node name="PointC3" type="Marker2D" parent="ParabolaLine"]
 script = ExtResource("7_8erm5")
 
 [node name="HexRaycast" type="RayCast3D" parent="."]
