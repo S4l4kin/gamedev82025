@@ -30,6 +30,7 @@ func _ready():
 	_sfx["unit_fight"] = preload("res://Assets/Resources/Audio/SFX/UnitFight.wav")
 	_sfx["ranged_fight"] = preload("res://Assets/Resources/Audio/SFX/RangedFight.wav")
 	_sfx["unit_move"] = preload("res://Assets/Resources/Audio/SFX/UnitMove.wav")
+	_sfx["bloop"] = preload("res://Assets/Resources/Audio/SFX/Bloop.wav")
 	
 	#start menu music at game start
 	play_music("res://Assets/Resources/Audio/Music/TerraIncognitaMenu.ogg")

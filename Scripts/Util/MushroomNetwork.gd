@@ -22,3 +22,4 @@ func teleport(unit: Unit, from_hex: Hex, to_hex: Hex):
 	unit.global_position = to_hex.position
 	unit.x = to_hex.coord.x
 	unit.y = to_hex.coord.y
+	AudioManager.play_3d_sfx_for_all("bloop", unit.global_position)
