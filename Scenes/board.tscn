@@ -330,7 +330,7 @@ cull_mask = 1
 environment = SubResource("Environment_iehwj")
 current = true
 script = ExtResource("2_psm7c")
-keyboard_speed = 10.0
+zoom_speed = 0.33
 
 [node name="FogOfWar" type="Node" parent="."]
 script = ExtResource("3_d7frl")
