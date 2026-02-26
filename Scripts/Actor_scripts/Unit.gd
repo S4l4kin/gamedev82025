@@ -18,9 +18,11 @@ func attack(enemy:Actor) -> bool:
 	enemy.on_pre_defend(self)
 
 	#Deal damage to both attacker and defender
+	AudioManager.play_3d_sfx_for_all("unit_fight", Vector3(0, 0, 0))
 	var current_attack = get_attack_damage()
 	damage(enemy.get_attack_damage())
 	enemy.damage(current_attack)
+	#if (enemy.card_id) == 
 
 
 	#If either attacker or defender survived actiave post attack and defend abilities

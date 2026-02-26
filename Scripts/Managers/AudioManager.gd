@@ -1,6 +1,7 @@
 extends Node
 
 @export var MusicPlayer: AudioStreamPlayer
+@export var MenuSFXPlayer: AudioStreamPlayer
 @export var GlobalSFXPlayer: AudioStreamPlayer
 @export var ThreeDSFXPlayer: AudioStreamPlayer3D
 
@@ -10,6 +11,8 @@ var _sfx := {}
 func _ready():
 	if not MusicPlayer:
 		MusicPlayer = $MusicPlayer
+	if not MenuSFXPlayer:
+		MenuSFXPlayer = $MenuSFXPlayer
 	if not GlobalSFXPlayer:
 		GlobalSFXPlayer = $GlobalSFXPlayer
 	if not ThreeDSFXPlayer:
@@ -23,6 +26,9 @@ func _ready():
 	_sfx["play_structure"] = preload("res://Assets/Resources/Audio/SFX/PlayStructure.wav")
 	_sfx["play_spell"] = preload("res://Assets/Resources/Audio/SFX/PlaySpell.wav")
 	_sfx["play_unit"] = preload("res://Assets/Resources/Audio/SFX/PlayUnit.wav")
+	_sfx["your_turn"] = preload("res://Assets/Resources/Audio/SFX/YourTurn.wav")
+	_sfx["unit_fight"] = preload("res://Assets/Resources/Audio/SFX/UnitFight.wav")
+	_sfx["ranged_fight"] = preload("res://Assets/Resources/Audio/SFX/RangedFight.wav")
 	
 	#start menu music at game start
 	play_music("res://Assets/Resources/Audio/Music/TerraIncognitaMenu.ogg")
@@ -34,7 +40,8 @@ func play_music(resourcePath: String, loop := true ):
 	if not stream:
 		push_error("Music could not be found at %s" % resourcePath)
 		return
-
+	
+	MusicPlayer.bus = "Music"
 	MusicPlayer.stream = stream
 	MusicPlayer.stream.loop = loop
 	MusicPlayer.play()

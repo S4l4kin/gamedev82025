@@ -1,4 +1,5 @@
 extends Control
+
 class_name Menu
 
 @export var menu_transitions: Dictionary[BaseButton, Control] 

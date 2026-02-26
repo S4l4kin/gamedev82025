@@ -112,6 +112,8 @@ func handle_network(data):
 		var text_color = get_player_color(current_turn)
 		
 		messanger.queue_title("%s Turn"%whos_turn, text_color, 2)
+		if my_turn():
+			AudioManager.play_global_sfx("your_turn")
 		
 		
 		emit_signal("turn_start", current_turn)

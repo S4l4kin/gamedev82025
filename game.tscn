@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8ihcs1i62c0n"]
+[gd_scene load_steps=9 format=3 uid="uid://c8ihcs1i62c0n"]
 
-[ext_resource type="Script" uid="uid://45jltglhyn6r" path="res://Scripts/UI/MainMenu.gd" id="1_feb5d"]
+[ext_resource type="Script" uid="uid://cha7hjbdm6o0g" path="res://Scripts/UI/Menus/MainMenu.gd" id="1_feb5d"]
 [ext_resource type="Texture2D" uid="uid://cfdoc3whl4xot" path="res://Assets/MainMenuBackground.png" id="2_e2o6t"]
-[ext_resource type="Script" uid="uid://cy7qn8dd8se4l" path="res://Scripts/UI/StartGameMenu.gd" id="2_fc0e3"]
-[ext_resource type="Script" uid="uid://ch18yy68tfr78" path="res://Scripts/UI/LobbyMenu.gd" id="3_7jktm"]
+[ext_resource type="Script" uid="uid://bsyl5exuxei4n" path="res://Scripts/UI/Menus/StartGameMenu.gd" id="2_fc0e3"]
+[ext_resource type="Script" uid="uid://bkvuau6vptulm" path="res://Scripts/UI/Menus/LobbyMenu.gd" id="3_7jktm"]
 [ext_resource type="Texture2D" uid="uid://uml7w7yt1hhs" path="res://Assets/button.png" id="3_feb5d"]
-[ext_resource type="Script" uid="uid://b1ddqxxgvwj2b" path="res://Scripts/UI/Menu.gd" id="6_ryrav"]
+[ext_resource type="Script" uid="uid://cbgndh8cfvmtk" path="res://options.gd" id="6_eow3j"]
+[ext_resource type="Script" uid="uid://2075n6fr702y" path="res://Scripts/UI/Menus/Menu.gd" id="6_ryrav"]
+[ext_resource type="Texture2D" uid="uid://l881e8lmp00c" path="res://Assets/redraw symbol.png" id="7_j5wjh"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -59,6 +61,22 @@ offset_bottom = 186.66669
 layout_mode = 2
 theme_override_font_sizes/font_size = 80
 text = "Start Game"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Instructions" type="TextureButton" parent="Main menu/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_feb5d")
+
+[node name="CenterContainer" type="CenterContainer" parent="Main menu/VBoxContainer/Instructions"]
+layout_mode = 0
+offset_right = 963.333
+offset_bottom = 186.667
+
+[node name="Instructions text" type="Label" parent="Main menu/VBoxContainer/Instructions/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Instructions"
 horizontal_alignment = 1
 vertical_alignment = 3
 
@@ -348,7 +366,7 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("6_ryrav")
+script = ExtResource("6_eow3j")
 menu_transitions = {
 NodePath("Buttons2/Back"): NodePath("../Main menu")
 }
@@ -386,6 +404,100 @@ theme_override_font_sizes/font_size = 80
 text = "Back"
 horizontal_alignment = 1
 vertical_alignment = 3
+
+[node name="MasterHSlider" type="HSlider" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 467.0
+offset_top = 200.0
+offset_right = 787.0
+offset_bottom = 216.0
+max_value = 1.0
+step = 0.01
+
+[node name="MasterLabel" type="Label" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 500.0
+offset_top = 174.0
+offset_right = 572.0
+offset_bottom = 197.0
+text = "Master: 0"
+
+[node name="MusicHSlider" type="HSlider" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 467.0
+offset_top = 270.0
+offset_right = 787.0
+offset_bottom = 286.0
+max_value = 1.0
+step = 0.01
+
+[node name="MusicLabel" type="Label" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 500.0
+offset_top = 243.0
+offset_right = 563.0
+offset_bottom = 266.0
+text = "Music: 0"
+
+[node name="MenuHSlider" type="HSlider" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 467.0
+offset_top = 340.0
+offset_right = 787.0
+offset_bottom = 356.0
+max_value = 1.0
+step = 0.01
+
+[node name="MenuLabel" type="Label" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 500.0
+offset_top = 311.0
+offset_right = 562.0
+offset_bottom = 334.0
+text = "Menu: 0"
+
+[node name="InGameHSlider" type="HSlider" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 467.0
+offset_top = 410.0
+offset_right = 787.0
+offset_bottom = 426.0
+max_value = 1.0
+step = 0.01
+
+[node name="InGameLabel" type="Label" parent="Options"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 500.0
+offset_top = 385.0
+offset_right = 584.0
+offset_bottom = 408.0
+text = "In-Game: 0"
+
+[node name="ResetAudioButton" type="Button" parent="Options"]
+layout_mode = 0
+offset_left = 710.99994
+offset_top = 446.0
+offset_right = 1021.0
+offset_bottom = 908.5
+scale = Vector2(0.08, 0.08)
+icon = ExtResource("7_j5wjh")
+flat = true
+
+[node name="ResetAudioLabel" type="Label" parent="Options"]
+layout_mode = 0
+offset_left = 505.0
+offset_top = 452.0
+offset_right = 697.0
+offset_bottom = 475.0
+text = "Restore Default Settings:"
 
 [node name="Credits" type="Control" parent="." node_paths=PackedStringArray("menu_transitions")]
 visible = false
@@ -430,3 +542,81 @@ theme_override_font_sizes/font_size = 80
 text = "Back"
 horizontal_alignment = 1
 vertical_alignment = 3
+
+[node name="Instructions" type="Control" parent="." node_paths=PackedStringArray("menu_transitions")]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_ryrav")
+menu_transitions = {
+NodePath("Buttons2/Back"): NodePath("..")
+}
+metadata/_custom_type_script = "uid://2075n6fr702y"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Instructions"]
+layout_mode = 0
+offset_left = 433.0
+offset_top = 48.0
+offset_right = 804.0
+offset_bottom = 500.0
+text = "You win by destroying the enemy HQ.
+
+Move the camera using eithet right mousebutton or middle mousebutton.
+
+Right click on a card in your hand to show the whole card.
+
+You can only have a single unit per tile.
+
+Press a unit or structure to access activateble abilities, like move and shoot.
+
+Walk to or over enemy units to deal damage.
+
+Stand on an enemy structure at the end of your turn to deal damge to it.
+
+To place a structure put it on a unit you controll or in one of your zones.
+
+Stand on a resource with a unit at the begining of your turn to get a recources of that type for one turn.
+
+Place a mine on a recourse to get a permanent recourse of that at the begining of your turn."
+
+[node name="Buttons2" type="VBoxContainer" parent="Instructions"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 235.0
+offset_top = 561.0
+offset_right = 1190.0
+offset_bottom = 750.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 30
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Back" type="TextureButton" parent="Instructions/Buttons2"]
+layout_mode = 2
+texture_normal = ExtResource("3_feb5d")
+
+[node name="CenterContainer" type="CenterContainer" parent="Instructions/Buttons2/Back"]
+layout_mode = 0
+offset_right = 963.3334
+offset_bottom = 186.66669
+
+[node name="Label" type="Label" parent="Instructions/Buttons2/Back/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[connection signal="button_up" from="Options/Buttons2/Back" to="Options" method="_on_back_button_up"]
+[connection signal="value_changed" from="Options/MasterHSlider" to="Options" method="_on_h_slider_value_changed" binds= ["Master"]]
+[connection signal="value_changed" from="Options/MusicHSlider" to="Options" method="_on_h_slider_value_changed" binds= ["Music"]]
+[connection signal="value_changed" from="Options/MenuHSlider" to="Options" method="_on_h_slider_value_changed" binds= ["Menu"]]
+[connection signal="value_changed" from="Options/InGameHSlider" to="Options" method="_on_h_slider_value_changed" binds= ["InGame"]]
+[connection signal="button_down" from="Options/ResetAudioButton" to="Options" method="_on_reset_audio_button_down"]

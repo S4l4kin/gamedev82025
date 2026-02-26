@@ -17,7 +17,7 @@ cost = {
 }
 card_image = ExtResource("1_3gbld")
 description = "Teleport unit on top to another Mushroom Cirle"
-health = 4
+health = 6
 model = ExtResource("3_lawlv")
 custom_script = ExtResource("1_0oaso")
 play_predicate = ExtResource("3_3gbld")

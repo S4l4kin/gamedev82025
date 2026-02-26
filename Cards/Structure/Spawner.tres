@@ -16,7 +16,7 @@ cost = {
 }
 card_image = ExtResource("1_qf06v")
 description = "This is a spawner that spawns farmers at the start of your turn."
-health = 3
+health = 5
 model = ExtResource("2_qf06v")
 custom_script = ExtResource("1_0m23d")
 metadata/_custom_type_script = "uid://dtj6f2ym5ac5b"
