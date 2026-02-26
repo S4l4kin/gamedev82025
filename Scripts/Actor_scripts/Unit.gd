@@ -46,7 +46,7 @@ func get_attack_damage():
 	return health
 
 func on_pre_move():
-	AudioManager.play_3d_sfx_for_all("unit_move", Vector3(0, 0, 0))
+	AudioManager.play_3d_sfx_for_all("unit_move", global_position)
 	print("X:%s, Y:%s"%[x,y])
 func on_post_move():
 	pass

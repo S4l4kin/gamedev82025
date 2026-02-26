@@ -103,13 +103,13 @@ func play_card (hex: Hex):
 
 	match card.type:
 		Card.CARD_TYPE.HQ:
-			AudioManager.play_3d_sfx_for_all("play_HQ", Vector3(0,0,0))
+			AudioManager.play_3d_sfx_for_all("play_HQ", Vector3(0, 0, 0))
 		Card.CARD_TYPE.Spell:
-			AudioManager.play_3d_sfx_for_all("play_spell", Vector3(0,0,0))
+			AudioManager.play_3d_sfx_for_all("play_spell", Vector3(0, 0, 0))
 		Card.CARD_TYPE.Structure:
-			AudioManager.play_3d_sfx_for_all("play_structure", Vector3(0,0,0))
+			AudioManager.play_3d_sfx_for_all("play_structure", Vector3(0, 0, 0))
 		Card.CARD_TYPE.Unit:
-			AudioManager.play_3d_sfx_for_all("play_unit", Vector3(0,0,0))
+			AudioManager.play_3d_sfx_for_all("play_unit", Vector3(0, 0, 0))
 		Card.CARD_TYPE.Equipment:
 			pass
 

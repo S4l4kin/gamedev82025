@@ -31,7 +31,7 @@ func get_target(target_x: int, target_y: int):
 
 func shoot_ability(target_x: int, target_y: int):
 	var actors = GameManager.board_manager.get_actors(target_x, target_y)
-	AudioManager.play_3d_sfx_for_all("ranged_fight", Vector3(0, 0, 0))
+	AudioManager.play_3d_sfx_for_all("ranged_fight", global_position)
 
 	for actor : Actor in actors.values():
 		if actor.player != player:

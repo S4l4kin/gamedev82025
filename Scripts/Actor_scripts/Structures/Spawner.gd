@@ -13,4 +13,4 @@ func on_turn_start():
 			neighbours.erase(random_neighbour)
 		if len(neighbours) > 0:
 			GameManager.network.send_messages({"type" : "create_actor", "unit": {"id": spawned_unit.id, "speed": spawned_unit.speed, "power": spawned_unit.health}, "coord": random_neighbour.coord, "player": player})
-			AudioManager.play_3d_sfx_for_all("play_unit", Vector3(0, 0, 0))
+			AudioManager.play_3d_sfx_for_all("play_unit", global_position)
