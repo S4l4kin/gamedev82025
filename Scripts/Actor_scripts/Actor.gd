@@ -71,5 +71,6 @@ func get_attack_damage():
 
 func damage(amount: int):
 	health -= amount
+	
 func heal(amount: int):
 	health += amount

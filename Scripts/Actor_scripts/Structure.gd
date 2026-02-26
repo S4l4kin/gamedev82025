@@ -15,9 +15,10 @@ func on_death():
 	var board = GameManager.board_manager
 	for coord : Vector2i in conquring_hexes:
 		print(coord)
-		if not board.conqured_hexes.has(coord):
+		if board.conqured_hexes.has(coord):
 			board.conqured_hexes.erase(coord)
 			board.outline.set_hex_coord_outline("conqured_hexes", coord, Color.TRANSPARENT)
+	board.call_deferred("reconqur_hexes", player)
 
 func conqure_hexes():
 	var board = GameManager.board_manager

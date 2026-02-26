@@ -203,6 +203,17 @@ func add_hex_selector(selector: HexSelect):
 	actor_actions.get_node("3DControl").active = false
 
 
+func reconqur_hexes(priority_player: String):
+	var structures : Array[Structure] = []
+	for hex in hexes.values():
+		if hex.structure:
+			var structure = hex.structure
+			if structure.player == priority_player:
+				structure.conqure_hexes()
+			else:
+				structures.append(structure)
+	for structure in structures:
+		structure.conqure_hexes()
 
 
 func get_neighbours(x:int, y:int) -> Array[Hex]:
