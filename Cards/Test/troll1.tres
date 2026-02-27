@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://ck0x1atbog4pd"]
 
-[ext_resource type="Texture2D" uid="uid://0kgwngbngwh" path="res://Assets/Mobs/TrollGSN.svg" id="1_mqx64"]
+[ext_resource type="Texture2D" uid="uid://qvk8bhsml5jg" path="res://Assets/Mobs/CardPics/TrollPic.svg" id="1_6eb1c"]
 [ext_resource type="PackedScene" uid="uid://dec2i8wmuf6ur" path="res://Scenes/Models/Generic/Troll.tscn" id="2_6eb1c"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_7augl"]
 [ext_resource type="Script" uid="uid://4mfc0j1jlnuy" path="res://Scripts/Predicates/UnitPredicate.gd" id="3_nkayo"]
@@ -30,14 +30,14 @@ func ability(enemy: Actor):
 
 [resource]
 script = ExtResource("2_7augl")
-name = "Troll1"
+name = "Troll"
 id = "troll1"
 type = 1
 cost = {
 0: 1,
 2: 1
 }
-card_image = ExtResource("1_mqx64")
+card_image = ExtResource("1_6eb1c")
 description = "This is a troll that slows enemies"
 unit_type = 3
 health = 5

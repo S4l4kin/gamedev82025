@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Card" load_steps=5 format=3 uid="uid://bqcroqo2fjw21"]
 
-[ext_resource type="Texture2D" uid="uid://corvq7mb804g1" path="res://Assets/Potions/MindControlPotion.svg" id="1_5i0nk"]
+[ext_resource type="Texture2D" uid="uid://3vct4jqvswrq" path="res://Assets/Potions/CardPics/MindControlPotionPic.svg" id="1_5i0nk"]
 [ext_resource type="Script" uid="uid://b2fvholtl1cdq" path="res://Scripts/Spells/ControlSpell.gd" id="2_q7u5o"]
 [ext_resource type="Script" uid="uid://dxhdyubkygoy6" path="res://Scripts/Predicates/TargetEnemyUnitPredicate.gd" id="3_wg17o"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="4_8snpj"]

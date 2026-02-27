@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Card" load_steps=6 format=3 uid="uid://6oc7fdahr7lu"]
 
-[ext_resource type="Texture2D" uid="uid://brsc0s1ltstq4" path="res://Assets/Icons/Resources/scoutPic.jpg" id="1_qxlsc"]
+[ext_resource type="Texture2D" uid="uid://qvk8bhsml5jg" path="res://Assets/Mobs/CardPics/TrollPic.svg" id="1_ksrkk"]
 [ext_resource type="PackedScene" uid="uid://dec2i8wmuf6ur" path="res://Scenes/Models/Generic/Troll.tscn" id="2_ksrkk"]
 [ext_resource type="Script" uid="uid://dtj6f2ym5ac5b" path="res://Scripts/Resources/Card.gd" id="2_qw78y"]
 [ext_resource type="Script" uid="uid://4mfc0j1jlnuy" path="res://Scripts/Predicates/UnitPredicate.gd" id="3_xwr36"]
@@ -32,7 +32,7 @@ type = 1
 cost = {
 0: 1
 }
-card_image = ExtResource("1_qxlsc")
+card_image = ExtResource("1_ksrkk")
 description = "This is a scout that can see further than creatures"
 unit_type = 2
 health = 3

@@ -16,7 +16,7 @@ func damage(amount):
 
 [resource]
 script = ExtResource("2_likdm")
-name = "Warrior1"
+name = "Warrior"
 id = "warrior1"
 type = 1
 cost = {

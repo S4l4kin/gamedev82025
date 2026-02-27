@@ -24,6 +24,15 @@ pivot_offset = Vector2(91, 157)
 texture = ExtResource("1_gvrs1")
 expand_mode = 1
 
+[node name="ColorRect" type="ColorRect" parent="Card"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 21.0
+offset_top = 70.0
+offset_right = 161.0
+offset_bottom = 160.0
+mouse_filter = 2
+
 [node name="Image" type="TextureRect" parent="Card"]
 show_behind_parent = true
 layout_mode = 0
