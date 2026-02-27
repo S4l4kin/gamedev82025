@@ -510,6 +510,20 @@ menu_transitions = {
 NodePath("Buttons2/Back"): NodePath("../Main menu")
 }
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Credits"]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 174.0
+offset_right = 855.0
+offset_bottom = 438.0
+theme_override_constants/paragraph_separation = 20
+theme_override_font_sizes/normal_font_size = 26
+text = "Axel Karlsson
+Valter Lax
+Niklas Linderoos
+Erik Åström"
+scroll_active = false
+
 [node name="Buttons2" type="VBoxContainer" parent="Credits"]
 layout_mode = 1
 anchors_preset = 8
